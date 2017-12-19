@@ -1,7 +1,7 @@
 //
 // RTL Support
 //
-// scss-lint:disable NestingDepth, SelectorDepth
+
 *[dir="rtl"] {
   direction: rtl;
   unicode-bidi: embed;
@@ -12,6 +12,10 @@
 
   table tr th {
     text-align: right;
+  }
+
+  .app-body {
+
   }
 
   // Breadcrumb
@@ -64,22 +68,22 @@
     }
   }
 
-  .sidebar-minimized {
+  .sidebar-compact {
     .sidebar {
-      flex: 0 0 $sidebar-minimized-width;
+      flex: 0 0 $sidebar-compact-width;
     }
 
     &.sidebar-hidden {
 
       .sidebar {
-        margin-left: - $sidebar-minimized-width;
+        margin-left: - $sidebar-compact-width;
       }
     }
 
     &.sidebar-fixed {
 
       .main, .app-footer {
-        margin-left: $sidebar-minimized-width;
+        margin-left: $sidebar-compact-width;
       }
 
       &.sidebar-hidden {
@@ -126,7 +130,7 @@
     .aside-menu {
       position: fixed;
       right: 0;
-      z-index: $zindex-sticky - 1;
+      z-index: $zindex-navbar - 1;
       height: 100%;
 
       .tab-content {
@@ -164,6 +168,7 @@
           &.nav-dropdown {
             &.open {
               > .nav-link.nav-dropdown-toggle::before {
+                -webkit-transform: rotate(90deg);
                 transform: rotate(90deg);
               }
             }
@@ -194,7 +199,7 @@
 
         i {
           margin-right: 5px;
-          margin-left: $spacer;
+          margin-left: $spacer-x;
         }
 
         .value {
@@ -259,9 +264,24 @@
     border-right-color: $text-muted;
   }
 
-  @each $color, $value in $theme-colors {
-    &.callout-#{$color} {
-      border-right-color: $value;
-    }
+  .callout-primary {
+    border-right-color: $brand-primary;
   }
+
+  .callout-info {
+    border-right-color: $brand-info;
+  }
+
+  .callout-warning {
+    border-right-color: $brand-warning;
+  }
+
+  .callout-danger {
+    border-right-color: $brand-danger;
+  }
+
+  .callout-success {
+    border-right-color: $brand-success;
+  }
+
 }

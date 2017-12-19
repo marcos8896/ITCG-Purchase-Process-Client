@@ -12,8 +12,9 @@
     padding-bottom: $breadcrumb-padding-y;
   }
 
-  .btn {
+  .btn.btn-secondary {
     color: $text-muted;
+    border: 0;
 
     &:hover, &.active {
       color: $body-color;
@@ -22,7 +23,7 @@
   }
 
   .open {
-    .btn {
+    .btn.btn-secondary {
       color: $body-color;
       background: transparent;
     }
