@@ -23,6 +23,10 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: './views/dashboard/dashboard.module#DashboardModule'
+      },
+      {
+        path: 'warehouse',
+        loadChildren: './views/warehouse/warehouse.module#WarehouseModule'
       }
     ]
   }
