@@ -13,21 +13,21 @@ const routes: Routes = [
     path: 'create',
     component: ConceptCreateComponent,
     data: {
-      title: 'Crear'
+      title: 'Registrar partida'
     }
   },
   {
     path: 'show',
     component: ConceptShowComponent,
     data: {
-      title: 'Consultar'
+      title: 'Consultar partida'
     }
   },
   {
     path: 'edit',
     component: ConceptEditComponent,
     data: {
-      title: 'Editar'
+      title: 'Editar partida'
     }
   },
   {
