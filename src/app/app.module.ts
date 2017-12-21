@@ -88,10 +88,6 @@ import { ToastrModule } from 'ngx-toastr';
     ...APP_DIRECTIVES
   ],
   providers: [
-    {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy
-    },
     BasicRequestService,
     ConceptService
   ],
