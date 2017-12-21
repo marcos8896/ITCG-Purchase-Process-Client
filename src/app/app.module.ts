@@ -67,6 +67,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BasicRequestService } from 'app/services/basic-request.service';
 import { ConceptService } from 'app/services/concept.service';
 import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -75,7 +77,9 @@ import { HttpModule } from '@angular/http';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
-    HttpModule
+    HttpModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   declarations: [
     AppComponent,
