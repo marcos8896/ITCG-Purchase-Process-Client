@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ConceptService } from 'app/services/concept.service'
 import { ToastrService } from 'ngx-toastr'
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-concept-create',
@@ -8,7 +9,7 @@ import { ToastrService } from 'ngx-toastr'
   styleUrls: ['./concept-create.component.scss']
 })
 export class ConceptCreateComponent implements OnInit {
-  public modelDescription = ''
+  @ViewChild('descriptionInput') description: any;
   constructor( private conceptService: ConceptService, private toastr: ToastrService) {
   }
 
@@ -17,13 +18,14 @@ export class ConceptCreateComponent implements OnInit {
 
   onSubmitConcept( values ) {
     this.conceptService.create( values )
-      .subscribe( res =>{
+      .subscribe( res => {
         if ( res ) {
           this.showSuccess()
+          this.description.nativeElement.value = ''
         }
       },
-    data =>this.showError(data.error.message),
-    () => console.log('Completed'))
+      data => this.showError(data.error.message),
+      () => console.log('Completed'))
   }
 
   showSuccess() {

@@ -13,7 +13,7 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <label for="description">Descripción</label>
-                  <input [(ngModel)]="modelDescription" name="description" #description="ngModel" type="text" class="form-control" placeholder="Ingrese una descripción..." required minlength="2">
+                  <input ngModel name="description" #descriptionInput #description="ngModel" type="text" class="form-control" placeholder="Ingrese una descripción..." required minlength="2">
                   <ul *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger" style="margin-top: .5em">
                       <li *ngIf="description.errors.required"> Debes ingresar una <strong>descripción</strong> </li>
                       <li *ngIf="description.errors.minlength"> Debes ingresar una descripción como mínimo de <strong> {{ description.errors.minlength.requiredLength }} </strong> caracteres </li>
