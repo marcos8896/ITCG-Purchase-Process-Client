@@ -65,6 +65,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BasicRequestService } from 'app/services/basic-request.service';
+import { ConceptService } from 'app/services/concept.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   imports: [
@@ -72,7 +74,8 @@ import { BasicRequestService } from 'app/services/basic-request.service';
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    HttpModule
   ],
   declarations: [
     AppComponent,
@@ -85,7 +88,8 @@ import { BasicRequestService } from 'app/services/basic-request.service';
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
-    BasicRequestService
+    BasicRequestService,
+    ConceptService
   ],
   bootstrap: [ AppComponent ]
 })
