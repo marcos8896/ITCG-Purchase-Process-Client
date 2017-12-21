@@ -5,51 +5,43 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { Response } from '@angular/http/src/static_response';
 
 @Injectable()
 export class BasicRequestService {
-  private endPoint: string
-  private headers: Headers
-  constructor( private http: Http, private configUrlService: ConfigUrlService ) {
-    this.endPoint = configUrlService.getBaseUrl()
+  protected headers: Headers
+
+  constructor( protected http: Http, protected endPoint: string ) {
+    this.endPoint = `${ConfigUrlService.BASE_URL}/${endPoint}`
     this.headers = new Headers({ 'Content-Type': 'application/json' });
   }
 
   public all(): Observable<any[]> {
     return this.http.get(`${this.endPoint}`)
       .map(res => res.json() || { })
-      .catch(err =>  JSON.stringify(err));
+      .catch(err => JSON.stringify(err));
   }
 
   public create( obj ): Observable<any> {
     return this.http.post(`${this.endPoint}`, obj, { headers: this.headers })
       .map( res => res.json() || {})
-      .catch( error => JSON.stringify(error));
+      .catch( this.handleError );
   }
 
-  // public findById( id ): Observable<Provider> {
-  //   return this.http.get(`${this.endPoint}/${id}`)
-  //     .map( res => res.json() || {} )
-  //     .catch( error => JSON.stringify(error) );
-  // }
+  public findById( id ): Observable<any> {
+    return this.http.get(`${this.endPoint}/${id}`)
+      .map( res => res.json() || {} )
+      .catch( this.handleError );
+  }
 
-  // public findByColumn( column: string, value: string ): Observable<Provider[]> {
-  //   return this.http.get(`${this.endPoint}/byColumn/${column}/${value}`)
-  //     .map( res => res.json() || {} )
-  //     .catch( error => JSON.stringify(error) );
-  // }
+  public update( obj ): Observable<any> {
+    return this.http.put(`${this.endPoint}/${obj.provider_id}`, obj, { headers: this.headers })
+      .map( res => res.json() || {} )
+      .catch( this.handleError );
+  }
 
-  // public update( provider: Provider ): Observable<any> {
-  //   const headers = new Headers({ 'Content-Type': 'application/json' });
-  //   return this.http.put(`${this.endPoint}/${provider.provider_id}`, provider, {headers: headers})
-  //     .map( res => res.json() || {} )
-  //     .catch( error => JSON.stringify(error) );
-  // }
+  private handleError(error: Response) {
+    return Observable.throw(error.json()|| 'Server error')
+  }
 
-  // public delete( id ): Observable<any> { // Not sure if this method works
-  //   const headers = new Headers({ 'Content-Type': 'application/json' });
-  //   return this.http.delete(`${this.endPoint}/id`, { headers: headers})
-  //     .map( res => res.json() || {} )
-  //     .catch( error => JSON.stringify(error) );
-  // }
 }
