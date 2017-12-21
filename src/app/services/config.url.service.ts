@@ -3,17 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ConfigUrlService {
 
-  private config: any;
-  constructor() {
-    this.config = { protocol: 'http', host: '0.0.0.0', port: '3000' }
-  }
-
-  getConfig() {
-    return this.config;
-  }
-
-  getBaseUrl() {
-    return `${this.config.protocol}://${this.config.host}:${this.config.port}`;
-  }
+  public static config = { protocol: 'http', host: '127.0.0.1', port: '3000', entry: 'api' }    
+  public static BASE_URL = `${ConfigUrlService.config.protocol}://${ConfigUrlService.config.host}:${ConfigUrlService.config.port}/${ConfigUrlService.config.entry}`;
 
 }
