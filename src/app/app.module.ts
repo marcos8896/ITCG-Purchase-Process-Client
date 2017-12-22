@@ -71,6 +71,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ProgramService } from 'app/services/program.service';
 import { ProjectService } from 'app/services/project.service';
+import { SubdirectionService } from 'app/services/subdirection.service';
 
 @NgModule({
   imports: [
@@ -97,7 +98,8 @@ import { ProjectService } from 'app/services/project.service';
     BasicRequestService,
     ConceptService,
     ProgramService,
-    ProjectService
+    ProjectService,
+    SubdirectionService
   ],
   bootstrap: [ AppComponent ]
 })

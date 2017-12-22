@@ -43,5 +43,17 @@ export const navigation = [
         icon: 'icon-note',
       }
     ]
+  },
+  {
+    name: 'Subdirecciones',
+    icon: 'icon-rocket',
+    url: '',
+    children: [
+      {
+        name: 'Registrar',
+        url: '/warehouse/subdirection/create',
+        icon: 'icon-note',
+      }
+    ]
   }
 ];
