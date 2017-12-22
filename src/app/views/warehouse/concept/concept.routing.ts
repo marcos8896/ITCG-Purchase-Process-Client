@@ -1,7 +1,6 @@
 import { ConceptsComponent } from './components/concepts/concepts.component';
 import { NgModule } from '@angular/core';
-import { Routes,
-     RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { ConceptComponent } from './concept.component';
 import { ConceptCreateComponent } from 'app/views/warehouse/concept/components/concept-create/concept-create.component';

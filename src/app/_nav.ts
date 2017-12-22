@@ -19,5 +19,17 @@ export const navigation = [
         icon: 'icon-note',
       }
     ]
+  },
+  {
+    name: 'Proveedores',
+    icon: 'icon-globe',
+    url: '',
+    children: [
+      {
+        name: 'Registrar',
+        url: '/warehouse/provider/create',
+        icon: 'icon-note',
+      }
+    ]
   }
 ];
