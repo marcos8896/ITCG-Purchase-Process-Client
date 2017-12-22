@@ -69,6 +69,7 @@ import { ConceptService } from 'app/services/concept.service';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ProgramService } from 'app/services/program.service';
 
 @NgModule({
   imports: [
@@ -93,7 +94,8 @@ import { ToastrModule } from 'ngx-toastr';
       useClass: HashLocationStrategy
     },
     BasicRequestService,
-    ConceptService
+    ConceptService,
+    ProgramService
   ],
   bootstrap: [ AppComponent ]
 })
