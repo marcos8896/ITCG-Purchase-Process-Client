@@ -19,5 +19,17 @@ export const navigation = [
         icon: 'icon-note',
       }
     ]
+  },
+  {
+    name: 'Proyectos',
+    icon: 'icon-rocket',
+    url: '',
+    children: [
+      {
+        name: 'Registrar',
+        url: '/warehouse/project/create',
+        icon: 'icon-note',
+      }
+    ]
   }
 ];
