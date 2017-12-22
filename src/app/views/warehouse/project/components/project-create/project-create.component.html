@@ -1,3 +1,44 @@
-<p>
-  project-create works!
-</p>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 offset-md-3">
+      <div class="card">
+        <form #formProject="ngForm" (ngSubmit)="onSubmitProject(formProject.value)">
+              
+          <div class="card-header">
+            <strong>Proyecto</strong>
+            <small>Formulario</small>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="description">Número de proyecto</label>
+                  <input ngModel name="project_number" #projectNumberInput #projectNumber="ngModel" type="number" class="form-control" placeholder="Ingrese un número de proyecto..." required min="00">
+                  <ul *ngIf="projectNumber.invalid && (projectNumber.dirty || projectNumber.touched)" class="alert alert-danger" style="margin-top: .5em">
+                      <li *ngIf="projectNumber.errors.required"> Debes ingresar un número de <strong>proyecto</strong> </li>
+                  </ul>
+                </div>
+              </div>
+            </div><!--/.row-->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="description">Descripción</label>
+                  <input ngModel name="description" #descriptionInput #description="ngModel" type="text" class="form-control" placeholder="Ingrese una descripción..." required minlength="2">
+                  <ul *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger" style="margin-top: .5em">
+                      <li *ngIf="description.errors.required"> Debes ingresar una <strong>descripción</strong> </li>
+                      <li *ngIf="description.errors.minlength"> Debes ingresar una descripción como mínimo de <strong> {{ description.errors.minlength.requiredLength }} </strong> caracteres </li>
+                  </ul>
+                </div>
+              </div>
+            </div><!--/.row-->
+          </div>
+          <div class="card-footer text-right">
+            <button [disabled]="formProject.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
+          </div>
+
+        </form>
+      </div>
+    </div><!--/.col-->
+  </div>
+</div>
