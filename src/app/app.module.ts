@@ -1,3 +1,4 @@
+import { ProviderService } from './services/provider.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -93,7 +94,8 @@ import { ToastrModule } from 'ngx-toastr';
       useClass: HashLocationStrategy
     },
     BasicRequestService,
-    ConceptService
+    ConceptService,
+    ProviderService
   ],
   bootstrap: [ AppComponent ]
 })
