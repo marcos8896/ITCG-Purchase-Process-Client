@@ -16,7 +16,7 @@ export class BasicRequestService {
     this.headers = new Headers({ 'Content-Type': 'application/json' });
   }
 
-  public all(): Observable<any[]> {
+  public all(): Observable<any[]> { 
     return this.http.get(`${this.endPoint}`)
       .map(res => res.json() || { })
       .catch(err => JSON.stringify(err));
