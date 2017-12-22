@@ -19,5 +19,17 @@ export const navigation = [
         icon: 'icon-note',
       }
     ]
+  },
+  {
+    name: 'Programas',
+    icon: 'icon-paypal',
+    url: '',
+    children: [
+      {
+        name: 'Registrar',
+        url: '/warehouse/program/create',
+        icon: 'icon-note',
+      }
+    ]
   }
 ];
