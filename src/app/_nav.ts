@@ -17,6 +17,11 @@ export const navigation = [
         name: 'Registrar',
         url: '/warehouse/concept/create',
         icon: 'icon-note',
+      },
+      {
+        name: 'Consultar',
+        url: '/warehouse/concept/all',
+        icon: 'icon-magnifier',
       }
     ]
   },
