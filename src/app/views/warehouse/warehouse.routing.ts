@@ -8,6 +8,10 @@ const routes: Routes = [
   {
     path: 'concept',
     loadChildren: './concept/concept.module#ConceptModule'
+  },
+  {
+    path: 'project',
+    loadChildren: './project/project.module#ProjectModule'
   }
 ];
 
