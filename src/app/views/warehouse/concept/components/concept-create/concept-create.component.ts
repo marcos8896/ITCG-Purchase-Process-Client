@@ -10,7 +10,7 @@ import { ViewChild } from '@angular/core';
 })
 export class ConceptCreateComponent implements OnInit {
   @ViewChild('descriptionInput') description: any;
-  constructor( private conceptService: ConceptService, private toastr: ToastrService) {
+  constructor( private conceptService: ConceptService, private toastr: ToastrService ) {
   }
 
   ngOnInit() {
@@ -21,7 +21,7 @@ export class ConceptCreateComponent implements OnInit {
       .subscribe( res => {
         if ( res ) {
           this.showSuccess()
-          this.description.nativeElement.value = ''
+          this.clearInputs()
         }
       },
       data => this.showError(data.error.message),
@@ -34,5 +34,9 @@ export class ConceptCreateComponent implements OnInit {
 
   showError( error ) {
     this.toastr.error(error, '¡Ha numa!')
+  }
+
+  clearInputs() {
+    this.description.nativeElement.value = ''
   }
 }

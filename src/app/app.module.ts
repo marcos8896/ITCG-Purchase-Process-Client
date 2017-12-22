@@ -70,6 +70,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ProgramService } from 'app/services/program.service';
+import { ProjectService } from 'app/services/project.service';
 
 @NgModule({
   imports: [
@@ -95,7 +96,8 @@ import { ProgramService } from 'app/services/program.service';
     },
     BasicRequestService,
     ConceptService,
-    ProgramService
+    ProgramService,
+    ProjectService
   ],
   bootstrap: [ AppComponent ]
 })

@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'program',
     loadChildren: './program/program.module#ProgramModule'
+  },
+  {
+    path: 'project',
+    loadChildren: './project/project.module#ProjectModule'
   }
 ];
 
