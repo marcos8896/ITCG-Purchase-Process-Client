@@ -1,3 +1,4 @@
+import { ProviderService } from './services/provider.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -70,7 +71,9 @@ import { BasicRequestService } from 'app/services/basic-request.service';
 import { ConceptService } from 'app/services/concept.service';
 import { HttpModule } from '@angular/http';
 import { ToastrModule } from 'ngx-toastr';
+import { ProgramService } from 'app/services/program.service';
 import { ProjectService } from 'app/services/project.service';
+import { SubdirectionService } from 'app/services/subdirection.service';
 
 @NgModule({
   imports: [
@@ -96,7 +99,10 @@ import { ProjectService } from 'app/services/project.service';
     },
     BasicRequestService,
     ConceptService,
-    ProjectService
+    ProviderService,
+    ProgramService,
+    ProjectService,
+    SubdirectionService
   ],
   bootstrap: [ AppComponent ]
 })

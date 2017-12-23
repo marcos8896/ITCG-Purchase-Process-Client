@@ -1,0 +1,42 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 offset-md-3">
+      <div class="card">
+        <form #formProgram="ngForm" (ngSubmit)="onSubmitProgram(formProgram.value)">
+          <div class="card-header">
+            <strong>Programa</strong>
+            <small>Formulario</small>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="number">Número de programa</label>
+                  <input ngModel name="program_number" #numberInput #number="ngModel" type="number" min=0 class="form-control" placeholder="Ingrese el número del programa" required>
+                    <ul *ngIf="number.invalid && (number.dirty || number.touched)" class="alert alert-danger" style="margin-top: .5em">
+                      <li *ngIf="number.errors.required"> Debes ingresar un <strong>número</strong> </li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <input ngModel name="description" #descriptionInput #description="ngModel" type="text" class="form-control" placeholder="Ingrese una descripción..." required minlength="2">
+                      <ul *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger" style="margin-top: .5em">
+                        <li *ngIf="description.errors.required"> Debes ingresar una <strong>descripción</strong> </li>
+                        <li *ngIf="description.errors.minlength"> Debes ingresar una descripción como mínimo de <strong> {{ description.errors.minlength.requiredLength }} </strong> caracteres </li>
+                      </ul>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="card-footer text-right">
+            <button [disabled]="formProgram.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
