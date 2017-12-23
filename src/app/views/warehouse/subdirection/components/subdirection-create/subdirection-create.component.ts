@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./subdirection-create.component.scss']
 })
 export class SubdirectionCreateComponent implements OnInit {
-  @ViewChild('bossNameInput') bossName: any;
+  @ViewChild('boss_nameInput') boss_name: any;
   @ViewChild('nameInput') name: any;
 
   constructor( private subdirectionService: SubdirectionService, private toastrService: ToastrService ) { }
@@ -38,7 +38,7 @@ export class SubdirectionCreateComponent implements OnInit {
   }
 
   clearInputs() {
-    this.bossName.nativeElement.value = ''
+    this.boss_name.nativeElement.value = ''
     this.name.nativeElement.value = ''
   }
 
