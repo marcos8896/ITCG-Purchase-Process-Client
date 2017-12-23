@@ -18,7 +18,10 @@ export const routes: Routes = [
     path: '',
     component: SessionLayoutComponent,
     children: [
-
+      {
+        path: 'signin',
+        loadChildren: './views/session/signin/signin.module#SigninModule'
+      },
     ]
   },
   {
