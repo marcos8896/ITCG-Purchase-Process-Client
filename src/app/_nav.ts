@@ -27,11 +27,6 @@ export const navigation = [
         icon: 'icon-note',
       },
       {
-        name: 'Editar',
-        url: '/warehouse/provider/edit',        
-        icon: 'icon-note',
-      },
-      {
         name: 'Consulta General',
         url: '/warehouse/provider/all',        
         icon: 'icon-note',
