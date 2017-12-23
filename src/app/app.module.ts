@@ -1,4 +1,3 @@
-import { ProviderService } from './services/provider.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -72,6 +71,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ProgramService } from 'app/services/program.service';
 import { ProjectService } from 'app/services/project.service';
+import { ProviderService } from './services/provider.service';
 
 @NgModule({
   imports: [
@@ -83,6 +83,7 @@ import { ProjectService } from 'app/services/project.service';
     HttpModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(), // ToastrModule added
+    
   ],
   declarations: [
     AppComponent,
