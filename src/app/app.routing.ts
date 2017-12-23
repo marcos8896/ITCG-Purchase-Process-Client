@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 // Import Containers
 import {
   FullLayoutComponent,
-  SimpleLayoutComponent
+  SimpleLayoutComponent,
+  SessionLayoutComponent
 } from './containers';
 
 export const routes: Routes = [
@@ -12,6 +13,16 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
+  },
+  {
+    path: '',
+    component: SessionLayoutComponent,
+    children: [
+      {
+        path: 'signin',
+        loadChildren: './views/session/signin/signin.module#SigninModule'
+      },
+    ]
   },
   {
     path: '',

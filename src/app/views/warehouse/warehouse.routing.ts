@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'project',
     loadChildren: './project/project.module#ProjectModule'
+  },
+  {
+    path: 'subdirection',
+    loadChildren: './subdirection/subdirection.module#SubdirectionModule'
   }
 ];
 

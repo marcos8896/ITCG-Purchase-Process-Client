@@ -8,6 +8,11 @@ export const navigation = [
         name: 'Registrar',
         url: '/warehouse/concept/create',
         icon: 'icon-note',
+      },
+      {
+        name: 'Consultar',
+        url: '/warehouse/concept/all',
+        icon: 'icon-magnifier',
       }
     ]
   },
@@ -46,6 +51,18 @@ export const navigation = [
     ]
   },
   {
+    name: 'Subdirecciones',
+    icon: 'icon-rocket',
+    url: '',
+    children: [
+      {
+        name: 'Registrar',
+        url: '/warehouse/subdirection/create',
+        icon: 'icon-note',
+      }
+    ]
+  },
+  {
     name: 'Programas',
     icon: 'icon-paypal',
     url: '',
@@ -55,8 +72,9 @@ export const navigation = [
         url: '/warehouse/program/create',
         icon: 'icon-note',
       }
-    ]    
+    ]
   }
+        
 ];
   
   

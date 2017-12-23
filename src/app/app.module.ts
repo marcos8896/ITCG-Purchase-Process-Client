@@ -1,18 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
 // Import containers
 import {
   FullLayoutComponent,
-  SimpleLayoutComponent
+  SimpleLayoutComponent,
+  SessionLayoutComponent,
 } from './containers';
 
 const APP_CONTAINERS = [
   FullLayoutComponent,
-  SimpleLayoutComponent
+  SimpleLayoutComponent,
+  SessionLayoutComponent
 ]
 
 // Import components
@@ -26,6 +29,7 @@ import {
   AppSidebarFormComponent,
   AppSidebarHeaderComponent,
   AppSidebarMinimizerComponent,
+  AppSessionFooterComponent,
   APP_SIDEBAR_NAV
 } from './components';
 
@@ -39,6 +43,7 @@ const APP_COMPONENTS = [
   AppSidebarFormComponent,
   AppSidebarHeaderComponent,
   AppSidebarMinimizerComponent,
+  AppSessionFooterComponent,
   APP_SIDEBAR_NAV
 ]
 
@@ -64,14 +69,16 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { BasicRequestService } from 'app/services/basic-request.service';
-import { ConceptService } from 'app/services/concept.service';
-import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+
+// Services
+import { BasicRequestService } from 'app/services/basic-request.service';
+import { ConceptService } from 'app/services/concept.service';
 import { ProgramService } from 'app/services/program.service';
 import { ProjectService } from 'app/services/project.service';
 import { ProviderService } from './services/provider.service';
+import { SubdirectionService } from 'app/services/subdirection.service';
 
 @NgModule({
   imports: [
@@ -100,7 +107,8 @@ import { ProviderService } from './services/provider.service';
     ConceptService,
     ProviderService,
     ProgramService,
-    ProjectService
+    ProjectService,
+    SubdirectionService
   ],
   bootstrap: [ AppComponent ]
 })

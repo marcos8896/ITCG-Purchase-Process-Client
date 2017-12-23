@@ -1,1 +1,14 @@
 // Here you can add other styles
+.session-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: $light;
+    border-top: 1px solid $input-border-color;
+}
+
+.s-content-footer-right {
+    float: right;
+}
