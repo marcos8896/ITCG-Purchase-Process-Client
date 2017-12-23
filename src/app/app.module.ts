@@ -2,6 +2,7 @@ import { ProviderService } from './services/provider.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
@@ -66,11 +67,11 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
+// Services
 import { BasicRequestService } from 'app/services/basic-request.service';
 import { ConceptService } from 'app/services/concept.service';
-import { HttpModule } from '@angular/http';
-import { ToastrModule } from 'ngx-toastr';
 import { ProgramService } from 'app/services/program.service';
 import { ProjectService } from 'app/services/project.service';
 import { SubdirectionService } from 'app/services/subdirection.service';
