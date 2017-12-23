@@ -1,14 +1,5 @@
 export const navigation = [
   {
-    name: 'Dashboard',
-    url: '/dashboard',
-    icon: 'icon-speedometer',
-    badge: {
-      variant: 'info',
-      text: 'NEW'
-    },
-  },
-  {
     name: 'Partidas',
     icon: 'icon-book-open',
     url: '',
@@ -21,13 +12,13 @@ export const navigation = [
     ]
   },
   {
-    name: 'Programas',
-    icon: 'icon-paypal',
+    name: 'Proveedores',
+    icon: 'icon-globe',
     url: '',
     children: [
       {
         name: 'Registrar',
-        url: '/warehouse/program/create',
+        url: '/warehouse/provider/create',        
         icon: 'icon-note',
       }
     ]
@@ -55,5 +46,20 @@ export const navigation = [
         icon: 'icon-note',
       }
     ]
+  },
+  {
+    name: 'Programas',
+    icon: 'icon-paypal',
+    url: '',
+    children: [
+      {
+        name: 'Registrar',
+        url: '/warehouse/program/create',
+        icon: 'icon-note',
+      }
+    ]
   }
+        
 ];
+  
+  

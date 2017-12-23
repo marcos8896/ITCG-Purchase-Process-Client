@@ -1,3 +1,4 @@
+import { ProviderService } from './services/provider.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -97,6 +98,7 @@ import { SubdirectionService } from 'app/services/subdirection.service';
     },
     BasicRequestService,
     ConceptService,
+    ProviderService,
     ProgramService,
     ProjectService,
     SubdirectionService
