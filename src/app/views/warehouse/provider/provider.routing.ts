@@ -23,7 +23,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: ProviderEditComponent,
     data: {
       title: 'Editar partida'

@@ -35,7 +35,7 @@ export class BasicRequestService {
   }
 
   public update( obj ): Observable<any> {
-    return this.http.put(`${this.endPoint}/${obj.provider_id}`, obj, { headers: this.headers })
+    return this.http.put(`${this.endPoint}/${obj.id}`, obj, { headers: this.headers })
       .map( res => res.json() || {} )
       .catch( this.handleError );
   }
