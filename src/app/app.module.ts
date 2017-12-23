@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 // Import containers
 import {
   FullLayoutComponent,
-  SimpleLayoutComponent
+  SimpleLayoutComponent,
+  SessionLayoutComponent,
 } from './containers';
 
 const APP_CONTAINERS = [
   FullLayoutComponent,
-  SimpleLayoutComponent
+  SimpleLayoutComponent,
+  SessionLayoutComponent
 ]
 
 // Import components
@@ -28,6 +30,7 @@ import {
   AppSidebarFormComponent,
   AppSidebarHeaderComponent,
   AppSidebarMinimizerComponent,
+  AppSessionFooterComponent,
   APP_SIDEBAR_NAV
 } from './components';
 
@@ -41,6 +44,7 @@ const APP_COMPONENTS = [
   AppSidebarFormComponent,
   AppSidebarHeaderComponent,
   AppSidebarMinimizerComponent,
+  AppSessionFooterComponent,
   APP_SIDEBAR_NAV
 ]
 
