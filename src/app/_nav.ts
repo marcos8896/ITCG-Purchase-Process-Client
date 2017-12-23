@@ -20,7 +20,17 @@ export const navigation = [
         name: 'Registrar',
         url: '/warehouse/provider/create',        
         icon: 'icon-note',
-      }
+      },
+      {
+        name: 'Editar',
+        url: '/warehouse/provider/edit',        
+        icon: 'icon-note',
+      },
+      {
+        name: 'Consulta General',
+        url: '/warehouse/provider/all',        
+        icon: 'icon-note',
+      }      
     ]
   },
   {
