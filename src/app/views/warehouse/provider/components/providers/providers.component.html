@@ -1,3 +1,44 @@
-<p>
-  providers works!
-</p>
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <i class="fa fa-align-justify"></i> Consulta General de Proveedores
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let provider of providers">
+            <td>{{ provider.name }}</td>
+            <td>{{ provider.address }}</td>
+            <td>{{ provider.phone }}</td>
+            <td>{{ provider.email }}</td>
+            <td>
+              <a class="btn btn-outline-success" [routerLink]="['../show']">Ver</a>
+              <a class="btn btn-outline-primary" [routerLink]="['../edit/', provider.id]">Editar</a>
+              <a class="btn btn-outline-danger">Borrar</a>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+      <!-- <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+        <li class="page-item active">
+          <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul> -->
+    </div>
+  </div>
+</div>
