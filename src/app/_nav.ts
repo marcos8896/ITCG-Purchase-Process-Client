@@ -54,6 +54,11 @@ export const navigation = [
         name: 'Registrar',
         url: '/warehouse/subdirection/create',
         icon: 'icon-note',
+      },
+      {
+        name: 'Consulta General',
+        url: '/warehouse/subdirection/all',
+        icon: 'icon-note',
       }
     ]
   },

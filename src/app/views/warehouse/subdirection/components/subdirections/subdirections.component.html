@@ -1,3 +1,17 @@
-<p>
-  subdirections works!
-</p>
+<div>
+  <ngx-datatable
+  class="material expandable"
+  [rows]="subdirections"
+  [columns]="columns"
+  [loadingIndicator]="loadingIndicator"
+  [columnMode]="'force'"
+  [headerHeight]="40"
+  [footerHeight]="40"
+  [limit]="40"
+  [rowHeight]="'auto'"
+  [reorderable]="reorderable"
+  [scrollbarH]="true"
+  [loadingIndicator]="true"
+  >
+  </ngx-datatable>
+</div>
