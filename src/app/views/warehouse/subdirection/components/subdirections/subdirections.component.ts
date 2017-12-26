@@ -15,12 +15,6 @@ export class SubdirectionsComponent implements OnInit {
   
   public subdirections: Subdirection[];
 
-  public columns = [
-    { prop: "id", name: "ID" },
-    { prop: "name", name: "Nombre de departamento" },
-    { prop: "boss_name", name: "Jefe de departamento" } 
-  ];
-
   constructor( private subdirectionService: SubdirectionService ) { }
 
   ngOnInit() {
