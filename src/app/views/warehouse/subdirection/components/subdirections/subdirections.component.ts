@@ -1,6 +1,7 @@
 import { SubdirectionService } from './../../../../../services/subdirection.service';
 import { Subdirection } from './../../../../../models/subdirection';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DatatableComponent } from '@swimlane/ngx-datatable/src/components/datatable.component';
 
 @Component({
   selector: 'app-subdirections',
@@ -9,6 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubdirectionsComponent implements OnInit {
 
+  @ViewChild('myTable') table: any;
+
+  
   public subdirections: Subdirection[];
 
   public columns = [
@@ -35,6 +39,15 @@ export class SubdirectionsComponent implements OnInit {
         console.log('this.subdirections: ', this.subdirections);
 
       });
+  }
+  
+  onDetailToggle( event ) {
+    console.log('event: ', event);
+  }
+
+  toggleExpandRow(row) {
+    console.log('Toggled Expand Row!', row);
+    this.table.rowDetail.toggleExpandRow(row);
   }
 
 }
