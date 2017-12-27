@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-6 offset-md-3">
       <div class="card">
-        <form #formProgram="ngForm" (ngSubmit)="onSubmitProgram(formProgram.value)">
+        <form #formProgram="ngForm" (ngSubmit)="onSubmitProgram(formProgram.value); formProgram.reset()">
           <div class="card-header">
             <strong>Programa</strong>
             <small>Formulario</small>

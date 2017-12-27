@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-6 offset-md-3">
       <div class="card">
-        <form #formSubdirection="ngForm" (ngSubmit)="onSubmitSubdirection(formSubdirection.value)">
+        <form #formSubdirection="ngForm" (ngSubmit)="onSubmitSubdirection(formSubdirection.value); formSubdirection.reset()">
               
           <div class="card-header">
             <strong>Subdirección</strong>

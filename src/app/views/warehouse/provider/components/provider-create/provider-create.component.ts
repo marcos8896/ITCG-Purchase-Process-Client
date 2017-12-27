@@ -23,11 +23,7 @@ export class ProviderCreateComponent implements OnInit {
     this.providerService.create( values )
       .subscribe( res => {
         if ( res ) {
-          this.showSuccess()
-          this.name.nativeElement.value = ''
-          this.phone.nativeElement.value = ''
-          this.address.nativeElement.value = ''
-          this.email.nativeElement.value = ''
+          this.showSuccess()       
         }
       },
       data => this.showError(data.error.message),
