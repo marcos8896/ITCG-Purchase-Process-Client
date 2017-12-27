@@ -5,7 +5,7 @@
         <form #formSubdirection="ngForm" (ngSubmit)="onSubmitSubdirection(formSubdirection.value)">
               
           <div class="card-header">
-            <strong>Departamento</strong>
+            <strong>Subdirección</strong>
             <small> - Formulario</small>
           </div>
           <div class="card-body">
@@ -13,10 +13,10 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group">
-                  <label for="name">Nombre del departamento</label>
-                  <input ngModel name="name" #nameInput #name="ngModel" type="text" class="form-control" placeholder="Ingrese un nombre para el departamento..." required minlength="2">
+                  <label for="name">Nombre de la subdirección</label>
+                  <input ngModel name="name" #nameInput #name="ngModel" type="text" class="form-control" placeholder="Ingrese un nombre para la subdirección..." required minlength="2">
                   <ul *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="margin-top: .5em">
-                      <li *ngIf="name.errors.required"> Debes ingresar un <strong>nombre de departamento</strong> </li>
+                      <li *ngIf="name.errors.required"> Debes ingresar un <strong>nombre de subdirección</strong> </li>
                       <li *ngIf="name.errors.minlength"> Debes ingresar una descripción como mínimo de <strong> {{ name.errors.minlength.requiredLength }} </strong> caracteres </li>
                   </ul>
                 </div>
@@ -27,7 +27,7 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <label for="boss_ame">Nombre del jefe</label>
-                  <input ngModel name="boss_name" #boss_nameInput #boss_name="ngModel" type="text" class="form-control" placeholder="Ingrese el nombre del jefe de departamento..." required>
+                  <input ngModel name="boss_name" #boss_nameInput #boss_name="ngModel" type="text" class="form-control" placeholder="Ingrese el nombre del jefe de la subdirección..." required>
                   <ul *ngIf="boss_name.invalid && (boss_name.dirty || boss_name.touched)" class="alert alert-danger" style="margin-top: .5em">
                       <li *ngIf="boss_name.errors.required"> Debes ingresar nombre de <strong>jefe</strong> </li>
                   </ul>
