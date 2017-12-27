@@ -23,7 +23,12 @@ const routes: Routes = [
   {
     path: 'subdirection',
     loadChildren: './subdirection/subdirection.module#SubdirectionModule'
+  },
+  {
+    path: 'department',
+    loadChildren: './department/department.module#DepartmentModule'
   }
+
 ];
 
 @NgModule({

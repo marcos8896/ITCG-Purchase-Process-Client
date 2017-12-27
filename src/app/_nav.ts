@@ -73,6 +73,18 @@ export const navigation = [
         icon: 'icon-note',
       }
     ]
+  },
+  {
+    name: 'Departamentos',
+    icon: 'icon-map',
+    url: '',
+    children: [
+      {
+        name: 'Registrar',
+        url: '/warehouse/department/create',
+        icon: 'icon-note',
+      }
+    ]
   }
         
 ];
