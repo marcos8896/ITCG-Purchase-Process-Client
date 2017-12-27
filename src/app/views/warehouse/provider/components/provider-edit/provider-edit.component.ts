@@ -13,37 +13,31 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 export class ProviderEditComponent implements OnInit {
   id
   provider: Provider
-  
+
   constructor(
-    private providerService: ProviderService, 
-    private route: ActivatedRoute, 
-    private toastr: ToastrService, 
+    private providerService: ProviderService,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
     private router: Router
   ) {
     this.route.params.subscribe( params => {
       this.id = params['id']
       if ( this.id ) {
         this.providerService.findById( this.id )
-          .subscribe( provider => this.provider = provider )         
+          .subscribe( provider => this.provider = provider )
       }
     })
    }
 
   ngOnInit() {
   }
-  
+
   onSubmitProvider() {
     this.providerService.update( this.provider )
       .subscribe( res => {
         if ( res ) {
-<<<<<<< HEAD
           this.showSuccess()
           this.router.navigate(['/warehouse/provider/all']);
-=======
-          this.showSuccess() 
-          console.log('me jui')
-          this.router.navigate(['/warehouse/provider/all']);//no jala Cx
->>>>>>> aa7caacb642c26765650e4816a1d9517ecc3f050
         }
       },
       data => this.showError(data.error.message),
