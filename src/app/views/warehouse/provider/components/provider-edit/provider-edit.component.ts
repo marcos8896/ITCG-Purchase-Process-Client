@@ -26,7 +26,7 @@ export class ProviderEditComponent implements OnInit {
         this.providerService.findById( this.id )
           .subscribe( provider => this.provider = provider )         
       }
-    })    
+    })
    }
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class ProviderEditComponent implements OnInit {
     this.providerService.update( this.provider )
       .subscribe( res => {
         if ( res ) {
-          this.showSuccess()
+          this.showSuccess() 
           console.log('me jui')
           this.router.navigate(['/warehouse/provider/all']);//no jala Cx
         }
