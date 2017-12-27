@@ -24,9 +24,7 @@ export class ProgramCreateComponent implements OnInit {
     this.programService.create( values )
       .subscribe( res => {
         if ( res ) {
-          this.showSuccess()
-          this.description.nativeElement.value = ''
-          this.number.nativeElement.value = ''
+          this.showSuccess()           
         }
       },
       data => this.showError(data.error.message),
@@ -39,5 +37,5 @@ export class ProgramCreateComponent implements OnInit {
 
   showError( error ) {
     this.toastr.error(error, '¡Ha numa!')
-  }
+  }  
 }

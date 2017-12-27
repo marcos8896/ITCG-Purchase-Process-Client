@@ -22,7 +22,6 @@ export class ProjectCreateComponent implements OnInit {
       .subscribe( res => {
         if ( res ) {
           this.showSuccess()
-          this.clearInputs()
         }
       },
       data => this.showError(data.error.message),
@@ -36,10 +35,4 @@ export class ProjectCreateComponent implements OnInit {
   showError( error ) {
     this.toastrService.error(error, '¡Ha numa!')
   }
-
-  clearInputs() {
-    this.description.nativeElement.value = ''
-    this.projectNumber.nativeElement.value = ''
-  }
-
 }
