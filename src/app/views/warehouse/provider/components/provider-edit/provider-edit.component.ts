@@ -37,8 +37,7 @@ export class ProviderEditComponent implements OnInit {
       .subscribe( res => {
         if ( res ) {
           this.showSuccess()
-          console.log('me jui')
-          this.router.navigate(['/warehouse/provider/all']);//no jala Cx
+          this.router.navigate(['/warehouse/provider/all']);
         }
       },
       data => this.showError(data.error.message),

@@ -14,6 +14,13 @@ export class SubdirectionsComponent implements OnInit {
 
   
   public subdirections: Subdirection[];
+  public temp: any = [];
+  public selectedFilter = "name";
+  public filterBy = [ 
+    { value: "id", name: "ID" }, 
+    { value: "name", name: "Nombre de departamento" }, 
+    { value: "boss_name", name: "Jefe de departamento" }
+  ]
 
   constructor( private subdirectionService: SubdirectionService ) { }
 
@@ -24,12 +31,10 @@ export class SubdirectionsComponent implements OnInit {
   getSubdirections(): void {
     this.subdirectionService.all()
       .subscribe( data => {
+
+        this.temp = [...data];
         this.subdirections = data;
 
-        // this.columns = Object.keys(this.subdirections[0]).map( sub => {
-        //   return { "prop": sub }
-        // });
-        // console.log('this.columns: ', this.columns);
         console.log('this.subdirections: ', this.subdirections);
 
       });
@@ -42,6 +47,18 @@ export class SubdirectionsComponent implements OnInit {
   toggleExpandRow(row) {
     console.log('Toggled Expand Row!', row);
     this.table.rowDetail.toggleExpandRow(row);
+  }
+
+  updateFilter(  event ) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter( element => element[this.selectedFilter].toLowerCase().indexOf(val) !== -1 || !val );
+
+    // update the rows
+    this.subdirections = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
   }
 
 }
