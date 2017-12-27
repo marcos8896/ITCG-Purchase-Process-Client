@@ -13,10 +13,7 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 export class ProviderEditComponent implements OnInit {
   id
   provider: Provider
-  @ViewChild('phoneInput') phone: any;
-  @ViewChild('addressInput') address: any;
-  @ViewChild('emailInput') email: any;
-
+  
   constructor(
     private providerService: ProviderService, 
     private route: ActivatedRoute, 
@@ -34,13 +31,14 @@ export class ProviderEditComponent implements OnInit {
 
   ngOnInit() {
   }
-  //VINCULAR CON 
+  
   onSubmitProvider() {
     this.providerService.update( this.provider )
       .subscribe( res => {
         if ( res ) {
           this.showSuccess()
-          this.router.navigate(['../all']);//no jala Cx
+          console.log('me jui')
+          this.router.navigate(['/warehouse/provider/all']);//no jala Cx
         }
       },
       data => this.showError(data.error.message),
