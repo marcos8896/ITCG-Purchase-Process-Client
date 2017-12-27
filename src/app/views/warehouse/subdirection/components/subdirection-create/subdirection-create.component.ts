@@ -22,7 +22,6 @@ export class SubdirectionCreateComponent implements OnInit {
       .subscribe( res => {
         if ( res ) {
           this.showSuccess()
-          this.clearInputs()
         }
       },
       data => this.showError(data.error.message),
@@ -36,10 +35,4 @@ export class SubdirectionCreateComponent implements OnInit {
   showError( error ) {
     this.toastrService.error(error, '¡Ha numa!')
   }
-
-  clearInputs() {
-    this.boss_name.nativeElement.value = ''
-    this.name.nativeElement.value = ''
-  }
-
 }

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-6 offset-md-3">
       <div class="card">
-        <form #formConcept="ngForm" (ngSubmit)="onSubmitConcept(formConcept.value)">
+        <form #formConcept="ngForm" (ngSubmit)="onSubmitConcept(formConcept.value); formConcept.reset()">
               
           <div class="card-header">
             <strong>Partida</strong>

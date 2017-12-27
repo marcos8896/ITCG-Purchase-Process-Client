@@ -21,7 +21,6 @@ export class ConceptCreateComponent implements OnInit {
       .subscribe( res => {
         if ( res ) {
           this.showSuccess()
-          this.clearInputs()
         }
       },
       data => this.showError(data.error.message),
@@ -34,9 +33,5 @@ export class ConceptCreateComponent implements OnInit {
 
   showError( error ) {
     this.toastr.error(error, '¡Ha numa!')
-  }
-
-  clearInputs() {
-    this.description.nativeElement.value = ''
   }
 }
