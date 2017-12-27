@@ -53,7 +53,7 @@ export class SubdirectionsComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter( element => element[this.selectedFilter].toLowerCase().indexOf(val) !== -1 || !val );
+    const temp = this.temp.filter( element => element[this.selectedFilter].toString().toLowerCase().indexOf(val) !== -1 || !val );
 
     // update the rows
     this.subdirections = temp;
