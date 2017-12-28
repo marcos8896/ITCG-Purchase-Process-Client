@@ -1,3 +1,44 @@
-<p>
-  subdirection-edit works!
-</p>
+<div class="animated fadeIn" *ngIf="subdirection">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 offset-md-3">
+        <div class="card">
+          <form #formSubdirection="ngForm" (ngSubmit)="onSubmitSubdirection()">
+                
+            <div class="card-header">
+              <strong>Sudirecciones</strong>
+              <small>Formulario</small>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12">
+
+                  <div class="form-group">
+                    <label for="name">Nombre del departamento</label>
+                    <input [(ngModel)]="subdirection.name" name="name" #nameInput #name="ngModel" type="text" class="form-control" placeholder="Ingrese el nombre de un departamento..." required minlength="2">
+                    <ul *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="margin-top: .5em">
+                        <li *ngIf="name.errors.required"> Debes ingresar un <strong>nombre de departamento.</strong> </li>
+                        <li *ngIf="name.errors.minlength"> Debes ingresar un nombre como mínimo de <strong> {{ name.errors.minlength.requiredLength }} </strong> caracteres. </li>
+                    </ul>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="boss_name">Jefe de departamento</label>
+                      <input [(ngModel)]="subdirection.boss_name" name="boss_name" #boss_nameInput #boss_name="ngModel" type="text" class="form-control" placeholder="Ingrese el nombre de un departamento..." required minlength="2">
+                      <ul *ngIf="boss_name.invalid && (boss_name.dirty || boss_name.touched)" class="alert alert-danger" style="margin-top: .5em">
+                          <li *ngIf="boss_name.errors.required"> Debes ingresar un <strong>nombre para el jefe del deparamento.</strong> </li>
+                          <li *ngIf="boss_name.errors.minlength"> Debes ingresar un nombre como mínimo de <strong> {{ boss_name.errors.minlength.requiredLength }} </strong> caracteres. </li>
+                      </ul>
+                    </div>
+
+                </div>
+              </div><!--/.row-->
+            </div>
+            <div class="card-footer text-right">
+              <button [disabled]="formSubdirection.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
+            </div>
+  
+          </form>
+        </div>
+      </div><!--/.col-->
+    </div>
+  </div>

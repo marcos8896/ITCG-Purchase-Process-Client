@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container animated fadeIn">
 
   <div class="col-sm-12 col-md-12">
     <div class="card border-primary">
@@ -74,7 +74,7 @@
               <div class="col-md-2">
                 <div class="form-group">
                   <ul class="list-group" style="margin-top: 35px;">
-                    <button class="btn btn-lg btn-link pull-right">Editar</button>
+                      <button class="btn btn-lg btn-link pull-right" [routerLink]="['../edit/', row.id]">Editar</button>
                   </ul>
                 </div>
               </div>

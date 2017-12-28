@@ -11,8 +11,8 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
   styleUrls: ['./provider-edit.component.scss']
 })
 export class ProviderEditComponent implements OnInit {
-  id
-  provider: Provider
+  public id: any;
+  public provider: Provider;
 
   constructor(
     private providerService: ProviderService,
