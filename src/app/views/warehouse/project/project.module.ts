@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { ProjectComponent } from './project.component';
 import { ProjectRoutingModule } from './project.routing';
@@ -15,7 +16,9 @@ import { ProjectsComponent } from './components/projects/projects.component';
     ProjectRoutingModule,
     ChartsModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgxDatatableModule
+
   ],
   declarations: [
     ProjectComponent,
