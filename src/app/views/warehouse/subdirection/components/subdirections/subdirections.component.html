@@ -19,7 +19,7 @@
 
           <div class="col-md-6 form-group">
             <label>Ingrese el texto a filtrar</label>
-            <input type='text' class="form-control" placeholder='Filtrar por columna...' (keyup)='updateFilter($event)'/>
+            <input [(ngModel)]="searchTextValue" type='text' class="form-control" placeholder='Filtrar por columna...' (keyup)='updateFilter()'/>
           </div>
     
         </div>
