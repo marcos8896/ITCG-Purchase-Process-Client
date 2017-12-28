@@ -9,13 +9,15 @@ import { ProvidersComponent } from './components/providers/providers.component';
 import { ProviderRoutingModule } from './provider.routing';
 import { ProviderEditComponent } from 'app/views/warehouse/provider/components/provider-edit/provider-edit.component';
 import { ProviderCreateComponent } from 'app/views/warehouse/provider/components/provider-create/provider-create.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
     ProviderRoutingModule,
     ChartsModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgxDatatableModule
   ],
   declarations: [
     ProvidersComponent,

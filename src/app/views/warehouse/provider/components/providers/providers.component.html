@@ -1,44 +1,157 @@
-<div class="col-md-12">
-  <div class="card">
-    <div class="card-header">
-      <i class="fa fa-align-justify"></i> Consulta General de Proveedores
+<div class="container">  
+  <div class="col-sm-12 col-md-12">
+    <div class="card border-primary">
+      <div class="card-header">
+        Opciones
+      </div>
+      <div class="card-body">
+        <div class="row">
+    
+          <div class="col-md-6 form-group">
+            <label>Filtrar por:</label>
+            <select name="" id="" class="form-control" [(ngModel)]="selectedFilter">
+              <ng-container *ngFor="let filter of filterBy">
+                <option value="{{ filter.value }}"> {{ filter.name }} </option>
+              </ng-container>
+            </select>
+          </div>
+
+          <div class="col-md-6 form-group">
+            <label>Ingrese el texto a filtrar</label>
+            <input type='text' class="form-control" placeholder='Filtrar por columna...' (keyup)='updateFilter($event)'/>
+          </div>
+    
+        </div>
+      </div>
+      <div class="card-footer">
+        <h5>
+          <small>
+            <a href="javascript:void(0)" (click)="table.rowDetail.expandAllRows()">Expandir todas las filas</a> |
+            <a href="javascript:void(0)" (click)="table.rowDetail.collapseAllRows()">Colapsar todas las filas</a>
+          </small>
+        </h5>
+      </div>
     </div>
-    <div class="card-body">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Dirección</th>
-            <th>Teléfono</th>
-            <th>Email</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let provider of providers">
-            <td>{{ provider.name }}</td>
-            <td>{{ provider.address }}</td>
-            <td>{{ provider.phone }}</td>
-            <td>{{ provider.email }}</td>
-            <td>
-              <a class="btn btn-outline-success" [routerLink]="['../show']">Ver</a>
-              <a class="btn btn-outline-primary" [routerLink]="['../edit/', provider.id]">Editar</a>
-              <a class="btn btn-outline-danger">Borrar</a>
-            </td>
-          </tr>
+  </div>
+  
+  <div class="col-md-12">
+      <ngx-datatable style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [rows]='providers'>
+        <!-- Row Detail Template -->
+        <ngx-datatable-row-detail [rowHeight]="200" #myDetailRow (toggle)="onDetailToggle($event)">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+            
+            <div class="container">
+              <div class="row">
+  
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="id" class="col-md-2 col-form-label">ID:</label>
+                    <ul class="list-group">
+                      <li class="list-group-item">{{ row.id }}</li>
+                    </ul>
+                  </div>
+                </div>
           
-        </tbody>
-      </table>
-      <!-- <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-        <li class="page-item active">
-          <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul> -->
-    </div>
+                
+                <div class="col-md-7">
+                  <label for="nombre" class="col-md-2 col-form-label">Nombre de departamento:</label>
+                  <ul class="list-group">
+                    <li class="list-group-item">{{ row.name }}</li>
+                  </ul>
+                </div>
+                  
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="jefe" class="col-md-2 col-form-label">Teléfono:</label>
+                    <ul class="list-group">
+                      <li class="list-group-item">{{ row.phone }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="jefe" class="col-md-2 col-form-label">Dirección:</label>
+                    <ul class="list-group">
+                      <li class="list-group-item">{{ row.address }}</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="jefe" class="col-md-2 col-form-label">E-mail:</label>
+                    <ul class="list-group">
+                      <li class="list-group-item">{{ row.email }}</li>
+                    </ul>
+                  </div>
+                </div>
+      
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <ul class="list-group" style="margin-top: 35px;">
+                      <button class="btn btn-lg btn-link pull-right" [routerLink]="['../edit/', row.id]">Editar</button>
+                    </ul>
+                  </div>
+                </div>
+      
+              </div>
+            </div>
+
+          </ng-template>
+        </ngx-datatable-row-detail>
+      <!-- Column Templates -->
+       <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <a
+            href="javascript:void(0)"
+            [class.datatable-icon-right]="!expanded"
+            [class.datatable-icon-down]="expanded"
+            title="Expand/Collapse Row"
+            (click)="toggleExpandRow(row)">
+          </a>
+        </ng-template>
+      </ngx-datatable-column>
+  
+      <!-- El [minWidth] es importante para cuando es responsive, chequenle bien gg -->
+      <ngx-datatable-column [minWidth]="100" name="ID" prop="id" width="100">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{value}}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+  
+      <!-- El [minWidth] es importante para cuando es responsive, chequenle bien gg -->
+      <ngx-datatable-column [minWidth]="250" name="Nombre" prop="name" width="250">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{value}}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+      
+      <!-- El [minWidth] es importante para cuando es responsive, chequenle bien gg -->
+      <ngx-datatable-column [minWidth]="100" name="Teléfono" prop="phone" width="100">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{value}}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <!-- El [minWidth] es importante para cuando es responsive, chequenle bien gg -->
+      <ngx-datatable-column [minWidth]="150" name="Dirección" prop="address" width="150">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{value}}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <!-- El [minWidth] es importante para cuando es responsive, chequenle bien gg -->
+      <ngx-datatable-column [minWidth]="100" name="E-mail" prop="email" width="100">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{value}}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+
+
+    </ngx-datatable>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container animated fadeIn">
 
   <div class="col-sm-12 col-md-12">
     <div class="card border-primary">
@@ -42,45 +42,45 @@
       <ngx-datatable-row-detail [rowHeight]="110" #myDetailRow (toggle)="onDetailToggle($event)">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
 
-       <div class="container">
-          <div class="row">
+          <div class="container">
+            <div class="row">
 
-            <div class="col-md-2">
-              <div class="form-group">
-                <label for="id" class="col-md-2 col-form-label">ID:</label>
-                <ul class="list-group">
-                  <li class="list-group-item">{{ row.id }}</li>
-                </ul>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="id" class="col-md-2 col-form-label">ID:</label>
+                  <ul class="list-group">
+                    <li class="list-group-item">{{ row.id }}</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-      
-            
-            <div class="col-md-4">
-              <label for="nombre" class="col-md-2 col-form-label">Nombre de departamento:</label>
-              <ul class="list-group">
-                <li class="list-group-item">{{ row.name }}</li>
-              </ul>
-            </div>
+        
               
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="jefe" class="col-md-2 col-form-label">Jefe de departamento:</label>
+              <div class="col-md-4">
+                <label for="nombre" class="col-md-2 col-form-label">Nombre de departamento:</label>
                 <ul class="list-group">
-                  <li class="list-group-item">{{ row.boss_name }}</li>
+                  <li class="list-group-item">{{ row.name }}</li>
                 </ul>
               </div>
-            </div>
-  
-            <div class="col-md-2">
-              <div class="form-group">
-                <ul class="list-group" style="margin-top: 35px;">
-                  <button class="btn btn-lg btn-link pull-right">Editar</button>
-                </ul>
+                
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="jefe" class="col-md-2 col-form-label">Jefe de departamento:</label>
+                  <ul class="list-group">
+                    <li class="list-group-item">{{ row.boss_name }}</li>
+                  </ul>
+                </div>
               </div>
+    
+              <div class="col-md-2">
+                <div class="form-group">
+                  <ul class="list-group" style="margin-top: 35px;">
+                      <button class="btn btn-lg btn-link pull-right" [routerLink]="['../edit/', row.id]">Editar</button>
+                  </ul>
+                </div>
+              </div>
+    
             </div>
-  
           </div>
-       </div>
 
         </ng-template>
       </ngx-datatable-row-detail>

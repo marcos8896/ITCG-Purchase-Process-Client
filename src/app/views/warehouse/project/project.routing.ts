@@ -23,7 +23,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: ProjectEditComponent,
     data: {
       title: 'Editar proyecto'
