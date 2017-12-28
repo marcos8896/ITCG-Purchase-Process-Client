@@ -16,20 +16,24 @@ export class ProviderEditComponent implements OnInit {
 
   constructor(
     private providerService: ProviderService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
     private router: Router
   ) {
-    this.route.params.subscribe( params => {
+    this.getUrlId();
+   }
+
+  ngOnInit() {
+  }
+
+  getUrlId() {
+    this.activatedRoute.params.subscribe( params => {
       this.id = params['id']
       if ( this.id ) {
         this.providerService.findById( this.id )
           .subscribe( provider => this.provider = provider )
       }
     })
-   }
-
-  ngOnInit() {
   }
 
   onSubmitProvider() {
