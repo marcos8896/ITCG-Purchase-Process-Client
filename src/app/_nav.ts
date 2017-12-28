@@ -71,6 +71,11 @@ export const navigation = [
         name: 'Registrar',
         url: '/warehouse/program/create',
         icon: 'icon-note',
+      },
+      {
+        name: 'Consulta general',
+        url: '/warehouse/program/all',
+        icon: 'icon-note',
       }
     ]
   },
@@ -85,7 +90,8 @@ export const navigation = [
         icon: 'icon-note',
       }
     ]
-  }
+  },
+  
         
 ];
   
