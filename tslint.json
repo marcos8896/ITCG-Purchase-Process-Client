@@ -6,8 +6,7 @@
     "callable-types": true,
     "class-name": true,
     "comment-format": [
-      true,
-      "check-space"
+      false
     ],
     "eofline": true,
     "forin": true,
@@ -49,7 +48,6 @@
     "no-string-literal": false,
     "no-string-throw": true,
     "no-switch-case-fall-through": true,
-    "no-trailing-whitespace": true,
     "no-unused-expression": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
