@@ -1,5 +1,5 @@
-import { SubdirectionService } from './../../../../../services/subdirection.service';
-import { Subdirection } from './../../../../../models/subdirection';
+import { SubdirectionService } from 'app/services/subdirection.service';
+import { Subdirection } from 'app/models/subdirection';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable/src/components/datatable.component';
 
