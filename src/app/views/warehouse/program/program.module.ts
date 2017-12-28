@@ -1,3 +1,4 @@
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { FormsModule } from '@angular/forms';
@@ -17,7 +18,8 @@ import { ProgramsComponent } from './components/programs/programs.component';
     ProgramRoutingModule,
     ChartsModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgxDatatableModule
   ],
   declarations: [
     ProgramComponent,
