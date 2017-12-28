@@ -18,7 +18,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: ProgramEditComponent,
     data: {
       title: 'Editar programa'
