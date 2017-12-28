@@ -33,6 +33,22 @@ export class SubdirectionsComponent implements OnInit {
 
   ngOnInit() {
     this.getSubdirections();
+    this.debounce();
+  }
+
+  getSubdirections(): void {
+    this.subdirectionService.all()
+      .subscribe( data => {
+
+        this.temp = [...data];
+        this.subdirections = data;
+
+        console.log('this.subdirections: ', this.subdirections);
+
+      });
+  }
+
+  debounce() {
     // Subscribe to observable for debounce
     this.subject.debounceTime(400).subscribe( searchTextValue => {
       if ( searchTextValue !== undefined ) {
@@ -47,18 +63,6 @@ export class SubdirectionsComponent implements OnInit {
         this.table.offset = 0;
       }
     })
-  }
-
-  getSubdirections(): void {
-    this.subdirectionService.all()
-      .subscribe( data => {
-
-        this.temp = [...data];
-        this.subdirections = data;
-
-        console.log('this.subdirections: ', this.subdirections);
-
-      });
   }
 
   onDetailToggle( event ) {
