@@ -12,8 +12,6 @@ import { LoginRoutingModule } from 'app/views/session/login/login.routing';
         ReactiveFormsModule,
         LoginRoutingModule
     ],
-    exports: [],
     declarations: [ LoginComponent ],
-    providers: [],
 })
 export class LoginModule { }

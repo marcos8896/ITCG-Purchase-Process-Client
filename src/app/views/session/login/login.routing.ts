@@ -12,5 +12,3 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class LoginRoutingModule { }
-
-export const routedComponents = [LoginComponent];
