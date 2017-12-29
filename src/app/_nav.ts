@@ -59,6 +59,11 @@ export const navigation = [
         name: 'Registrar',
         url: '/warehouse/project/create',
         icon: 'icon-note',
+      },
+      {
+        name: 'Consulta',
+        url: '/warehouse/project/all',
+        icon: 'icon-magnifier',
       }
     ]
   },
