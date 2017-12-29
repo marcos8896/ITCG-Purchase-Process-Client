@@ -27,6 +27,10 @@ const routes: Routes = [
   {
     path: 'department',
     loadChildren: './department/department.module#DepartmentModule'
+  },
+  {
+    path: 'budget-key',
+    loadChildren: './budget-key/budget-key.module#BudgetKeyModule'
   }
 
 ];

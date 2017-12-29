@@ -15,6 +15,23 @@ export const navigation = [
         icon: 'icon-magnifier',
       }
     ]
+  },  
+  {
+    name: 'Claves Presupuestales',
+    icon: 'icon-key',
+    url: '',
+    children: [
+      {
+        name: 'Registrar',
+        url: '/warehouse/budget-key/create',        
+        icon: 'icon-note',
+      },
+      {
+        name: 'Consulta General',
+        url: '/warehouse/budget-key/all',        
+        icon: 'icon-note',
+      }      
+    ]
   },
   {
     name: 'Proveedores',
