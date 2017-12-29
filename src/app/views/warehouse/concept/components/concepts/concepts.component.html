@@ -1,3 +1,101 @@
-<p>
-  concepts works!
-</p>
+<div class="container animated fadeIn">
+
+  <div class="col-sm-12 col-md-12">
+    <div class="card border-primary">
+      <div class="card-header">
+        Opciones
+      </div>
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-md-6 form-group">
+            <label>Filtrar por:</label>
+            <select name="" id="" class="form-control" [(ngModel)]="selectedFilter">
+              <ng-container *ngFor="let filter of filterBy">
+                <option value="{{ filter.value }}"> {{ filter.name }} </option>
+              </ng-container>
+            </select>
+          </div>
+
+          <div class="col-md-6 form-group">
+            <label>Ingrese el texto a filtrar</label>
+            <input [(ngModel)]="searchTextValue" type='text' class="form-control" placeholder='Filtrar por columna...' (keyup)='updateFilter()'/>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-footer">
+        <h5>
+          <small>
+            <a href="javascript:void(0)" (click)="table.rowDetail.expandAllRows()">Expandir todas las filas</a> |
+            <a href="javascript:void(0)" (click)="table.rowDetail.collapseAllRows()">Colapsar todas las filas</a>
+          </small>
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <ngx-datatable style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+      [rowHeight]="50" [scrollbarV]="true" [rows]='concepts'>
+      <!-- Row Detail Template -->
+      <ngx-datatable-row-detail [rowHeight]="130" #myDetailRow (toggle)="onDetailToggle($event)">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+
+          <div class="container">
+            <div class="row">
+
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="id" class="col-md-2 col-form-label">ID:</label>
+                  <ul class="list-group">
+                    <li class="list-group-item">{{ row.id }}</li>
+                  </ul>
+                </div>
+              </div>
+        
+              
+              <div class="col-md-8">
+                <label for="nombre" class="col-md-2 col-form-label">Descripción de la partida:</label>
+                <ul class="list-group">
+                  <textarea readonly class="form-control" style="background-color:white; border-radius: 5px;"> {{ row.description }} </textarea>
+                </ul>
+              </div>
+    
+              <div class="col-md-2">
+                <div class="form-group">
+                  <ul class="list-group" style="margin-top: 35px;">
+                      <button class="btn btn-lg btn-link pull-right" [routerLink]="['../edit/', row.id]">Editar</button>
+                  </ul>
+                </div>
+              </div>
+    
+            </div>
+          </div>
+
+        </ng-template>
+      </ngx-datatable-row-detail>
+      <!-- Column Templates -->
+      <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="Expand/Collapse Row"
+            (click)="toggleExpandRow(row)">
+          </a>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [minWidth]="100" [maxWidth]="300" name="ID" prop="id" width="100">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{ value }}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [minWidth]="250" name="Descripción de partida" prop="description" width="500">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{ value }}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+
+    </ngx-datatable>
+  </div>
+</div>
