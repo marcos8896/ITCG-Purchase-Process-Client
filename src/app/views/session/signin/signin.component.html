@@ -1,3 +1,65 @@
-<p>
-    Signin works!
-</p>
+<div class="animated fadeIn" style="margin-top: 7em;">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 offset-md-3">
+        <div class="card">
+          <form #formSignin="ngForm" (ngSubmit)="onSubmitProject(formSignin.value); formSignin.reset()">
+                
+            <div class="card-header">
+              <strong>Registro</strong>
+              <small>Formulario</small>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="description">Nombre de usuario</label>
+                    <input ngModel name="username" #username="ngModel" type="text" class="form-control" placeholder="Nombre de usuario..." required>
+                    <ul *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger" style="margin-top: .5em">
+                        <li *ngIf="username.errors.required"> Debes ingresar un <strong>nombre de usuario</strong> </li>
+                    </ul>
+                  </div>
+                </div>
+              </div><!--/.row-->
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="description">Email</label>
+                    <input ngModel name="email" #email="ngModel" type="email" class="form-control" placeholder="email@ejemplo.com" required>
+                    <ul *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger" style="margin-top: .5em">
+                        <li *ngIf="email.errors.required"> Debes ingresar un <strong>email</strong> </li>
+                    </ul>
+                  </div>
+                </div>
+              </div><!--/.row-->
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="description">Password</label>
+                    <input ngModel name="password" #password="ngModel" type="password" class="form-control" required>
+                    <ul *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger" style="margin-top: .5em">
+                        <li *ngIf="password.errors.required"> Debes ingresar un <strong>password</strong> </li>
+                    </ul>
+                  </div>
+                </div>
+              </div><!--/.row-->
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="description">Repetir password</label>
+                    <input ngModel name="password_repeat" #password_repeat="ngModel" type="password" class="form-control" required>
+                    <ul *ngIf="password_repeat.invalid && (password_repeat.dirty || password_repeat.touched)" class="alert alert-danger" style="margin-top: .5em">
+                        <li *ngIf="password_repeat.errors.required"> Debes ingresar un <strong>password</strong> </li>
+                    </ul>
+                  </div>
+                </div>
+              </div><!--/.row-->
+            </div>
+            <div class="card-footer text-right">
+              <button [disabled]="formSignin.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
+            </div>
+  
+          </form>
+        </div>
+      </div><!--/.col-->
+    </div>
+  </div>
