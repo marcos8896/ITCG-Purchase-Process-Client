@@ -1,3 +1,4 @@
+import { BudgetKeyService } from './services/budget-key.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -110,6 +111,7 @@ import { DepartmentService } from './services/department.service';
     ProgramService,
     ProjectService,
     SubdirectionService,
+    BudgetKeyService,
     DepartmentService
   ],
   bootstrap: [ AppComponent ]
