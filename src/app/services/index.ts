@@ -7,3 +7,4 @@ export * from './program.service';
 export * from './project.service';
 export * from './provider.service';
 export * from './subdirection.service';
+export * from './user.service';

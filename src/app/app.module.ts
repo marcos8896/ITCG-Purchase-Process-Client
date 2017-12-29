@@ -81,7 +81,8 @@ import {
   ProjectService,
   ProviderService,
   SubdirectionService,
-  DepartmentService
+  DepartmentService,
+  UserService
 } from './services'
 
 @NgModule({
@@ -114,7 +115,8 @@ import {
     ProjectService,
     SubdirectionService,
     BudgetKeyService,
-    DepartmentService
+    DepartmentService,
+    UserService
   ],
   bootstrap: [ AppComponent ]
 })
