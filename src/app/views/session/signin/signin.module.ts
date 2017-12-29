@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SigninComponent } from './signin.component';
 import { SigninRoutingModule } from './signin.routing';
@@ -9,6 +9,7 @@ import { SigninRoutingModule } from './signin.routing';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     SigninRoutingModule
   ],
   declarations: [ SigninComponent ]
