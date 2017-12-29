@@ -42,14 +42,14 @@
       <ngx-datatable-row-detail [rowHeight]="130" #myDetailRow (toggle)="onDetailToggle($event)">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
 
-          <div class="container">
+          <div class="container scrollable-div">
             <div class="row">
 
               <div class="col-md-2">
                 <div class="form-group">
                   <label for="id" class="col-md-2 col-form-label">ID:</label>
                   <ul class="list-group">
-                    <li class="list-group-item">{{ row.id }}</li>
+                    <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.id }}"/>
                   </ul>
                 </div>
               </div>
@@ -58,7 +58,7 @@
               <div class="col-md-8">
                 <label for="nombre" class="col-md-2 col-form-label">Descripción de la partida:</label>
                 <ul class="list-group">
-                  <textarea readonly class="form-control" class="read-only-normal-style"> {{ row.description }} </textarea>
+                  <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.description }}"/>
                 </ul>
               </div>
     
