@@ -18,7 +18,7 @@
 
           <div class="col-md-6 form-group">
             <label>Ingrese el texto a filtrar</label>
-            <input type='text' class="form-control" placeholder='Filtrar por columna...' (keyup)='updateFilter($event)'/>
+            <input [(ngModel)]="searchTextValue" type='text' class="form-control" placeholder='Filtrar por columna...' (keyup)='updateFilter()'/>
           </div>
     
         </div>
@@ -129,13 +129,6 @@
           <strong>{{value}}</strong>
         </ng-template>
       </ngx-datatable-column>
-      
-      <!-- El [minWidth] es importante para cuando es responsive, chequenle bien gg -->
-      <ngx-datatable-column [minWidth]="100" name="Teléfono" prop="phone" width="100">
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          <strong>{{value}}</strong>
-        </ng-template>
-      </ngx-datatable-column>
 
       <!-- El [minWidth] es importante para cuando es responsive, chequenle bien gg -->
       <ngx-datatable-column [minWidth]="150" name="Dirección" prop="address" width="150">
@@ -143,15 +136,6 @@
           <strong>{{value}}</strong>
         </ng-template>
       </ngx-datatable-column>
-
-      <!-- El [minWidth] es importante para cuando es responsive, chequenle bien gg -->
-      <ngx-datatable-column [minWidth]="100" name="E-mail" prop="email" width="100">
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          <strong>{{value}}</strong>
-        </ng-template>
-      </ngx-datatable-column>
-
-
     </ngx-datatable>
   </div>
 </div>
