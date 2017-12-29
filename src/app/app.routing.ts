@@ -22,6 +22,10 @@ export const routes: Routes = [
         path: 'signin',
         loadChildren: './views/session/signin/signin.module#SigninModule'
       },
+      {
+        path: 'login',
+        loadChildren: './views/session/login/login.module#LoginModule'
+      },
     ]
   },
   {
