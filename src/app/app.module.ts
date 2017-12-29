@@ -1,3 +1,4 @@
+import { BudgetKeyService } from './services/budget-key.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -73,13 +74,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 // Services
-import { BasicRequestService } from 'app/services/basic-request.service';
-import { ConceptService } from 'app/services/concept.service';
-import { ProgramService } from 'app/services/program.service';
-import { ProjectService } from 'app/services/project.service';
-import { ProviderService } from './services/provider.service';
-import { SubdirectionService } from 'app/services/subdirection.service';
-import { DepartmentService } from './services/department.service';
+import {
+  BasicRequestService,
+  ConceptService,
+  ProgramService,
+  ProjectService,
+  ProviderService,
+  SubdirectionService,
+  DepartmentService
+} from './services'
 
 @NgModule({
   imports: [
@@ -110,6 +113,7 @@ import { DepartmentService } from './services/department.service';
     ProgramService,
     ProjectService,
     SubdirectionService,
+    BudgetKeyService,
     DepartmentService
   ],
   bootstrap: [ AppComponent ]

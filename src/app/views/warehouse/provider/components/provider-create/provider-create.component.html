@@ -2,8 +2,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-6 offset-md-3">
       <div class="card">
-        <form #formProvider="ngForm" (ngSubmit)="onSubmitProvider(formProvider.value); formProvider.reset()">
-              
+        <form #formProvider="ngForm" (ngSubmit)="onSubmitProvider(formProvider.value); formProvider.reset()">            
           <div class="card-header">
             <strong>Proveedores</strong>
             <small>Formulario</small>
@@ -18,16 +17,34 @@
                       <li *ngIf="name.errors.required"> Debes ingresar un <strong>nombre</strong> </li>
                       <li *ngIf="name.errors.minlength"> Debes ingresar un nombre como mínimo de <strong> {{ name.errors.minlength.requiredLength }} </strong> caracteres </li>
                   </ul>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
                   <label for="phone">Telefono</label>
                   <input ngModel name="phone" #phoneInput #phone="ngModel" type="text" class="form-control" placeholder="Ingrese el teléfono de un proveedor..." minlength="7">
                   <ul *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger" style="margin-top: .5em">
                       <li *ngIf="phone.errors.minlength"> Debes ingresar un teléfono como mínimo de <strong> {{ phone.errors.minlength.requiredLength }} </strong> caracteres </li>
                   </ul>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
                   <label for="address">Dirección</label>
                   <input ngModel name="address" #addressInput #address="ngModel" type="text" class="form-control" placeholder="Ingrese la dirección de un proveedor..." minlength="5">
                   <ul *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger" style="margin-top: .5em">
                       <li *ngIf="address.errors.minlength"> Debes ingresar una dirección como mínimo de <strong> {{ address.errors.minlength.requiredLength }} </strong> caracteres </li>
                   </ul>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
                   <label for="email">E-mail</label>
                   <input ngModel name="email" #emailInput #email="ngModel" type="email" class="form-control" placeholder="Ingrese el e-mail de un proveedor..." minlength="5">
                   <ul *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger" style="margin-top: .5em">

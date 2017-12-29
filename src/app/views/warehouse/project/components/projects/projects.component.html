@@ -1,3 +1,105 @@
-<p>
-  projects works!
-</p>
+<div class="animated fadeIn">
+
+  <div class="col-sm-12 col-md-12">
+    <div class="card border-primary">
+      <div class="card-header">
+        Opciones
+      </div>
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-md-6 form-group">
+            <label>Filtrar por:</label>
+            <select name="" id="" class="form-control" [(ngModel)]="selectedFilter">
+              <ng-container *ngFor="let filter of filterBy">
+                <option value="{{ filter.value }}"> {{ filter.name }} </option>
+              </ng-container>
+            </select>
+          </div>
+
+          <div class="col-md-6 form-group">
+            <label>Ingrese el texto a filtrar</label>
+            <input [(ngModel)]="searchTextValue" type='text' class="form-control" placeholder='Filtrar por columna...' (keyup)='updateFilter()'/>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-footer">
+        <h5>
+          <small>
+            <a href="javascript:void(0)" (click)="table.rowDetail.expandAllRows()">Expandir todas las filas</a> |
+            <a href="javascript:void(0)" (click)="table.rowDetail.collapseAllRows()">Colapsar todas las filas</a>
+          </small>
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12 mb-3 col-xs-12">
+    <ngx-datatable 
+      style="height: 550px"
+      #myTable
+      class='material expandable'
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="50"
+      [scrollbarV]="true"
+      [rows]='projects'>
+      <!-- Row Detail Template -->
+      <ngx-datatable-row-detail
+        [rowHeight]="110"
+        #myDetailRow
+        (toggle)="onDetailToggle($event)">
+        
+        <ng-template
+          let-row="row"
+          let-expanded="expanded"
+          ngx-datatable-row-detail-template>
+
+          <div class="container">
+            <div class="row">
+
+              <div class="form-group col-md-4">
+                <label for="project_number">Número del proyecto:</label>
+                <input type="number" class="form-control" [ngModel]="row.project_number" readonly="readonly">
+              </div>
+                
+              <div class="form-group col-md-4">
+                <label for="project_number" class="col-md-12">Descripción:</label>
+                <input type="text" class="form-control col-md-12" [ngModel]="row.description" readonly="readonly">
+              </div>
+
+              <div class="form-group col-md-2">
+                <label for="project_number"></label><br>
+                <button class="btn btn-lg btn-link pull-right" [routerLink]="['../edit/', row.id]">Editar</button>
+              </div>
+
+            </div>
+          </div>
+
+        </ng-template>
+      </ngx-datatable-row-detail>
+      <!-- Column Templates -->
+      <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="Expand/Collapse Row"
+            (click)="toggleExpandRow(row)">
+          </a>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [minWidth]="250" name="Número del proyecto" prop="project_number" width="250">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{value}}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [minWidth]="250" name="Descripción" prop="description" width="250">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{value}}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>
