@@ -1,3 +1,61 @@
-<p>
-    Login works!
-</p>
+<div class="animated fadeIn" style="margin-top: 6em;" *ngIf="loginForm">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 offset-md-3">
+            <div class="card">
+              <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmitProject(loginForm.value); loginForm.reset()">
+                    
+                <div class="card-header">
+                  <h3 class="text-center">Inicio de sesión</h3>
+                </div>
+                <div class="card-body">
+
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="">Nombre de usuario o Email</label>
+                        <input formControlName="username" name="username" type="text" class="form-control" placeholder="Nombre de usuario...">
+                        <ul *ngIf="loginForm.controls.username.invalid && (loginForm.controls.username.dirty || loginForm.controls.username.touched)" class="alert alert-danger" style="margin-top: .5em">
+                            <li *ngIf="loginForm.controls.username.errors.required"> 
+                              Debes ingresar un <strong>nombre de usuario</strong>
+                            </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div><!--/.row-->
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="">Password</label>
+                        <input formControlName="password" name="password" type="password" class="form-control">
+                        <ul *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)" class="alert alert-danger" style="margin-top: .5em">
+                            <li *ngIf="loginForm.controls.password.errors.required">
+                              Debes ingresar un <strong>password</strong>
+                            </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="card-footer text-right">
+                  <button [disabled]="loginForm.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
+                </div>
+    
+              </form>
+            </div>
+          </div><!--/.col-->
+        </div>
+      </div>
+    
+      <!-- <div class="row">
+    
+          <div class="col-md-12">
+            <p>Form value: {{ loginForm.controls.username.errors | json }}</p>
+          </div>
+          <div class="col-md-12">
+            <p>Form value: {{ loginForm.value | json }}</p>
+          </div>
+          <div class="col-md-12">
+            <p>Form status: {{ loginForm.status | json }}</p>
+          </div>
+        </div> -->
