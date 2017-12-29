@@ -1,6 +1,5 @@
 import { Component, OnInit , ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { ToastrService } from 'ngx-toastr'
 import { ProgramService } from 'app/services/program.service';
 import { ProgramInterface } from 'app/models/program';
@@ -16,20 +15,23 @@ export class ProgramEditComponent implements OnInit {
   
   constructor(
     private programService: ProgramService,
-    private route: ActivatedRoute, 
+    private activatedRoute: ActivatedRoute, 
     private toastr: ToastrService, 
     private router: Router
   ) { 
-    this.route.params.subscribe( params => {
-      this.id = params['id']
-      if ( this.id ) {
-        this.programService.findById( this.id )
-        .subscribe( program => this.program = program )
-      }
-    })
+      this.getUrlId();
   }
 
   ngOnInit() {
+  }
+  getUrlId() {
+    this.activatedRoute.params.subscribe( params => {
+      this.id = params['id']
+      if ( this.id ) {
+        this.programService.findById( this.id )
+          .subscribe( project => this.program = project )
+      }
+    })
   }
   
   onSubmitProgram(){
