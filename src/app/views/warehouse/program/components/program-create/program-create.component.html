@@ -20,17 +20,17 @@
               </div>
             </div>
             <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="description">Descripción</label>
-                    <input ngModel name="description" #descriptionInput #description="ngModel" type="text" class="form-control" placeholder="Ingrese una descripción..." required minlength="2">
-                      <ul *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger" style="margin-top: .5em">
-                        <li *ngIf="description.errors.required"> Debes ingresar una <strong>descripción</strong> </li>
-                        <li *ngIf="description.errors.minlength"> Debes ingresar una descripción como mínimo de <strong> {{ description.errors.minlength.requiredLength }} </strong> caracteres </li>
-                      </ul>
-                  </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="description">Descripción</label>
+                  <input ngModel name="description" #descriptionInput #description="ngModel" type="text" class="form-control" placeholder="Ingrese una descripción..." required minlength="2">
+                    <ul *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger" style="margin-top: .5em">
+                      <li *ngIf="description.errors.required"> Debes ingresar una <strong>descripción</strong> </li>
+                      <li *ngIf="description.errors.minlength"> Debes ingresar una descripción como mínimo de <strong> {{ description.errors.minlength.requiredLength }} </strong> caracteres </li>
+                    </ul>
                 </div>
               </div>
+            </div>
           </div>
           <div class="card-footer text-right">
             <button [disabled]="formProgram.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
