@@ -12,10 +12,14 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <label for="budget_key_id">Clave</label>
-                  <input ngModel name="budget_key_id" #keyInput #key="ngModel" type="text" class="form-control" placeholder="00.0.0" required>                  
+                  <input *ngIf="!(program && project && piidInput.value)" type="text" readonly class="form-control read-only-normal-style" value="00.0.0">
+                  <div *ngIf="program && project && piidInput.value" class="fakeInput">
+                      {{ project.project_number }}.{{ program.program_number }}.{{ piidInput.value }}
+                  </div>
+                  <!-- <input ngModel name="budget_key_id" #keyInput #key="ngModel" type="text" class="form-control" placeholder="00.0.0" required>                  
                   <ul *ngIf="key.invalid && (key.dirty || key.touched)" class="alert alert-danger" style="margin-top: .5em">
                       <li *ngIf="key.errors.required"> Debes ingresar una <strong>clave válida.</strong> </li>
-                  </ul>
+                  </ul> -->
                 </div>
               </div>
             </div>
@@ -46,19 +50,21 @@
                 </div>
               </div>
             </div>
-            <div class="row" *ngIf="program">
+            <div class="row" >
               <div class="col-sm-12">
                 <div class="form-group">
-                  <label for="programId" class="col-md-12 col-form-label">Programa:</label>
-                  <input type='text' [(ngModel)]="program.description" name="programId" #programInput #programId="ngModel" readonly class="form-control read-only-normal-style"/>
+                  <label for="programId">Programa:</label>
+                  <input *ngIf="program" type='text' [(ngModel)]="program.description" name="programId" #programInput #programId="ngModel" readonly class="form-control read-only-normal-style"/>
+                  <input *ngIf="!program" type="text" readonly class="form-control read-only-normal-style">
                 </div>
               </div>
             </div>
-            <div class="row" *ngIf="project">
+            <div class="row">
               <div class="col-sm-12">
                 <div class="form-group">
-                  <label for="projectId" class="col-md-12 col-form-label">Proyecto:</label>
-                  <input type='text' [(ngModel)]="project.description" name="projectId" #projectInput #projectId="ngModel" type='text' readonly class="form-control read-only-normal-style"/>
+                  <label for="projectId">Proyecto:</label>
+                  <input *ngIf="project" type='text' [(ngModel)]="project.description" name="projectId" #projectInput #projectId="ngModel" type='text' readonly class="form-control read-only-normal-style"/>
+                  <input *ngIf="!project" type="text" readonly class="form-control read-only-normal-style">
                 </div>
               </div>
             </div>            
@@ -70,7 +76,7 @@
       </div>
     </div><!--/.col-->
     <div class="col-sm-12 col-md-8">
-      <ngx-datatable style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="40" [scrollbarV]="true" [rows]='programs'>
+      <ngx-datatable style="height: 540px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [rows]='programs'>
         <!-- Row Detail Template -->
         <ngx-datatable-row-detail [rowHeight]="320" #myDetailRow (toggle)="onDetailToggle($event)">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
@@ -87,7 +93,7 @@
                   </div>
   
                   <div class="col-md-8">
-                    <label for="nombre" class="col-md-2 col-form-label">Descripción:</label>
+                    <label for="nombre" class="col-md-8 col-form-label">Descripción:</label>
                     <input type='text' readonly class="form-control read-only-normal-style" value="{{ project.description }}"/>
                   </div>                
   

@@ -63,16 +63,22 @@ export class BudgetKeyCreateComponent implements OnInit {
 
   onSubmitBudgetKey( values ) {
     values.programId = this.program.id;
-    values.projectId = this.project.id;    
+    values.projectId = this.project.id;  
+    values.budget_key_id = `${this.project.project_number}.${this.program.program_number}.${values.piid_ojectives}`;
     this.budgetKeyService.create( values )
       .subscribe( res => {
         if ( res ) {
-          this.showSuccess()       
+          this.showSuccess() 
+          this.clearData()      
         }
       },
       data => this.showError(data.error.message),
       () => console.log('Completed'))      
   }
+
+  clearData() {
+    this.actions = [];
+  }    
 
   toggleExpandRow(row) {
     this.table.rowDetail.toggleExpandRow(row);

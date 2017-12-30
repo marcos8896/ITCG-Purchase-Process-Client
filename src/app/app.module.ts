@@ -1,4 +1,3 @@
-import { BudgetKeyService } from './services/budget-key.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -83,7 +82,8 @@ import {
   SubdirectionService,
   DepartmentService,
   UserService,
-  AuthenticationService
+  AuthenticationService,
+  BudgetKeyService
 } from './services'
 
 const SERVICES = [
@@ -95,7 +95,8 @@ const SERVICES = [
   SubdirectionService,
   DepartmentService,
   UserService,
-  AuthenticationService
+  AuthenticationService,
+  BudgetKeyService
 ]
 
 // Guards
