@@ -86,6 +86,25 @@ import {
   AuthenticationService
 } from './services'
 
+const SERVICES = [
+  BasicRequestService,
+  ConceptService,
+  ProgramService,
+  ProjectService,
+  ProviderService,
+  SubdirectionService,
+  DepartmentService,
+  UserService,
+  AuthenticationService
+]
+
+// Guards
+import { LoggedUserGuard } from './guards'
+
+const GUARDS = [
+  LoggedUserGuard
+]
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -109,16 +128,8 @@ import {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
-    BasicRequestService,
-    ConceptService,
-    ProviderService,
-    ProgramService,
-    ProjectService,
-    SubdirectionService,
-    BudgetKeyService,
-    DepartmentService,
-    UserService,
-    AuthenticationService
+    ...SERVICES,
+    ...GUARDS
   ],
   bootstrap: [ AppComponent ]
 })
