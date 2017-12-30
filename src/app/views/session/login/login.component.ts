@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/services/authentication.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,8 @@ export class LoginComponent {
       private formBuilder: FormBuilder,
       private userService: UserService,
       private toastrService: ToastrService,
-      private authenticationService: AuthenticationService
+      private authenticationService: AuthenticationService,
+      private router: Router
     ) {
       this.createForm()
       }
@@ -33,9 +35,20 @@ export class LoginComponent {
   onSubmitLogin( values ) {
     this.authenticationService.login( values.email, values.password )
       .subscribe( res => {
-        console.log( res )
+        if ( res ) {
+          this.showSuccess()
+          this.router.navigate(['/dashboard'])
+        }
       },
-      error => console.log('Error: ', error),
+      data => this.showError( data.error.message ),
       () => console.log('Completed'))
+  }
+
+  showSuccess() {
+    this.toastrService.success('Has ingresado correctamente', '¡Bienvenido!')
+  }
+
+  showError( error ) {
+    this.toastrService.error(error, '¡Ha numa!')
   }
 }
