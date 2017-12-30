@@ -17,6 +17,10 @@ export class AuthenticationService {
         this.headers = new Headers({ 'Content-Type': 'application/json' })
     }
 
+    isLoggedIn() {
+        return localStorage.getItem('ITCG_isLoggedIn') ? true : false
+    }
+
     login( email: string, password: string ) {
         return this.http.post(`${this.endPoint}/login`, { email, password })
             .map(( response: any ) => {
@@ -24,6 +28,8 @@ export class AuthenticationService {
                 if ( response && response.id ) {
                     localStorage.setItem('ITCG_token', JSON.stringify(response.id));
                     localStorage.setItem('ITCG_userId', JSON.stringify(response.userId));
+                    localStorage.setItem('ITCG_isLoggedIn', JSON.stringify(true));
+
                 }
                 return response;
             })
@@ -33,6 +39,7 @@ export class AuthenticationService {
     logout() {
         localStorage.removeItem('ITCG_token');
         localStorage.removeItem('ITCG_userId');
+        localStorage.removeItem('ITCG_isLoggedIn');
     }
     
     private handleError( error: Response ) {
