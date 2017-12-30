@@ -48,25 +48,19 @@
               <div class="col-md-2">
                 <div class="form-group">
                   <label for="id" class="col-md-2 col-form-label">ID:</label>
-                  <ul class="list-group">
-                    <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.id }}"/>
-                  </ul>
+                  <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.id }}"/>
                 </div>
               </div>
         
               
               <div class="col-md-8">
                 <label for="nombre" class="col-md-2 col-form-label">Descripción de la partida:</label>
-                <ul class="list-group">
-                  <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.description }}"/>
-                </ul>
+                <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.description }}"/>
               </div>
     
               <div class="col-md-2">
                 <div class="form-group">
-                  <ul class="list-group" style="margin-top: 35px;">
-                      <button class="btn btn-lg btn-link pull-right" [routerLink]="['../edit/', row.id]">Editar</button>
-                  </ul>
+                  <button class="btn btn-lg btn-link pull-right" [routerLink]="['../edit/', row.id]">Editar</button>
                 </div>
               </div>
     
@@ -92,7 +86,7 @@
 
       <ngx-datatable-column [minWidth]="250" name="Descripción de partida" prop="description" width="500">
         <ng-template let-value="value" ngx-datatable-cell-template>
-          <div class="break-word"> {{ value }} </div>
+          <div class="break-word"> <strong>{{ value }}</strong> </div>
         </ng-template>
       </ngx-datatable-column>
 
