@@ -18,11 +18,18 @@
   border-radius: 5px !important;
 }
 
+/* ngx-datatable BEGIN----- */
 .scrollable-div {
   height: 100%;
-  overflow-y: scroll;
-  overflow-x: scroll;
+  overflow: auto;
 }
+
+.break-word {
+  height: auto !important;
+  overflow-y: auto !important;
+}
+
+/* ngx-datatable END----- */
 
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
