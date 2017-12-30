@@ -2,7 +2,7 @@
         <div class="row">
           <div class="col-sm-12 col-md-6 offset-md-3">
             <div class="card">
-              <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmitProject(loginForm.value); loginForm.reset()">
+              <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmitLogin(loginForm.value); loginForm.reset()">
                     
                 <div class="card-header">
                   <h3 class="text-center">Inicio de sesión</h3>
@@ -12,11 +12,11 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <label for="">Nombre de usuario o Email</label>
-                        <input formControlName="username" name="username" type="text" class="form-control" placeholder="Nombre de usuario...">
-                        <ul *ngIf="loginForm.controls.username.invalid && (loginForm.controls.username.dirty || loginForm.controls.username.touched)" class="alert alert-danger" style="margin-top: .5em">
-                            <li *ngIf="loginForm.controls.username.errors.required"> 
-                              Debes ingresar un <strong>nombre de usuario</strong>
+                        <label for="email">Email</label>
+                        <input formControlName="email" name="email" type="text" class="form-control" placeholder="Nombre de usuario...">
+                        <ul *ngIf="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)" class="alert alert-danger" style="margin-top: .5em">
+                            <li *ngIf="loginForm.controls.email.errors.required"> 
+                              Debes ingresar un <strong> email</strong>
                             </li>
                         </ul>
                       </div>
