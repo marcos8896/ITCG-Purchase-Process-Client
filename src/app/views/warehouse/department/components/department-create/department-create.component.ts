@@ -16,7 +16,7 @@ export class DepartmentCreateComponent implements OnInit {
   @ViewChild('moneyInput') number: any;
   @ViewChild('selectInput') Selection: any;
   // Subdirections array
-  subdirections
+  public subdirections;
   constructor( 
     private departmentService: DepartmentService, 
     private subdirectionService: SubdirectionService, 
