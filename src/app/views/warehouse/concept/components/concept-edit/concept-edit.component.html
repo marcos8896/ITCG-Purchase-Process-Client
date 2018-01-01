@@ -1,3 +1,33 @@
-<p>
-  concept-edit works!
-</p>
+<div class="animated fadeIn" *ngIf="concept">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 offset-md-3">
+        <div class="card">
+          <form #formConcept="ngForm" (ngSubmit)="onSubmitConcept()">
+                
+            <div class="card-header">
+              <strong>Partida</strong>
+              <small>Formulario</small>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <input [(ngModel)]="concept.description" name="description" #descriptionInput #description="ngModel" type="text" class="form-control" placeholder="Ingrese el nombre de un departamento..." required minlength="2">
+                    <ul *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger" style="margin-top: .5em">
+                        <li *ngIf="description.errors.required"> Debes ingresar una <strong>descripción de la partida.</strong> </li>
+                        <li *ngIf="description.errors.minlength"> Debes ingresar una descripción como mínimo de <strong> {{ description.errors.minlength.requiredLength }} </strong> caracteres. </li>
+                    </ul>
+                  </div>
+                </div>
+              </div><!--/.row-->
+            </div>
+            <div class="card-footer text-right">
+              <button [disabled]="formConcept.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
+            </div>
+  
+          </form>
+        </div>
+      </div><!--/.col-->
+    </div>
+  </div>

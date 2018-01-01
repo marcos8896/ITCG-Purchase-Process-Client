@@ -9,10 +9,6 @@ import { ProviderService } from 'app/services/provider.service';
   styleUrls: ['./provider-create.component.scss']
 })
 export class ProviderCreateComponent implements OnInit {
-  @ViewChild('nameInput') name: any;
-  @ViewChild('phoneInput') phone: any;
-  @ViewChild('addressInput') address: any;
-  @ViewChild('emailInput') email: any;
 
   constructor(private providerService: ProviderService, private toastr: ToastrService) { }
 
@@ -28,8 +24,7 @@ export class ProviderCreateComponent implements OnInit {
       },
       data => this.showError(data.error.message),
       () => console.log('Completed'))
-  }
-  
+  }  
 
   showSuccess() {
     this.toastr.success('Registro agregado exitosamente', '¡Registro agregado!')

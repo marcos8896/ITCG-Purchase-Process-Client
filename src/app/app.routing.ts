@@ -1,3 +1,4 @@
+import { LoggedUserGuard } from './guards/logged-user.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -22,6 +23,10 @@ export const routes: Routes = [
         path: 'signin',
         loadChildren: './views/session/signin/signin.module#SigninModule'
       },
+      {
+        path: 'login',
+        loadChildren: './views/session/login/login.module#LoginModule'
+      },
     ]
   },
   {
@@ -30,6 +35,7 @@ export const routes: Routes = [
     data: {
       title: 'Home'
     },
+    canActivate:  [ LoggedUserGuard ],
     children: [
       {
         path: 'dashboard',

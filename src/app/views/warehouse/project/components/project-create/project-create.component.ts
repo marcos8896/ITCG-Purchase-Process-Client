@@ -1,7 +1,9 @@
+import { ProgramService } from 'app/services/program.service';
 import { Component, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { ProjectService } from 'app/services/project.service';
 import { ToastrService } from 'ngx-toastr';
+import { ProgramInterface } from 'app/models/program';
 
 @Component({
   selector: 'app-project-create',
@@ -11,10 +13,17 @@ import { ToastrService } from 'ngx-toastr';
 export class ProjectCreateComponent implements OnInit {
   @ViewChild('descriptionInput') description: any;
   @ViewChild('projectNumberInput') projectNumber: any;
+  public programs: ProgramInterface [];
 
-  constructor( private projectService: ProjectService, private toastrService: ToastrService ) { }
+  constructor( private projectService: ProjectService, private toastrService: ToastrService, private programService: ProgramService ) { }
 
   ngOnInit() {
+    this.getPrograms();
+  }
+
+  getPrograms() {
+    this.programService.all()
+      .subscribe( programs => this.programs = programs )
   }
 
   onSubmitProject( values ) {

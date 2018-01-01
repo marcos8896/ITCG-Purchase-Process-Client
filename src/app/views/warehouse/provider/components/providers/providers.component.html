@@ -1,4 +1,4 @@
-<div class="container">  
+<div class="container animated fadeIn">  
   <div class="col-sm-12 col-md-12">
     <div class="card border-primary">
       <div class="card-header">
@@ -35,75 +35,64 @@
   </div>
   
   <div class="col-md-12">
-      <ngx-datatable style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [rows]='providers'>
-        <!-- Row Detail Template -->
-        <ngx-datatable-row-detail [rowHeight]="200" #myDetailRow (toggle)="onDetailToggle($event)">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-            
-            <div class="container">
-              <div class="row">
-  
-                <div class="col-md-2">
-                  <div class="form-group">
-                    <label for="id" class="col-md-2 col-form-label">ID:</label>
-                    <ul class="list-group">
-                      <li class="list-group-item">{{ row.id }}</li>
-                    </ul>
-                  </div>
-                </div>
+    <ngx-datatable style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="60" [scrollbarV]="true" [rows]='providers'>
+      <!-- Row Detail Template -->
+      <ngx-datatable-row-detail [rowHeight]="200" #myDetailRow (toggle)="onDetailToggle($event)">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
           
-                
-                <div class="col-md-7">
-                  <label for="nombre" class="col-md-2 col-form-label">Nombre de departamento:</label>
-                  <ul class="list-group">
-                    <li class="list-group-item">{{ row.name }}</li>
-                  </ul>
-                </div>
-                  
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="jefe" class="col-md-2 col-form-label">Teléfono:</label>
-                    <ul class="list-group">
-                      <li class="list-group-item">{{ row.phone }}</li>
-                    </ul>
-                  </div>
+          <div class="container scrollable-div">
+            <div class="row">
+
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="id" class="col-md-2 col-form-label">ID:</label>
+                  <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.id }}"/>
                 </div>
               </div>
-
-              <div class="row">
-
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="jefe" class="col-md-2 col-form-label">Dirección:</label>
-                    <ul class="list-group">
-                      <li class="list-group-item">{{ row.address }}</li>
-                    </ul>
-                  </div>
+        
+              
+              <div class="col-md-7">
+                <label for="nombre" class="col-md-2 col-form-label">Nombre de departamento:</label>
+                <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.name }}"/>
+              </div>
+                
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="" class="col-md-2 col-form-label">Teléfono:</label>
+                  <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.phone }}"/>
                 </div>
-
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="jefe" class="col-md-2 col-form-label">E-mail:</label>
-                    <ul class="list-group">
-                      <li class="list-group-item">{{ row.email }}</li>
-                    </ul>
-                  </div>
-                </div>
-      
-                <div class="col-md-2">
-                  <div class="form-group">
-                    <ul class="list-group" style="margin-top: 35px;">
-                      <button class="btn btn-lg btn-link pull-right" [routerLink]="['../edit/', row.id]">Editar</button>
-                    </ul>
-                  </div>
-                </div>
-      
               </div>
             </div>
 
-          </ng-template>
-        </ngx-datatable-row-detail>
-      <!-- Column Templates -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="" class="col-md-2 col-form-label">Dirección:</label>
+                  <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.address }}"/>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="" class="col-md-2 col-form-label">E-mail:</label>
+                  <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.email }}"/>
+                </div>
+              </div>
+    
+              <div class="col-md-2">
+                <div class="form-group">
+                  <ul class="list-group" style="margin-top: 35px;">
+                    <button class="btn btn-lg btn-link pull-right" [routerLink]="['../edit/', row.id]">Editar</button>
+                  </ul>
+                </div>
+              </div>
+    
+            </div>
+          </div>
+
+        </ng-template>
+      </ngx-datatable-row-detail>
+    <!-- Column Templates -->
        <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
           <a
@@ -126,14 +115,14 @@
       <!-- El [minWidth] es importante para cuando es responsive, chequenle bien gg -->
       <ngx-datatable-column [minWidth]="250" name="Nombre" prop="name" width="250">
         <ng-template let-value="value" ngx-datatable-cell-template>
-          <strong>{{value}}</strong>
+          <div class="break-word"> <strong>{{value}}</strong> </div>
         </ng-template>
       </ngx-datatable-column>
 
       <!-- El [minWidth] es importante para cuando es responsive, chequenle bien gg -->
       <ngx-datatable-column [minWidth]="150" name="Dirección" prop="address" width="150">
         <ng-template let-value="value" ngx-datatable-cell-template>
-          <strong>{{value}}</strong>
+          <div class="break-word"> <strong>{{value}}</strong> </div>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>

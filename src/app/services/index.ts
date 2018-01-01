@@ -8,3 +8,5 @@ export * from './project.service';
 export * from './provider.service';
 export * from './subdirection.service';
 export * from './user.service';
+export * from './authentication.service';
+export * from './budget-key.service';

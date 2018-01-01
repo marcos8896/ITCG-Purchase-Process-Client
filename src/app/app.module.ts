@@ -1,4 +1,3 @@
-import { BudgetKeyService } from './services/budget-key.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -82,8 +81,30 @@ import {
   ProviderService,
   SubdirectionService,
   DepartmentService,
-  UserService
+  UserService,
+  AuthenticationService,
+  BudgetKeyService
 } from './services'
+
+const SERVICES = [
+  BasicRequestService,
+  ConceptService,
+  ProgramService,
+  ProjectService,
+  ProviderService,
+  SubdirectionService,
+  DepartmentService,
+  UserService,
+  AuthenticationService,
+  BudgetKeyService
+]
+
+// Guards
+import { LoggedUserGuard } from './guards'
+
+const GUARDS = [
+  LoggedUserGuard
+]
 
 @NgModule({
   imports: [
@@ -108,15 +129,8 @@ import {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
-    BasicRequestService,
-    ConceptService,
-    ProviderService,
-    ProgramService,
-    ProjectService,
-    SubdirectionService,
-    BudgetKeyService,
-    DepartmentService,
-    UserService
+    ...SERVICES,
+    ...GUARDS
   ],
   bootstrap: [ AppComponent ]
 })

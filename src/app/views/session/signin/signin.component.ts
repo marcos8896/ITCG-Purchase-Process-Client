@@ -30,7 +30,7 @@ export class SigninComponent {
     })
   }
 
-  onSubmitProject( values ) {
+  onSubmitSignin( values ) {
     this.userService.create( values )
       .subscribe( res => {
         console.log(res)

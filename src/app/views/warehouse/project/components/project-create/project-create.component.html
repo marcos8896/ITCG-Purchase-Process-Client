@@ -1,4 +1,4 @@
-<div class="animated fadeIn">
+<div class="animated fadeIn" *ngIf="programs">
   <div class="row">
     <div class="col-sm-12 col-md-6 offset-md-3">
       <div class="card">
@@ -28,6 +28,21 @@
                   <ul *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger" style="margin-top: .5em">
                       <li *ngIf="description.errors.required"> Debes ingresar una <strong>descripción</strong> </li>
                       <li *ngIf="description.errors.minlength"> Debes ingresar una descripción como mínimo de <strong> {{ description.errors.minlength.requiredLength }} </strong> caracteres </li>
+                  </ul>
+                </div>
+              </div>
+            </div><!--/.row-->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="program">Programa</label>
+                  <select ngModel #program="ngModel" #programInput name="programId" id="program" type="text" class="form-control" required>
+                    <option *ngFor="let program of programs" [value]="program.id">
+                      {{ program.description }}
+                    </option>
+                  </select>                  
+                  <ul *ngIf="program.invalid && (program.dirty || program.touched)" class="alert alert-danger" style="margin-top: .5em">
+                    <li *ngIf="program.errors.required"> Debes ingresar un <strong>programa</strong> </li>
                   </ul>
                 </div>
               </div>
