@@ -110,6 +110,11 @@ export const navigation = [
         name: 'Registrar',
         url: '/warehouse/department/create',
         icon: 'icon-note',
+      },
+      {
+        name: 'Consulta general',
+        url: '/warehouse/department/all',
+        icon: 'icon-note',
       }
     ]
   },
