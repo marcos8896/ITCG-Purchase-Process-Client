@@ -1,3 +1,56 @@
-<p>
-  Department-edit works!
-</p>
+<div class="animated fadeIn" *ngIf="department">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 offset-md-3">
+      <div class="card">
+        <form #formDepartment="ngForm" (ngSubmit)="onSubmitDepartment(formDepartment.value); formDepartment.reset()">
+          <div class="card-header">
+            <strong>Departamento</strong>
+            <small>Formulario</small>
+          </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="name">Nombre del departamento</label>
+                <input [(ngModel)]="department.name" name="name" #nameInput #name="ngModel" type="text" class="form-control" placeholder="Ingrese un nombre..." required minlength="4">
+                <ul *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="margin-top: .5em">
+                  <li *ngIf="name.errors.required"> Debes ingresar un <strong>nombre</strong> </li>
+                  <li *ngIf="name.errors.minlength"> Debes ingresar una nombre como mínimo de <strong> {{ name.errors.minlength.requiredLength }} </strong> caracteres </li>
+                </ul>
+            </div>
+          </div>
+          </div><!--/.row-->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="name">Presupuesto</label>
+                  <input [(ngModel)]="department.budget" name="budget" #moneyInput #money="ngModel" type="number"  min=0 class="form-control" placeholder=".." required>
+                  <ul *ngIf="money.invalid && (money.dirty || money.touched)" class="alert alert-danger" style="margin-top: .5em">
+                    <li *ngIf="money.errors.required"> Debes ingresar el <strong>presupuesto</strong> </li>
+                  </ul>
+                </div>
+              </div>
+            </div><!--/.row-->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="name">Subdirección</label>
+                  <select required [(ngModel)]="department.subdirectionId" name="subdirectionId" #selectInput #selectInput="ngModel" class="form-control">
+                    <option value="">Selecciones una subdirección </option>
+                    <option *ngFor= 'let subdirection of subdirections' [value]="subdirection.id" > {{subdirection.name}}</option>
+                    <ul *ngIf="selectInput.invalid" class="alert alert-danger" style="margin-top: .5em">
+                      <li *ngIf="selectInput.errors.required"> Debes ingresar el <strong>presupuesto</strong> </li>
+                    </ul>
+                  </select>
+                </div>
+              </div>
+            </div><!--/.row-->
+          </div>
+          <div class="card-footer text-right">
+            <button [disabled]="formDepartment.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
+          </div>
+        </form>
+      </div>
+    </div><!--/.col-->
+  </div>
+</div>

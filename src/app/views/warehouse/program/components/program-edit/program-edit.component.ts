@@ -24,6 +24,7 @@ export class ProgramEditComponent implements OnInit {
 
   ngOnInit() {
   }
+  
   getUrlId() {
     this.activatedRoute.params.subscribe( params => {
       this.id = params['id']
