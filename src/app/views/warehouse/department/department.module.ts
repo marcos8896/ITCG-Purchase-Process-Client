@@ -1,3 +1,4 @@
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +16,8 @@ import { DepartmentCreateComponent } from './components/department-create/depart
     DepartmentRoutingModule,
     ChartsModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgxDatatableModule
   ],
   declarations: [
     DepartmentComponent, 

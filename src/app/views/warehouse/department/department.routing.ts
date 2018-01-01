@@ -15,14 +15,14 @@ const routes: Routes = [
     }
   },
   {
-    path: 'show',
+    path: 'show/:id',
     component: DepartmentShowComponent,
     data: {
       title: 'Consultar departamento'
     }
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: DepartmentEditComponent,
     data: {
       title: 'Editar departamento'
