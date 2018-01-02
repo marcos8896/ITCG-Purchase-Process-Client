@@ -182,7 +182,7 @@
           [rowHeight]="50"
           [scrollbarV]="true"
           [scrollbarH]="true"
-          [rows]='actions'>
+          [rows]='actions$ | async'>
 
           <ngx-datatable-column [minWidth]="80" name="No. Acción" prop="action_number" width="80">
             <ng-template let-value="value" ngx-datatable-cell-template>

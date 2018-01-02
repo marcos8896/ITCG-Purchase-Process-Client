@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ProgramService } from './../../../../../services/program.service';
 import { SubdirectionService } from './../../../../../services/subdirection.service';
 import { ProjectService } from 'app/services/project.service';
@@ -21,6 +23,8 @@ export class BudgetKeyCreateComponent implements OnInit {
   public programs: ProgramInterface [];
   public tempProjects: ProjectInterface[];
   public actions = [];
+  public behaviorSubject: BehaviorSubject<any[]>
+  public actions$: Observable<any[]>
   @ViewChild('myTable') table: any;
 
   constructor(
@@ -34,6 +38,8 @@ export class BudgetKeyCreateComponent implements OnInit {
   ngOnInit() {
     this.getSubdirections()
     this.getPrograms()
+    this.behaviorSubject = new BehaviorSubject<any[]>( this.actions );
+    this.actions$ = this.behaviorSubject.map( data => data.map( a => a ))   
   }
 
   getSubdirections(): void {
@@ -56,9 +62,8 @@ export class BudgetKeyCreateComponent implements OnInit {
 
   onSubmitAddAction( values ) {
     values.action_number = this.actions.length + 1
-    this.actions.push(values)
-    console.log('this.actions: ', this.actions);
-
+    this.actions.push(values)    
+    this.behaviorSubject.next( this.actions )
   }
 
   onSubmitBudgetKey( values ) {
