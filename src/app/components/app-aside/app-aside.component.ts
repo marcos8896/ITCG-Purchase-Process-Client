@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'app/services/authentication.service';
 
 @Component({
   selector: 'app-aside',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppAsideComponent {
 
-  constructor() { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) { }
+  
+  // Promisify logout method
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+  }
 }

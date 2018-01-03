@@ -1,3 +1,30 @@
 <aside class="aside-menu">
-  
+    <tabset>
+        <tab>
+            <ng-template tabHeading><i class="icon-list"></i></ng-template>
+            <div class="callout m-0 py-2 text-muted text-center bg-light text-uppercase">
+                <small><b>Pendientes</b></small>
+            </div>
+            <hr class="transparent mx-3 my-0">
+            <div class="callout callout-warning m-0 py-3">
+                <div class="avatar float-right">
+                    <img src="assets/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                </div>
+                <div>Firma de requisiciñon <strong>Ada Mabel</strong></div>
+                <small class="text-muted mr-3"><i class="icon-calendar"></i>&nbsp; 3pm</small>
+                <small class="text-muted"><i class="icon-location-pin"></i>&nbsp; ITCG </small>
+            </div>
+        </tab>
+        <tab>
+            <ng-template tabHeading><i class="icon-settings"></i></ng-template>
+            <div class="p-3">
+                <h6>Cuenta</h6>
+                <div class="aside-options">
+                    <div class="clearfix mt-4">
+                        <button (click)="logout()" class="btn btn-primary btn-block">Cerrar Sesión</button>
+                    </div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
 </aside>
