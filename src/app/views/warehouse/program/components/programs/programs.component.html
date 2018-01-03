@@ -48,26 +48,20 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label for="id" class="col-md-2 col-form-label">ID:</label>
-                <ul class="list-group">
-                  <li class="list-group-item">{{ row.id }}</li>
-                </ul>
+                <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.id }}"/>
               </div>
             </div>
       
             
             <div class="col-md-4">
               <label for="numero" class="col-md-2 col-form-label">Número de programa:</label>
-              <ul class="list-group">
-                <li class="list-group-item">{{ row.program_number }}</li>
-              </ul>
+              <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.program_number }}"/>
             </div>
               
             <div class="col-md-4">
               <div class="form-group">
                 <label for="descripcion" class="col-md-2 col-form-label">Descripción:</label>
-                <ul class="list-group">
-                  <li class="list-group-item">{{ row.description }}</li>
-                </ul>
+                <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.description }}"/>
               </div>
             </div>
   
