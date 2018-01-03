@@ -10,3 +10,4 @@ export * from './subdirection.service';
 export * from './user.service';
 export * from './authentication.service';
 export * from './budget-key.service';
+export * from './budget-key-details.service';
