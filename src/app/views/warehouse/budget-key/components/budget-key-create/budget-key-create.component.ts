@@ -1,3 +1,4 @@
+import { BudgetKeyDetailsService } from './../../../../../services/budget-key-details.service';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ProgramService } from './../../../../../services/program.service';
@@ -7,9 +8,9 @@ import { ProgramInterface } from './../../../../../models/program';
 import { getTestBed } from '@angular/core/testing';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { BudgetKeyService} from 'app/services';
 import { ProjectInterface } from 'app/models/project';
 import { Subdirection } from 'app/models/subdirection';
+import { BudgetKeyService } from 'app/services';
 
 @Component({
   selector: 'app-budget-key-create',
@@ -25,6 +26,8 @@ export class BudgetKeyCreateComponent implements OnInit {
   public actions = [];
   public behaviorSubject: BehaviorSubject<any[]>
   public actions$: Observable<any[]>
+  public actionDescription: any = "";
+  public budgetKey: any;
   @ViewChild('myTable') table: any;
 
   constructor(
@@ -32,7 +35,8 @@ export class BudgetKeyCreateComponent implements OnInit {
     private toastr: ToastrService,
     private projectService: ProjectService,
     private subdirectionService: SubdirectionService,
-    private programService: ProgramService
+    private programService: ProgramService,
+    private budgetKeyDetailsService: BudgetKeyDetailsService
   ) { }
 
   ngOnInit() {
@@ -55,30 +59,43 @@ export class BudgetKeyCreateComponent implements OnInit {
   }
 
   projectSelected( project, program ) {
-    this.program = program;
-    this.project = project;
+    this.program = JSON.parse(JSON.stringify(program));    
+    this.project = JSON.parse(JSON.stringify(project));  
     this.toggleExpandRow( program )
   }
 
-  onSubmitAddAction( values ) {
-    values.action_number = this.actions.length + 1
-    this.actions.push(values)    
+  onSubmitAddAction() {
+    let val: any = { description: this.actionDescription }
+    val.action_number = this.actions.length + 1
+    this.actions.push(val)    
     this.behaviorSubject.next( this.actions )
+    this.actionDescription = ''
   }
 
   onSubmitBudgetKey( values ) {
     values.programId = this.program.id;
     values.projectId = this.project.id;  
-    values.budget_key_id = `${this.project.project_number}.${this.program.program_number}.${values.piid_ojectives}`;
+    this.budgetKey = `${this.project.project_number}.${this.program.program_number}.${values.piid_ojectives}`;
+    values.budget_key_id = this.budgetKey;
     this.budgetKeyService.create( values )
       .subscribe( res => {
         if ( res ) {
-          this.showSuccess() 
+          this.saveActions( res )
           this.clearData()      
         }
       },
       data => this.showError(data.error.message),
       () => console.log('Completed'))      
+  }
+
+  saveActions( budgetKeyResent ) {
+    this.actions.forEach( action => action.budget_keyId = budgetKeyResent.id)
+    this.budgetKeyDetailsService.create( this.actions )
+      .subscribe( resp => {
+        this.showSuccess()
+        console.log('resp: ', resp) 
+    })
+      
   }
 
   clearData() {
