@@ -29,7 +29,7 @@ export class BudgetKeyCreateComponent implements OnInit {
   public actionDescription: any = "";
   public budgetKey: any;
   @ViewChild('myTable') table: any;
-
+ 
   constructor(
     private budgetKeyService: BudgetKeyService, 
     private toastr: ToastrService,
@@ -61,7 +61,7 @@ export class BudgetKeyCreateComponent implements OnInit {
   projectSelected( project, program ) {
     this.program = JSON.parse(JSON.stringify(program));    
     this.project = JSON.parse(JSON.stringify(project));  
-    this.toggleExpandRow( program )
+    this.toggleExpandRow( program )    
   }
 
   onSubmitAddAction() {
@@ -100,6 +100,7 @@ export class BudgetKeyCreateComponent implements OnInit {
 
   clearData() {
     this.actions = [];
+    this.behaviorSubject.next( this.actions )
   }    
 
   toggleExpandRow(row) {
