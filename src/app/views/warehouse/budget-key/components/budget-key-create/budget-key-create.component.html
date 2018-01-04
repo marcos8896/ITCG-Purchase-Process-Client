@@ -18,11 +18,7 @@
                           <input *ngIf="!(program && project && piidInput.value)" type="text" readonly class="form-control read-only-normal-style" value="00.0.0">
                           <div *ngIf="program && project && piidInput.value" class="fakeInput">
                               {{ project.project_number }}.{{ program.program_number }}.{{ piidInput.value }}
-                          </div>
-                          <!-- <input ngModel name="budget_key_id" #keyInput #key="ngModel" type="text" class="form-control" placeholder="00.0.0" required>                  
-                          <ul *ngIf="key.invalid && (key.dirty || key.touched)" class="alert alert-danger" style="margin-top: .5em">
-                              <li *ngIf="key.errors.required"> Debes ingresar una <strong>clave válida.</strong> </li>
-                          </ul> -->
+                          </div>                          
                         </div>
                       </div>
                     </div>
@@ -33,6 +29,7 @@
                           <input ngModel name="piid_ojectives" #piidInput #piid="ngModel" type="number" class="form-control" placeholder="Ingrese el objetivo PIID..." required min="00">
                           <ul *ngIf="piid.invalid && (piid.dirty || piid.touched)" class="alert alert-danger" style="margin-top: .5em">
                               <li *ngIf="piid.errors.minlength"> Debes ingresar un teléfono como mínimo de <strong> {{ phone.errors.minlength.requiredLength }} </strong> caracteres </li>
+                              <li *ngIf="piid.errors.required"> Debes ingresar un <strong>objetivo PIID.</strong> </li> 
                           </ul>
                         </div>
                       </div>
@@ -154,15 +151,11 @@
                       <div class="col-sm-12">
                         <div class="form-group">
                           <label for="description">Descripción</label>
-                          <textarea [(ngModel)]="actionDescription" name="description" #description="ngModel" class="form-control" rows="3" placeholder="Ingrese una descripción..." required minlength="5"></textarea>
-                          <ul *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger" style="margin-top: .5em">
-                              <li *ngIf="description.errors.required"> Debes ingresar una <strong>descripción</strong> </li>
-                              <li *ngIf="description.errors.minlength"> Debes ingresar una descripción como mínimo de <strong> {{ description.errors.minlength.requiredLength }} </strong> caracteres </li>
-                          </ul>
+                          <textarea [(ngModel)]="actionDescription" name="description" #descriptionInput #description="ngModel" class="form-control" rows="3" placeholder="Ingrese una descripción..."></textarea>
                         </div>
                       </div>
                     </div><!--/.row-->
-                    <button [disabled]="description.invalid" type="button" class="btn btn-outline-primary" (click)="onSubmitAddAction()"><i class="fa fa-check"></i>Agregar Acción</button>
+                    <button [disabled]="(description.invalid)" type="button" class="btn btn-outline-primary" (click)="onSubmitAddAction()"><i class="fa fa-check"></i>Agregar Acción</button>
                   </div>
         
                 </div>
@@ -170,16 +163,7 @@
             </div><!--/.col-->
             <div class="col-sm-12 col-md-8">
               <div class="">           
-                <ngx-datatable
-                  #table
-                  style="height: 245px"
-                  class='material expandable'
-                  [columnMode]="'force'"
-                  [headerHeight]="50"
-                  [rowHeight]="50"
-                  [scrollbarV]="true"
-                  [scrollbarH]="true"
-                  [rows]='actions$ | async'>
+                <ngx-datatable #table style="height: 245px" class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [rows]='actions$ | async'>
         
                   <ngx-datatable-column [minWidth]="80" [maxWidth]="80" name="No. Acción" prop="action_number" width="80">
                     <ng-template let-value="value" ngx-datatable-cell-template>
@@ -187,9 +171,15 @@
                     </ng-template>
                   </ngx-datatable-column>
                   
-                  <ngx-datatable-column [minWidth]="400" name="Descripción" prop="description" width="400">
+                  <ngx-datatable-column [minWidth]="350" name="Descripción" prop="description" width="350">
                     <ng-template let-value="value" ngx-datatable-cell-template>
-                      <strong>{{value}}</strong>
+                      <div class="break-word"><strong>{{value}}</strong></div>
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <ngx-datatable-column [minWidth]="50" name="" prop="action_number" width="50">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                      <i (click)="close(value)" class="fa fa-close"></i>
                     </ng-template>
                   </ngx-datatable-column>
               
@@ -199,12 +189,10 @@
           </div>
 
           <div class="card-footer text-right">
-            <button [disabled]="formBudgetKey.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i>Registrar</button>
+            <button [disabled]="(formBudgetKey.invalid || !actions.length)" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i>Registrar</button>
           </div>
         </form>
       </div>
-    </div><!--/.col-->
-    
-  </div><!-- row -->
-  
+    </div><!--/.col-->    
+  </div><!-- row -->  
 </div>
