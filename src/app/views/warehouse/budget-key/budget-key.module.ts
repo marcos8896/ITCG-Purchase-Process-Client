@@ -10,6 +10,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { BudgetKeyCreateComponent } from 'app/views/warehouse/budget-key/components/budget-key-create/budget-key-create.component';
 import { BudgetKeysComponent } from 'app/views/warehouse/budget-key/components/budget-keys/budget-keys.component';
 import { BudgetKeyComponent } from 'app/views/warehouse/budget-key/budget-key.component';
+import { BudgetKeyShowComponent } from './components/budget-key-show/budget-key-show.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { BudgetKeyComponent } from 'app/views/warehouse/budget-key/budget-key.co
     BudgetKeyEditComponent,
     BudgetKeyCreateComponent,
     BudgetKeysComponent,
-    BudgetKeyComponent
+    BudgetKeyComponent,
+    BudgetKeyShowComponent
   ]
 })
 export class BudgetKeyModule { }

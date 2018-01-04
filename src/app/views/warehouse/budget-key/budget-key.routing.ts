@@ -2,6 +2,7 @@ import { BudgetKeyComponent } from './budget-key.component';
 import { BudgetKeyEditComponent } from './components/budget-key-edit/budget-key-edit.component';
 import { BudgetKeyCreateComponent } from 'app/views/warehouse/budget-key/components/budget-key-create/budget-key-create.component';
 import { BudgetKeysComponent } from 'app/views/warehouse/budget-key/components/budget-keys/budget-keys.component';
+import { BudgetKeyShowComponent } from 'app/views/warehouse/budget-key/components/budget-key-show/budget-key-show.component';
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -26,6 +27,13 @@ const routes: Routes = [
     component: BudgetKeysComponent,
     data: {
       title: 'Consulta General'
+    }
+  },
+  {
+    path: 'show/:id',
+    component: BudgetKeyShowComponent,
+    data: {
+      title: 'Detaller de clave presupuestal'
     }
   }
 ];
