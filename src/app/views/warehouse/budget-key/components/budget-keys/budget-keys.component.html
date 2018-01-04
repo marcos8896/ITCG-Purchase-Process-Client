@@ -1,3 +1,74 @@
-<p>
-  budget-keys works!
-</p>
+<div class="container">
+
+  <div class="col-sm-12 col-md-12">
+    <div class="card border-primary">
+      <div class="card-header">
+        Opciones
+      </div>
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-md-6 form-group">
+            <label>Filtrar por:</label>
+            <select name="" id="" class="form-control" [(ngModel)]="selectedFilter">
+              <ng-container *ngFor="let filter of filterBy">
+                <option value="{{ filter.value }}"> {{ filter.name }} </option>
+              </ng-container>
+            </select>
+          </div>
+
+          <div class="col-md-6 form-group">
+            <label>Ingrese el texto a filtrar</label>
+            <input [(ngModel)]="searchTextValue" type='text' class="form-control" placeholder='Filtrar por columna...' (keyup)='updateFilter()'/>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-footer">
+        <h5>
+          <small>
+            <a href="javascript:void(0)" (click)="table.rowDetail.expandAllRows()">Expandir todas las filas</a> |
+            <a href="javascript:void(0)" (click)="table.rowDetail.collapseAllRows()">Colapsar todas las filas</a>
+          </small>
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <ngx-datatable style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+      [rowHeight]="50" [scrollbarV]="true" [rows]='budgetKeys'>
+      
+      <ngx-datatable-column [minWidth]="100" [maxWidth]="150"name="Clave presupuestal" prop="budget_key_id" width="100">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{value}}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [minWidth]="100" [maxWidth]="100" name="Objetivos pi" prop="piid_ojectives" width="250">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{value}}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [minWidth]="230" [maxWidth]="230" name="Subdirección" prop="subdirection.name" width="250">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{value}}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [minWidth]="250" name="Programa" prop="program.description" width="250">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <strong>{{value}}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [minWidth]="50" [maxWidth]="100" name="Detalles" prop="id" width="250">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <button class="btn btn-lg btn-link pull-right" [routerLink]="['../show/', value]">Ver </button>
+        </ng-template>
+      </ngx-datatable-column>
+
+      </ngx-datatable>
+  </div>
+</div>
