@@ -37,9 +37,21 @@ export class AuthenticationService {
     }
 
     logout() {
-        localStorage.removeItem('ITCG_token');
-        localStorage.removeItem('ITCG_userId');
-        localStorage.removeItem('ITCG_isLoggedIn');
+        return new Promise(( resolve, reject ) => {
+            this.headers = new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': JSON.parse(localStorage.getItem('ITCG_token'))
+            })
+            this.http.post(`${this.endPoint}/logout`, { }, { headers: this.headers })
+                .subscribe(( response: any ) => {
+                    localStorage.removeItem('ITCG_token');
+                    localStorage.removeItem('ITCG_userId');
+                    localStorage.removeItem('ITCG_isLoggedIn');
+                    resolve( 'Has salido de la sesión')
+                },
+                error => reject({ message: 'Ha ocurrido un error, por favor, inténtelo de nuevo'}),
+                () => console.log('Complete'))
+        })
     }
     
     private handleError( error: Response ) {

@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ProjectInterface } from 'app/models/project';
 import { Subdirection } from 'app/models/subdirection';
 import { BudgetKeyService } from 'app/services';
+import { Action } from 'rxjs/scheduler/Action';
 
 @Component({
   selector: 'app-budget-key-create',
@@ -29,7 +30,7 @@ export class BudgetKeyCreateComponent implements OnInit {
   public actionDescription: any = "";
   public budgetKey: any;
   @ViewChild('myTable') table: any;
-
+ 
   constructor(
     private budgetKeyService: BudgetKeyService, 
     private toastr: ToastrService,
@@ -61,7 +62,7 @@ export class BudgetKeyCreateComponent implements OnInit {
   projectSelected( project, program ) {
     this.program = JSON.parse(JSON.stringify(program));    
     this.project = JSON.parse(JSON.stringify(project));  
-    this.toggleExpandRow( program )
+    this.toggleExpandRow( program )    
   }
 
   onSubmitAddAction() {
@@ -98,8 +99,15 @@ export class BudgetKeyCreateComponent implements OnInit {
       
   }
 
+  close( val ) {
+    this.actions = this.actions.filter( action => action.action_number !== val )
+    this.actions.forEach( (action, i) => action.action_number = i + 1 )    
+    this.behaviorSubject.next( this.actions )
+  }
+
   clearData() {
     this.actions = [];
+    this.behaviorSubject.next( this.actions )
   }    
 
   toggleExpandRow(row) {

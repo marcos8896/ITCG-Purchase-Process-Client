@@ -1,7 +1,17 @@
 // Here you can add other styles
+
+/*/ ========= Session footer ========= /*/
+
+.app-footer-fixed {
+  position: fixed !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+}
+
 .s-content-footer-right {
     float: right;
-}
+}/*/ ========= Session footer ========= /*/
 
 .read-only-normal-style {
   background-color:white !important;

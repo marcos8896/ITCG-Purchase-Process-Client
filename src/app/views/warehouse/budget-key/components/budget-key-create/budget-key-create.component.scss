@@ -15,5 +15,12 @@
 hr {
   margin-top: -1rem;
   margin-bottom: 1.5rem;
+}
 
+.fa-close {
+  color: red;
+  &:hover {
+    color: rgb(252, 89, 89);
+    cursor: pointer;
+  }
 }
