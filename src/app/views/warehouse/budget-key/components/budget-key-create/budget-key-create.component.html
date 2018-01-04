@@ -163,16 +163,7 @@
             </div><!--/.col-->
             <div class="col-sm-12 col-md-8">
               <div class="">           
-                <ngx-datatable
-                  #table
-                  style="height: 245px"
-                  class='material expandable'
-                  [columnMode]="'force'"
-                  [headerHeight]="50"
-                  [rowHeight]="50"
-                  [scrollbarV]="true"
-                  [scrollbarH]="true"
-                  [rows]='actions$ | async'>
+                <ngx-datatable #table style="height: 245px" class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [rows]='actions$ | async'>
         
                   <ngx-datatable-column [minWidth]="80" [maxWidth]="80" name="No. Acción" prop="action_number" width="80">
                     <ng-template let-value="value" ngx-datatable-cell-template>
@@ -180,9 +171,15 @@
                     </ng-template>
                   </ngx-datatable-column>
                   
-                  <ngx-datatable-column [minWidth]="400" name="Descripción" prop="description" width="400">
+                  <ngx-datatable-column [minWidth]="350" name="Descripción" prop="description" width="350">
                     <ng-template let-value="value" ngx-datatable-cell-template>
-                      <strong>{{value}}</strong>
+                      <div class="break-word"><strong>{{value}}</strong></div>
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <ngx-datatable-column [minWidth]="50" name="" prop="action_number" width="50">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                      <i (click)="close(value)" class="fa fa-close"></i>
                     </ng-template>
                   </ngx-datatable-column>
               
