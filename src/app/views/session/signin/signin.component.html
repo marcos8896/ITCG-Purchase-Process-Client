@@ -1,5 +1,5 @@
 <div class="animated fadeIn" style="margin-top: 6em;" *ngIf="signinForm">
-    <div class="row">
+    <div class="row" style="margin-bottom: 5em;">
       <div class="col-sm-12 col-md-6 offset-md-3">
         <div class="card">
           <form novalidate [formGroup]="signinForm" (ngSubmit)="onSubmitSignin(signinForm.value); signinForm.reset()">
