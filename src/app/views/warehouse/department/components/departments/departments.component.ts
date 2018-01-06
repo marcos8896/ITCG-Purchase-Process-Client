@@ -26,7 +26,7 @@ export class DepartmentsComponent implements OnInit {
     { value: "id", name: "ID" }, 
     { value: "name", name: "Nombre del departamento" },
     { value: "budget", name: "Presupuesto"},
-    { value: "subdirectionid", name: "Subdirección"}
+    { value: "subdirection", name: "Subdirección"}
   ]
 
   // For debounce purpose
@@ -49,6 +49,7 @@ export class DepartmentsComponent implements OnInit {
       .subscribe( res => {
         this.temp = [...res];
         this.departments = res;
+        console.log('this.departments: ', this.departments);
         console.log(this.departments)
       }); 
   }
@@ -68,8 +69,10 @@ export class DepartmentsComponent implements OnInit {
         const val = searchTextValue.toLowerCase();
         
         // filter our data
-        const temp = this.temp.filter( element => element[this.selectedFilter].toString().toLowerCase().indexOf(val) !== -1 || !val );
-    
+        const temp = ( this.selectedFilter !== "subdirection" )? 
+        this.temp.filter( element => element[this.selectedFilter].toString().toLowerCase().indexOf(val) !== -1 || !val ):
+        this.temp.filter( element => element[this.selectedFilter].name.toString().toLowerCase().indexOf(val) !== -1 || !val )
+
         // update the rows
         this.departments = temp;
         // Whenever the filter changes, always go back to the first page
