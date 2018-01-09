@@ -1,4 +1,4 @@
-<div class="animated fadeIn" *ngIf="budgetKey && budgetKeyDetails">
+<div class="animated fadeIn" *ngIf="budgetKey">
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
@@ -86,21 +86,25 @@
                         <div class="form-group">
                             <div class="col-sm-12 col-md-12">
                                 <ngx-datatable style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-                                    [rowHeight]="50" [scrollbarV]="true" [rows]="budgetKeyDetails">
+                                [rowHeight]="50" [scrollbarV]="true" [rows]="budgetKey.budget_key_details">
+                                <!-- Gracias a que ya viene el objecto con un array de todos sus detalles, simplemente haces referencia
+                                al array como si fuera una propiedad de budgetKey. Es decir 'budgetKey.budget_key_details'. '.budget_key_details' es el array. 
+                                Al final cuando veas cómo funciona todos los cambios que hice, BORRAR LOS COMENTARIOS, POR FIS JIJI
+                              -->
                                     
-                                    <ngx-datatable-column [minWidth]="100" [maxWidth]="150"name="No. Acción" prop="budget_key_details[0].action_number" width="100">
+                                    <ngx-datatable-column [minWidth]="100" [maxWidth]="150"name="ID" prop="id" width="100">
+                                      <ng-template let-value="value" ngx-datatable-cell-template>
+                                        <strong>{{value}}</strong>
+                                      </ng-template>
+                                    </ngx-datatable-column>
+
+                                    <ngx-datatable-column [minWidth]="100" [maxWidth]="150"name="No. Acción" prop="action_number" width="100">
                                       <ng-template let-value="value" ngx-datatable-cell-template>
                                         <strong>{{value}}</strong>
                                       </ng-template>
                                     </ngx-datatable-column>
                               
-                                    <ngx-datatable-column [minWidth]="100" [maxWidth]="100" name="Objetivos pi" prop="budgetKeyDetails.description" width="250">
-                                      <ng-template let-value="value" ngx-datatable-cell-template>
-                                        <strong>{{value}}</strong>
-                                      </ng-template>
-                                    </ngx-datatable-column>
-                              
-                                    <ngx-datatable-column [minWidth]="230" [maxWidth]="230" name="Subdirección" prop="budgetKeyDetails.description" width="250">
+                                    <ngx-datatable-column [minWidth]="100" [maxWidth]="100" name="Objetivos pi" prop="description" width="250">
                                       <ng-template let-value="value" ngx-datatable-cell-template>
                                         <strong>{{value}}</strong>
                                       </ng-template>
