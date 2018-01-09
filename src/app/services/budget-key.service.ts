@@ -16,4 +16,9 @@ export class BudgetKeyService extends BasicRequestService {
       .catch(err => JSON.stringify(err));
   }
 
+  public getBudgetKeyDetails( budgetKeyId ): Observable<any[]> { 
+    return this.http.get(`${this.endPoint}?filter[include]=budget_key_details&filter[where][id]=${ budgetKeyId }`)
+      .map(res => res.json() || { })
+      .catch(err => JSON.stringify(err));
+  }
 }
