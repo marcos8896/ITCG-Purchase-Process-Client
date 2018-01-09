@@ -86,11 +86,11 @@
                         <div class="form-group">
                             <div class="col-sm-12 col-md-12">
                                 <ngx-datatable style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-                                    [rowHeight]="50" [scrollbarV]="true">
+                                    [rowHeight]="50" [scrollbarV]="true" [rows]="budgetKeyDetails">
                                     
                                     <ngx-datatable-column [minWidth]="100" [maxWidth]="150"name="No. Acción" prop="budget_key_details[0].action_number" width="100">
                                       <ng-template let-value="value" ngx-datatable-cell-template>
-                                        <strong>{{ budgetKeyDetails.budget_key_details[0].action_number }}</strong>
+                                        <strong>{{value}}</strong>
                                       </ng-template>
                                     </ngx-datatable-column>
                               
