@@ -21,8 +21,8 @@ export class BudgetKeysComponent implements OnInit {
   public filterBy = [
     { value: 'budget_key_id', name: 'Clave presupuestal' },
     { value: 'piid_ojectives', name: 'Objetivos PI' },
-    { value: 'subdirectionId', name: 'Subdirección' },
-    { value: 'programId', name: 'Programa' }
+    { value: 'subdirection', name: 'Subdirección' },
+    { value: 'program', name: 'Programa' }
   ]
 
   // For debounce purpose
@@ -45,7 +45,6 @@ export class BudgetKeysComponent implements OnInit {
       .subscribe( data => {
         this.temp = [...data];
         this.budgetKeys = data;
-      console.log('this.budgetKeys: ', this.budgetKeys);
     });
   }
 
@@ -56,8 +55,9 @@ export class BudgetKeysComponent implements OnInit {
         const val = searchTextValue.toLocaleLowerCase();
       
         // filter our data
-        const temp = this.temp.filter( element => element[this.selectedFilter].toString().toLowerCase().indexOf(val) !== -1 || !val );
-    
+        const temp = (this.selectedFilter !== "subdirection" || "program") ?
+        this.temp.filter( element => element[this.selectedFilter].toString().toLowerCase().indexOf(val) !== -1 || !val ):
+        this.temp.filter( element => element[this.selectedFilter].name.toString().toLowerCase().indexOf(val) !== -1 || !val );
         // update the rows
         this.budgetKeys = temp;
 
