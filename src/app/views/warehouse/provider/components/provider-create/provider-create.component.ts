@@ -9,7 +9,7 @@ import { ProviderService } from 'app/services/provider.service';
   styleUrls: ['./provider-create.component.scss']
 })
 export class ProviderCreateComponent implements OnInit {
-
+  emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   constructor(private providerService: ProviderService, private toastr: ToastrService) { }
 
   ngOnInit() {
