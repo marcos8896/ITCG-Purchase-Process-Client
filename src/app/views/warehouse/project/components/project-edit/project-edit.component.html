@@ -8,18 +8,20 @@
             <strong>Proyecto</strong>
             <small>Formulario</small>
           </div>
+          
           <div class="card-body">
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group">
                   <label for="description">Número de proyecto</label>
-                  <input [(ngModel)]="project.project_number" name="project_number" #project_number="ngModel" type="text" class="form-control" placeholder="Ingrese una descripción" required minlength="2">
+                  <input [(ngModel)]="project.project_number" name="project_number" #project_number="ngModel" type="number" class="form-control" placeholder="Ingrese número de proyecto..." required min=0>
                   <ul *ngIf="project_number.invalid && (project_number.dirty || project_number.touched)" class="alert alert-danger" style="margin-top: .5em">
                     <li *ngIf="project_number.errors.required"> Debes ingresar un <strong>número de proyecto</strong> </li>
                   </ul>
                 </div>
               </div>
             </div><!-- /.row -->
+
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group">
@@ -33,6 +35,7 @@
               </div>
             </div><!-- /.row -->
           </div>
+
           <div class="card-footer text-right">
             <button [disabled]="formProject.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
           </div>
