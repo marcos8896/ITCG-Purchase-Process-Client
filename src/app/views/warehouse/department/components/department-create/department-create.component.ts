@@ -32,7 +32,6 @@ export class DepartmentCreateComponent implements OnInit {
   onSubmitDepartment( values ) {
     this.departmentService.create( values )
     .subscribe( res => {
-      console.log('Entra al metodo')
         if ( res ) {
           this.showSuccess()
         }
