@@ -12,12 +12,20 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
+
+                    <label for="number">Número de partida</label>
+                    <input [(ngModel)]="concept.concept_number" name="concept_number" #numberInput #number="ngModel" type="number" class="form-control" placeholder="Ingrese número de partida..." required min=0>
+                    <ul *ngIf="number.invalid && (number.dirty || number.touched)" class="alert alert-danger" style="margin-top: .5em">
+                      <li *ngIf="number.errors.required"> Debes ingresar un <strong>número</strong> </li>
+                    </ul>
+                    
                     <label for="description">Descripción</label>
                     <input [(ngModel)]="concept.description" name="description" #descriptionInput #description="ngModel" type="text" class="form-control" placeholder="Ingrese el nombre de un departamento..." required minlength="2">
                     <ul *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger" style="margin-top: .5em">
                         <li *ngIf="description.errors.required"> Debes ingresar una <strong>descripción de la partida.</strong> </li>
                         <li *ngIf="description.errors.minlength"> Debes ingresar una descripción como mínimo de <strong> {{ description.errors.minlength.requiredLength }} </strong> caracteres. </li>
                     </ul>
+
                   </div>
                 </div>
               </div><!--/.row-->

@@ -47,8 +47,8 @@
 
               <div class="col-md-2">
                 <div class="form-group">
-                  <label for="id" class="col-md-2 col-form-label">ID:</label>
-                  <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.id }}"/>
+                  <label for="concept_number" class="col-md-2 col-form-label">Número de partida:</label>
+                  <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.concept_number }}"/>
                 </div>
               </div>
         
@@ -78,7 +78,7 @@
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [minWidth]="100" [maxWidth]="300" name="ID" prop="id" width="100">
+      <ngx-datatable-column [minWidth]="100" [maxWidth]="300" name="Número de partida" prop="concept_number" width="100">
         <ng-template let-value="value" ngx-datatable-cell-template>
           <strong>{{ value }}</strong>
         </ng-template>
