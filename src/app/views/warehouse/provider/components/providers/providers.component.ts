@@ -18,8 +18,10 @@ export class ProvidersComponent implements OnInit {
   public temp:any = []
   public selectedFilter = "name";
   public filterBy = [ 
-    { value: "id", name: "ID" }, 
-    { value: "name", name: "Nombre del Proveedor" }
+    { value: "name", name: "Nombre del Proveedor" },
+    { value: "phone", name: "Número de teléfono" },
+    { value: "address", name: "Dirección" },
+    { value: "email", name: "Correo electrónico" },  
   ]
 
   // For debounce purpose
