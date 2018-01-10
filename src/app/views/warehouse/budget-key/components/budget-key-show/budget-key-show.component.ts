@@ -38,7 +38,7 @@ export class BudgetKeyShowComponent implements OnInit {
   }
 
   getBudgetKeyWithItsDetails(): void {
-    this.budgetKeyService.findByIdCustomFilters( this.id, null, ["budget_key_details", "subdirection", "program", "project"] )
+    this.budgetKeyService.findById( this.id, null, ["budget_key_details", "subdirection", "program", "project"])
       .subscribe( data => {
         this.budgetKey = data;
         console.log('this.budgetKey: ', this.budgetKey);

@@ -22,12 +22,6 @@ export class BasicRequestService {
       .catch( this.handleError );
   }
 
-  public findById( id ): Observable<any> {
-    return this.http.get(`${this.endPoint}/${id}`)
-      .map( res => res.json() || {} )
-      .catch( this.handleError );
-  }
-
   /**
    * Get all the records that match with the given query params.
    * 
@@ -66,7 +60,7 @@ export class BasicRequestService {
    * @returns { Observable<any> } 
    * @memberof BasicRequestService
    */
-  public findByIdCustomFilters( id: any = null, where?: any, include?: string[] | string, limit?: number, 
+  public findById( id: any = null, where?: any, include?: string[] | string, limit?: number, 
                                 skip?: number, order?: string[] | string, fields?: any ): Observable<any> {
     return this.http.get(`${this.endPoint}/${id}`, {
       headers: this.headers,
