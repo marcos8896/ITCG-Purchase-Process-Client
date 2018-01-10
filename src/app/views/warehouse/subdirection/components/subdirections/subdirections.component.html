@@ -55,14 +55,14 @@
               
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="nombre" class="col-md-2 col-form-label">Nombre de departamento:</label>
+                  <label for="nombre" class="col-md-2 col-form-label">Nombre de subdirección:</label>
                   <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.name }}"/>
                 </div>
               </div>
                 
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="jefe" class="col-md-2 col-form-label">Jefe de departamento:</label>
+                  <label for="jefe" class="col-md-2 col-form-label">Jefe de subdirección:</label>
                   <input type='text' readonly class="form-control read-only-normal-style" value="{{ row.boss_name }}"/>
                 </div>
               </div>
@@ -95,13 +95,13 @@
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [minWidth]="250" name="Nombre de departamento" prop="name" width="250">
+      <ngx-datatable-column [minWidth]="250" name="Nombre de subdirección" prop="name" width="250">
         <ng-template let-value="value" ngx-datatable-cell-template>
           <strong>{{value}}</strong>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [minWidth]="250" name="Jefe de departamento" prop="boss_name" width="250">
+      <ngx-datatable-column [minWidth]="250" name="Jefe de subdirección" prop="boss_name" width="250">
         <ng-template let-value="value" ngx-datatable-cell-template>
           <strong>{{value}}</strong>
         </ng-template>

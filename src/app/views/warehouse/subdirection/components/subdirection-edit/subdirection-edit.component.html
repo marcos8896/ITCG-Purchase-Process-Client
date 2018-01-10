@@ -13,7 +13,7 @@
                 <div class="col-sm-12">
 
                   <div class="form-group">
-                    <label for="name">Nombre del departamento</label>
+                    <label for="name">Nombre de subdirección</label>
                     <input [(ngModel)]="subdirection.name" name="name" #nameInput #name="ngModel" type="text" class="form-control" placeholder="Ingrese el nombre de un departamento..." required minlength="2">
                     <ul *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="margin-top: .5em">
                         <li *ngIf="name.errors.required"> Debes ingresar un <strong>nombre de departamento.</strong> </li>
@@ -22,7 +22,7 @@
                   </div>
 
                   <div class="form-group">
-                      <label for="boss_name">Jefe de departamento</label>
+                      <label for="boss_name">Jefe de subdirección</label>
                       <input [(ngModel)]="subdirection.boss_name" name="boss_name" #boss_nameInput #boss_name="ngModel" type="text" class="form-control" placeholder="Ingrese el nombre de un departamento..." required minlength="2">
                       <ul *ngIf="boss_name.invalid && (boss_name.dirty || boss_name.touched)" class="alert alert-danger" style="margin-top: .5em">
                           <li *ngIf="boss_name.errors.required"> Debes ingresar un <strong>nombre para el jefe del deparamento.</strong> </li>
