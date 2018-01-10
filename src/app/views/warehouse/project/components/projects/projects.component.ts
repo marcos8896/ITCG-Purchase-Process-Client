@@ -40,7 +40,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProjects(): void {
-    this.projectService.all()
+    this.projectService.getAll()
       .subscribe( data => {
 
         this.temp = [...data];

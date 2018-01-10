@@ -16,12 +16,6 @@ export class BasicRequestService {
     this.headers = new Headers({ 'Content-Type': 'application/json' });
   }
 
-  public all(): Observable<any[]> { 
-    return this.http.get(`${this.endPoint}`)
-      .map(res => res.json() || { })
-      .catch(err => JSON.stringify(err));
-  }
-
   public create( obj ): Observable<any> {
     return this.http.post(`${this.endPoint}`, obj, { headers: this.headers })
       .map( res => res.json() || {})
@@ -37,22 +31,22 @@ export class BasicRequestService {
   /**
    * Get all the records that match with the given query params.
    * 
-   * @param { Object } [where={}] Loopback's where syntax - Example: { where : {property: "text to match"} }
-   * @param { string | string[] } [include={}] Loopback's include - Example: "myrelation1" | ["myrelation1", "myrelation2"] => Get records with the related objects.
-   * @param { number } [limit=25] Loopback's limit - Example: 10 => Get maximum 10 records.
-   * @param { number } [skip=0] Loopback's skip - Example: 10 => Skip first 10 records.
-   * @param { string | string[] } [order=null] Loopback's order - Example: "property ASC" or ["property ASC", "property2 DESC"] => Get records with the wanted order.
-   * @param { Object } [fields={}] Loopback's fields - Example: { property1: true, property2: true } => Get records only with two properties.
+   * @param { Object } where Loopback's where syntax - Example: { where : {property: "text to match"} }
+   * @param { string | string[] } include Loopback's include - Example: "myrelation1" | ["myrelation1", "myrelation2"] => Get records with the related objects.
+   * @param { number } limit Loopback's limit - Example: 10 => Get maximum 10 records.
+   * @param { number } skip Loopback's skip - Example: 10 => Skip first 10 records.
+   * @param { string | string[] } order Loopback's order - Example: "property ASC" or ["property ASC", "property2 DESC"] => Get records with the wanted order.
+   * @param { Object } fields Loopback's fields - Example: { property1: true, property2: true } => Get records only with two properties.
    * @returns { Observable<any> } 
    * @memberof BasicRequestService
    */
-  public getAll( where: any = {}, include: string[] | string = [], limit: number = 25, 
-                skip: number = 0, order: string[] | string = [], fields: any = {} ): Observable<any> {
+  public getAll( where?: any, include?: string[] | string, limit?: number, 
+                skip?: number, order?: string[] | string, fields?: any): Observable<any> {
 
     return this.http.get(`${this.endPoint}`, {
       headers: this.headers,
       params: {
-        filter: { where, limit, skip, order, fields, include }
+        filter: { where, include, limit, skip, order, fields }
       }
     })
       .map( res => res.json() || {} )
@@ -63,17 +57,17 @@ export class BasicRequestService {
    * Get a record based on its id and the given query params.
    * 
    * @param { number } [id=null] Model's ID.
-   * @param { Object } [where={}] Loopback's where syntax - Example: { where : {property: "text to match"} }
-   * @param { string | string[] } [include={}] Loopback's include - Example: "myrelation1" | ["myrelation1", "myrelation2"] => Get records with the related objects.
-   * @param { number } [limit=25] Loopback's limit - Example: 10 => Get maximum 10 records.
-   * @param { number } [skip=0] Loopback's skip - Example: 10 => Skip first 10 records.
-   * @param { string | string[] } [order=null] Loopback's order - Example: "property ASC" or ["property ASC", "property2 DESC"] => Get records with the wanted order.
-   * @param { Object } [fields={}] Loopback's fields - Example: { property1: true, property2: true } => Get records only with two properties.
+   * @param { Object } where Loopback's where syntax - Example: { where : {property: "text to match"} }
+   * @param { string | string[] } include Loopback's include - Example: "myrelation1" | ["myrelation1", "myrelation2"] => Get records with the related objects.
+   * @param { number } limit Loopback's limit - Example: 10 => Get maximum 10 records.
+   * @param { number } skip Loopback's skip - Example: 10 => Skip first 10 records.
+   * @param { string | string[] } order Loopback's order - Example: "property ASC" or ["property ASC", "property2 DESC"] => Get records with the wanted order.
+   * @param { Object } fields Loopback's fields - Example: { property1: true, property2: true } => Get records only with two properties.
    * @returns { Observable<any> } 
    * @memberof BasicRequestService
    */
-  public findByIdCustomFilters( id: any = null, where: any = {}, include: string[] | string = [], limit: number = 25, 
-                                skip: number = 0, order: string[] | string = [], fields: any = {} ): Observable<any> {
+  public findByIdCustomFilters( id: any = null, where?: any, include?: string[] | string, limit?: number, 
+                                skip?: number, order?: string[] | string, fields?: any ): Observable<any> {
     return this.http.get(`${this.endPoint}/${id}`, {
       headers: this.headers,
       params: {

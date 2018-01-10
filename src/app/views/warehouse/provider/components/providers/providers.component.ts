@@ -36,7 +36,7 @@ export class ProvidersComponent implements OnInit {
   }
 
   getProviders() :void {
-    this.providerService.all()
+    this.providerService.getAll()
       .subscribe( res => {
         this.temp = [...res];
         this.providers = res;

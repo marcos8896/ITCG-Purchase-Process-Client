@@ -48,7 +48,7 @@ export class BudgetKeyCreateComponent implements OnInit {
   }
 
   getSubdirections(): void {
-    this.subdirectionService.all()
+    this.subdirectionService.getAll()
     .subscribe( data => {
       this.subdirections = data;
     });

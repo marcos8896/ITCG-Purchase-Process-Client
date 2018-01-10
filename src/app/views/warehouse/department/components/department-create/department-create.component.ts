@@ -21,7 +21,7 @@ export class DepartmentCreateComponent implements OnInit {
     private departmentService: DepartmentService, 
     private subdirectionService: SubdirectionService, 
     private toastr: ToastrService ) {
-      this.subdirectionService.all()
+      this.subdirectionService.getAll()
       .subscribe(subdirection => this.subdirections = subdirection)
   }
 

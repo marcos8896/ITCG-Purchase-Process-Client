@@ -36,7 +36,7 @@ export class ConceptsComponent implements OnInit {
   }
 
   getConcepts(): void {
-    this.conceptService.all()
+    this.conceptService.getAll()
       .subscribe( data => {
 
         this.temp = [...data];
