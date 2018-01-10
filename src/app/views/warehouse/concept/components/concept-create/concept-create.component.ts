@@ -10,6 +10,7 @@ import { ViewChild } from '@angular/core';
 })
 export class ConceptCreateComponent implements OnInit {
   @ViewChild('descriptionInput') description: any;
+  @ViewChild('numberInput') number: any;
   constructor( private conceptService: ConceptService, private toastr: ToastrService ) {
   }
 
