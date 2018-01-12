@@ -41,7 +41,7 @@ export class BudgetKeysComponent implements OnInit {
   }
 
   getBudgetKeys(): void {
-    this.budgetKeyService.getBudgetKeysWithTheirSubdirectionPrograms()
+    this.budgetKeyService.getAll( '', ["subdirection", "program"] )
       .subscribe( data => {
         this.temp = [...data];
         this.budgetKeys = data;
