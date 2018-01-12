@@ -32,14 +32,15 @@ export class BudgetKeyShowComponent implements OnInit {
   getUrlId() {
     this.activatedRoute.params.subscribe( params => {
       this.id = params['id']
-      if( this.id )
+      if ( this.id )
         this.getBudgetKeyWithItsDetails();
     })
   }
 
   getBudgetKeyWithItsDetails(): void {
-    this.budgetKeyService.findById( this.id, null, ["budget_key_details", "subdirection", "program", "project"])
-      .subscribe( data => {
+    this.budgetKeyService.findById( this.id, {
+      include: ['budget_key_details', 'subdirection', 'program', 'project']
+    }).subscribe( data => {
         this.budgetKey = data;
         console.log('this.budgetKey: ', this.budgetKey);
     });
