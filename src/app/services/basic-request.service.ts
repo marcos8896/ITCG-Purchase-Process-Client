@@ -47,13 +47,10 @@ export class BasicRequestService {
    * @returns { Observable<any> } 
    * @memberof BasicRequestService
    */
-  public findById( id: any = null, where?: any, include?: string[] | string, limit?: number, 
-                                skip?: number, order?: string[] | string, fields?: any ): Observable<any> {
+  public findById( id: string | number, filter?: FilterPropertiesInterface ): Observable<any> {
     return this.http.get(`${this.endPoint}/${id}`, {
       headers: this.headers,
-      params: {
-        filter: { where, include, limit, skip, order, fields }
-      }
+      params: { filter: filter || {} }
     })
       .map( res => res.json() || {} )
       .catch( this.handleError );
