@@ -55,7 +55,7 @@ export class BudgetKeyCreateComponent implements OnInit {
   }
 
   getPrograms(): void {
-    this.programService.getProgramsWithTheirProjects()
+    this.programService.getAll( '', ["project"] )
       .subscribe( data => this.programs = data);
   }
 
