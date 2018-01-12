@@ -9,11 +9,4 @@ export class BudgetKeyService extends BasicRequestService {
   constructor( protected http: Http ) {
     super( http, 'Budget_keys')
   }
-
-  public getBudgetKeysWithTheirSubdirectionPrograms(): Observable<any[]> { 
-    return this.http.get(`${this.endPoint}?filter[include]=subdirection&filter[include]=program`)
-      .map(res => res.json() || { }, console.log(this.endPoint))
-      .catch(err => JSON.stringify(err));
-  }
-  
 }
