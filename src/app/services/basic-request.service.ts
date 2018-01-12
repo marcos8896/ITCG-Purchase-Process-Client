@@ -23,6 +23,13 @@ export class BasicRequestService {
       .catch( this.handleError );
   }
 
+  /**
+   * Get all the records that match with the given query params.
+   * 
+   * @param {FilterPropertiesInterface} [filter] - An object with the proper FilterPropertiesInterface format - See interface for more information.
+   * @returns {Observable<any>} 
+   * @memberof BasicRequestService
+   */
   public getAll( filter?: FilterPropertiesInterface ): Observable<any> {
 
     return this.http.get(`${this.endPoint}`, {
@@ -34,17 +41,13 @@ export class BasicRequestService {
   }
 
 
+
   /**
-   * Get a record based on its id and the given query params.
+   * Get a record that matches with the given ID and the given query params.
    * 
-   * @param { number } [id=null] Model's ID.
-   * @param { Object } where Loopback's where syntax - Example: { where : {property: "text to match"} }
-   * @param { string | string[] } include Loopback's include - Example: "myrelation1" | ["myrelation1", "myrelation2"] => Get records with the related objects.
-   * @param { number } limit Loopback's limit - Example: 10 => Get maximum 10 records.
-   * @param { number } skip Loopback's skip - Example: 10 => Skip first 10 records.
-   * @param { string | string[] } order Loopback's order - Example: "property ASC" or ["property ASC", "property2 DESC"] => Get records with the wanted order.
-   * @param { Object } fields Loopback's fields - Example: { property1: true, property2: true } => Get records only with two properties.
-   * @returns { Observable<any> } 
+   * @param {(string | number)} id Model's ID.
+   * @param {FilterPropertiesInterface} [filter] - An object with the proper FilterPropertiesInterface format - See interface for more information.
+   * @returns {Observable<any>} 
    * @memberof BasicRequestService
    */
   public findById( id: string | number, filter?: FilterPropertiesInterface ): Observable<any> {
