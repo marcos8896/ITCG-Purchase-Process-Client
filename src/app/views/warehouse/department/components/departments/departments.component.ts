@@ -45,7 +45,7 @@ export class DepartmentsComponent implements OnInit {
   }
 
   getDepartments() :void {
-    this.departmentService.allDepartmentRelations()
+    this.departmentService.getAll( '', ["subdirection"] )
       .subscribe( res => {
         this.temp = [...res];
         this.departments = res;
