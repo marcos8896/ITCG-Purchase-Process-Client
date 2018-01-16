@@ -14,7 +14,13 @@ export class LoggedUserGuard implements CanActivate {
     ) { }
     
     canActivate( activatedRouteSnapshot: ActivatedRouteSnapshot, routerStateSnapshot: RouterStateSnapshot ) {
-        if ( this.authenticationService.isLoggedIn() ) 
+        // Contain all guards (roles) allowed to access
+        const guards = activatedRouteSnapshot.data.guards;
+        
+        // Check if the role stored in local storage 
+        // matches with any element of the guard array with 
+        // the roles allowed to access
+        if ( guards.includes(JSON.parse(localStorage.getItem('ITCG_role'))) )
             return true;
         
         this.showError();
@@ -23,6 +29,6 @@ export class LoggedUserGuard implements CanActivate {
     }
 
     showError() {
-        this.toastrService.error('Debes iniciar sesión para acceder', 'No has iniciado sesión');
+        this.toastrService.error('Inicia sesión correctamente para acceder', 'Sesión inválida');
     }
 }
