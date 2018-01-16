@@ -35,7 +35,15 @@
                 </div>
               </div>
             </div>
-
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="pull-right">
+                    <app-role-radio></app-role-radio>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="card-footer text-right">
             <button [disabled]="loginForm.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i>Entrar</button>
@@ -46,16 +54,3 @@
     </div><!--/.col-->
   </div>
 </div>
-    
-      <!-- <div class="row">
-    
-          <div class="col-md-12">
-            <p>Form value: {{ loginForm.controls.username.errors | json }}</p>
-          </div>
-          <div class="col-md-12">
-            <p>Form value: {{ loginForm.value | json }}</p>
-          </div>
-          <div class="col-md-12">
-            <p>Form status: {{ loginForm.status | json }}</p>
-          </div>
-        </div> -->
