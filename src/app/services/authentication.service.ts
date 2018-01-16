@@ -30,6 +30,7 @@ export class AuthenticationService {
                     localStorage.setItem('ITCG_userId', JSON.stringify(response.userId));
                     localStorage.setItem('ITCG_isLoggedIn', JSON.stringify(true));
                     localStorage.setItem('ITCG_endPoint', lastEndpointEntry);
+                    localStorage.setItem('ITCG_role', JSON.stringify(response.type));
 
                 }
                 return response;
