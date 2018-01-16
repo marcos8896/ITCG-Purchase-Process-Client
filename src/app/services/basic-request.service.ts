@@ -13,11 +13,16 @@ export class BasicRequestService {
   protected headers: Headers
 
   constructor( protected http: Http, protected endPoint: string ) {
-    this.endPoint = `${ConfigUrlService.BASE_URL}/${endPoint}`
-    this.headers = new Headers({ 'Content-Type': 'application/json' });
+    this.endPoint = `${ConfigUrlService.BASE_URL}/${endPoint}`;
+    this.headers = new Headers({ 
+      'Content-Type': 'application/json'
+    });
   }
 
   public create( obj ): Observable<any> {
+    const headers = Object.create(this.headers);
+    headers.set('Authorization', JSON.parse(localStorage.getItem("ITCG_token")))
+
     return this.http.post(`${this.endPoint}`, obj, { headers: this.headers })
       .map( res => res.json() || {})
       .catch( this.handleError );
@@ -32,8 +37,11 @@ export class BasicRequestService {
    */
   public getAll( filter?: FilterPropertiesInterface ): Observable<any> {
 
+    const headers = Object.create(this.headers);
+    headers.set('Authorization', JSON.parse(localStorage.getItem("ITCG_token")))
+
     return this.http.get(`${this.endPoint}`, {
-      headers: this.headers,
+      headers,
       params: { filter: filter || {} }
     })
       .map( res => res.json() || {} )
@@ -51,6 +59,9 @@ export class BasicRequestService {
    * @memberof BasicRequestService
    */
   public findById( id: string | number, filter?: FilterPropertiesInterface ): Observable<any> {
+    const headers = Object.create(this.headers);
+    headers.set('Authorization', JSON.parse(localStorage.getItem("ITCG_token")))
+
     return this.http.get(`${this.endPoint}/${id}`, {
       headers: this.headers,
       params: { filter: filter || {} }
@@ -60,6 +71,9 @@ export class BasicRequestService {
   }
 
   public update( obj ): Observable<any> {
+    const headers = Object.create(this.headers);
+    headers.set('Authorization', JSON.parse(localStorage.getItem("ITCG_token")))
+
     return this.http.put(`${this.endPoint}/${obj.id}`, obj, { headers: this.headers })
       .map( res => res.json() || {} )
       .catch( this.handleError );

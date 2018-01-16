@@ -13,7 +13,7 @@ export class AuthenticationService {
     private endPoint: string
 
     constructor( private http: Http ) {
-        this.endPoint = `${ConfigUrlService.BASE_URL}/Boss_departments`
+        this.endPoint = `${ConfigUrlService.BASE_URL}/Plannings`
         this.headers = new Headers({ 'Content-Type': 'application/json' })
     }
 
