@@ -13,7 +13,7 @@ export class AuthenticationService {
     private endPoint: string
 
     constructor( private http: Http ) {
-        this.endPoint = `${ConfigUrlService.BASE_URL}/Users`
+        this.endPoint = `${ConfigUrlService.BASE_URL}/Boss_departments`
         this.headers = new Headers({ 'Content-Type': 'application/json' })
     }
 
@@ -44,18 +44,25 @@ export class AuthenticationService {
             })
             this.http.post(`${this.endPoint}/logout`, { }, { headers: this.headers })
                 .subscribe(( response: any ) => {
-                    localStorage.removeItem('ITCG_token');
-                    localStorage.removeItem('ITCG_userId');
-                    localStorage.removeItem('ITCG_isLoggedIn');
+                    this.flushLocalStorage();
                     resolve( 'Has salido de la sesión')
                 },
-                error => reject({ message: 'Ha ocurrido un error, por favor, inténtelo de nuevo'}),
+                error =>  {
+                  this.flushLocalStorage();
+                  reject({ message: 'Ha ocurrido un error, por favor, inténtelo de nuevo'})
+                },
                 () => console.log('Complete'))
         })
     }
     
     private handleError( error: Response ) {
         return Observable.throw( error.json() || 'Server error' )
+    }
+
+    private flushLocalStorage() {
+      localStorage.removeItem('ITCG_token');
+      localStorage.removeItem('ITCG_userId');
+      localStorage.removeItem('ITCG_isLoggedIn');
     }
 
 }

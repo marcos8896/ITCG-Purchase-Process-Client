@@ -49,6 +49,6 @@ export class LoginComponent {
   }
 
   showError( error ) {
-    this.toastrService.error(error, '¡Ha numa!')
+    this.toastrService.error('Hubo un error al intentar iniciar sesión, por favor, verifica tus credenciales.', '¡Ha numa!')
   }
 }
