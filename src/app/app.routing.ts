@@ -1,3 +1,4 @@
+import { GUARDS } from './guards/_guards';
 import { LoggedUserGuard } from './guards/logged-user.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -35,13 +36,24 @@ export const routes: Routes = [
     data: {
       title: 'Home'
     },
-    canActivate:  [ LoggedUserGuard ],
     children: [
       {
+        data: {
+          guards: [
+            GUARDS.BOSS_DEPARTMENT,
+            GUARDS.PLANNING_DEPARTMENT,
+            GUARDS.VICE_PRINCIPAL,
+          ]
+        },
+        canActivate:  [ LoggedUserGuard ],
         path: 'dashboard',
         loadChildren: './views/dashboard/dashboard.module#DashboardModule'
       },
       {
+        data: {
+          guards: [ GUARDS.PLANNING_DEPARTMENT ]
+        },
+        canActivate:  [ LoggedUserGuard ],
         path: 'warehouse',
         loadChildren: './views/warehouse/warehouse.module#WarehouseModule'
       }
