@@ -20,10 +20,7 @@ export class BasicRequestService {
   }
 
   public create( obj ): Observable<any> {
-    const headers = Object.create(this.headers);
-    headers.set('Authorization', JSON.parse(localStorage.getItem("ITCG_token")))
-
-    return this.http.post(`${this.endPoint}`, obj, { headers: this.headers })
+    return this.http.post(`${this.endPoint}`, obj, { headers: this.generateHeaderObject() })
       .map( res => res.json() || {})
       .catch( this.handleError );
   }
@@ -36,12 +33,8 @@ export class BasicRequestService {
    * @memberof BasicRequestService
    */
   public getAll( filter?: FilterPropertiesInterface ): Observable<any> {
-
-    const headers = Object.create(this.headers);
-    headers.set('Authorization', JSON.parse(localStorage.getItem("ITCG_token")))
-
-    return this.http.get(`${this.endPoint}`, {
-      headers,
+    return this.http.get(`${this.endPoint}`, { 
+      headers: this.generateHeaderObject(), 
       params: { filter: filter || {} }
     })
       .map( res => res.json() || {} )
@@ -59,11 +52,8 @@ export class BasicRequestService {
    * @memberof BasicRequestService
    */
   public findById( id: string | number, filter?: FilterPropertiesInterface ): Observable<any> {
-    const headers = Object.create(this.headers);
-    headers.set('Authorization', JSON.parse(localStorage.getItem("ITCG_token")))
-
     return this.http.get(`${this.endPoint}/${id}`, {
-      headers: this.headers,
+      headers: this.generateHeaderObject(),
       params: { filter: filter || {} }
     })
       .map( res => res.json() || {} )
@@ -71,16 +61,19 @@ export class BasicRequestService {
   }
 
   public update( obj ): Observable<any> {
-    const headers = Object.create(this.headers);
-    headers.set('Authorization', JSON.parse(localStorage.getItem("ITCG_token")))
-
-    return this.http.put(`${this.endPoint}/${obj.id}`, obj, { headers: this.headers })
+    return this.http.put(`${this.endPoint}/${obj.id}`, obj, { headers: this.generateHeaderObject() })
       .map( res => res.json() || {} )
       .catch( this.handleError );
   }
 
   private handleError(error: Response) {
     return Observable.throw(error.json()|| 'Server error')
+  }
+
+  private generateHeaderObject(): Headers {
+    let headers = Object.create(this.headers);
+    headers.set('Authorization', JSON.parse(localStorage.getItem("ITCG_token")));
+    return headers;
   }
 
 }
