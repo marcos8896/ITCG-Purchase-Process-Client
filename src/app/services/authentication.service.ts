@@ -67,6 +67,7 @@ export class AuthenticationService {
       localStorage.removeItem('ITCG_userId');
       localStorage.removeItem('ITCG_isLoggedIn');
       localStorage.removeItem('ITCG_endPoint');
+      localStorage.removeItem('ITCG_role');
     }
 
 }
