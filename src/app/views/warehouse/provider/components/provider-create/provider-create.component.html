@@ -46,9 +46,9 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <label for="email">E-mail</label>
-                  <input ngModel name="email" #emailInput #email="ngModel" type="email" class="form-control" placeholder="Ingrese el e-mail de un proveedor..." minlength="5">
+                  <input ngModel name="email" #emailInput #email="ngModel" type="email" class="form-control" placeholder="Ingrese el e-mail de un proveedor..." minlength="5" [pattern]="emailPattern">
                   <ul *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger" style="margin-top: .5em">
-                      <li *ngIf="email.errors.minlength"> Debes ingresar un correo como mínimo de <strong> {{ email.errors.minlength.requiredLength }} </strong> caracteres </li>
+                      <li *ngIf="email.errors.pattern"> Debes de ingresar un correo  <strong> valido </strong> </li>
                   </ul>
                 </div>
               </div>

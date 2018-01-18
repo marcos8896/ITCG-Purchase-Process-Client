@@ -1,0 +1,7 @@
+<div *ngIf="roles">
+<div class="radio" *ngFor="let role of roles">
+  <label [for]="role.name">
+      <input (change)="onChangeRadioGroup(role)" [checked]="role.id === 1 ? true : false" type="radio" [id]="role.name" name="radios" [value]="role.endPoint"> {{role.name}}
+  </label>
+</div>
+</div>

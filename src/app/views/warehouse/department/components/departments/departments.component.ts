@@ -44,8 +44,8 @@ export class DepartmentsComponent implements OnInit {
     this.debounce();
   }
 
-  getDepartments() :void {
-    this.departmentService.allDepartmentRelations()
+  getDepartments(): void {
+    this.departmentService.getAll({ include: ['subdirection'] })
       .subscribe( res => {
         this.temp = [...res];
         this.departments = res;

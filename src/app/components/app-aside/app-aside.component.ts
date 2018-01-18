@@ -21,7 +21,10 @@ export class AppAsideComponent {
         this.showSuccess( message )
         this.router.navigate(['/login']);
       })
-      .catch( error => this.showError( error.message ))
+      .catch( error => {
+        this.showError( "Sesión finalizada ;)" )
+        this.router.navigate(['/login']);
+      })
   }
   
   showSuccess( message ) {
@@ -29,7 +32,7 @@ export class AppAsideComponent {
   }
 
   showError( error ) {
-    this.toastrService.error(error, '¡Ha numa!')
+    this.toastrService.warning(error, '¡Ha numa!')
   }
 
 }

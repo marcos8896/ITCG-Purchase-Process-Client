@@ -2,7 +2,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CanActivate, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from 'app/services/authentication.service';
-import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router/src/router_state';
+import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable()
 export class LoggedUserGuard implements CanActivate {
@@ -14,16 +14,21 @@ export class LoggedUserGuard implements CanActivate {
     ) { }
     
     canActivate( activatedRouteSnapshot: ActivatedRouteSnapshot, routerStateSnapshot: RouterStateSnapshot ) {
-        if ( this.authenticationService.isLoggedIn() ) {
-            return true
-        }
-
-        this.showError()
+        // Contain all guards (roles) allowed to access
+        const guards = activatedRouteSnapshot.data.guards;
+        
+        // Check if the role stored in local storage 
+        // matches with any element of the guard array with 
+        // the roles allowed to access
+        if ( guards.includes(JSON.parse(localStorage.getItem('ITCG_role'))) )
+            return true;
+        
+        this.showError();
         this.router.navigate(['/login'], { queryParams: { returnUrl: routerStateSnapshot.url }});
-        return false
+        return false;
     }
 
     showError() {
-        this.toastrService.error('Debes iniciar sesión para acceder', 'No has iniciado sesión')
+        this.toastrService.error('Inicia sesión correctamente para acceder', 'Sesión inválida');
     }
 }

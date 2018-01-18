@@ -69,7 +69,7 @@ export class AppSidebarNavItemComponent {
   }
 
   public isActive() {
-    return this.router.isActive(this.thisUrl(), false)
+    return this.router.isActive(this.thisUrl(), true)
   }
 
   constructor( private router: Router )  { }

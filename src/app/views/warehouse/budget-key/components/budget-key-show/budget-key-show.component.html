@@ -1,0 +1,120 @@
+<div class="animated fadeIn" *ngIf="budgetKey">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <form #formBudgetKey="ngForm">            
+            <div class="card-header">
+              <strong>Clave Prosupuestal</strong>
+              <small>Formulario</small>
+            </div>
+  
+            <div class="row" >
+                
+                <div class="col-sm-12 col-md-4">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label >Clave</label>
+                                <input type="text" class="form-control" [value]="budgetKey.budget_key_id">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label >Objetivos PI</label>
+                                    <input type="text" class="form-control" [value]="budgetKey.piid_ojectives">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="">Subdirección</label>
+                                     <input type="text" class="form-control" [value]="budgetKey.subdirection.name"> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="col-sm-12 col-md-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12" >
+                                    <div class="form-group">
+                                        <label for="">Programa</label>
+                                        <textarea name="" id="" cols="2" rows="2" class="form-control">{{ budgetKey.program.description }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-sm-12 col-md-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="">Proyecto</label>
+                                        <textarea name="" id="" cols="2" rows="2" class="form-control">{{ budgetKey.project.description }}</textarea>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            
+            <div class="card-header">
+                <strong>Acciones</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div class="col-sm-12 col-md-12">
+                                <ngx-datatable style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+                                [rowHeight]="50" [scrollbarV]="true" [rows]="budgetKey.budget_key_details">
+                                    <ngx-datatable-column [minWidth]="100" [maxWidth]="150"name="ID" prop="id" width="100">
+                                      <ng-template let-value="value" ngx-datatable-cell-template>
+                                        <strong>{{value}}</strong>
+                                      </ng-template>
+                                    </ngx-datatable-column>
+
+                                    <ngx-datatable-column [minWidth]="100" [maxWidth]="150"name="No. Acción" prop="action_number" width="100">
+                                      <ng-template let-value="value" ngx-datatable-cell-template>
+                                        <strong>{{value}}</strong>
+                                      </ng-template>
+                                    </ngx-datatable-column>
+                              
+                                    <ngx-datatable-column [minWidth]="300" [maxWidth]="800" name="Objetivos pi" prop="description" width="250">
+                                      <ng-template let-value="value" ngx-datatable-cell-template>
+                                        <strong>{{value}}</strong>
+                                      </ng-template>
+                                    </ngx-datatable-column>
+                              
+                                </ngx-datatable>
+
+                            </div>
+                       </div>
+                    </div>
+                </div><!--/.row-->
+            </div>
+
+          </form>
+        </div>
+      </div><!--/.col-->    
+    </div><!-- row -->  
+  </div>

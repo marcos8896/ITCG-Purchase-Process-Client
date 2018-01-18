@@ -18,7 +18,7 @@ export class ConceptsComponent implements OnInit {
   public temp: any = [];
   public selectedFilter = 'description';
   public filterBy = [
-    { value: 'id', name: 'ID' },
+    { value: 'concept_number', name: 'Número de partida' },
     { value: 'description', name: 'Descripción' }
   ]
   
@@ -36,7 +36,7 @@ export class ConceptsComponent implements OnInit {
   }
 
   getConcepts(): void {
-    this.conceptService.all()
+    this.conceptService.getAll()
       .subscribe( data => {
 
         this.temp = [...data];

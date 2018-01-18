@@ -1,3 +1,4 @@
+import { RoleRadioComponent } from './components/role-radio/role-radio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,9 @@ import { LoginRoutingModule } from 'app/views/session/login/login.routing';
         ReactiveFormsModule,
         LoginRoutingModule
     ],
-    declarations: [ LoginComponent ],
+    declarations: [
+        RoleRadioComponent,
+        LoginComponent
+    ],
 })
 export class LoginModule { }

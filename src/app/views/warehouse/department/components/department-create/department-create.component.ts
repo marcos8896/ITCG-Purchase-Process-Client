@@ -21,7 +21,7 @@ export class DepartmentCreateComponent implements OnInit {
     private departmentService: DepartmentService, 
     private subdirectionService: SubdirectionService, 
     private toastr: ToastrService ) {
-      this.subdirectionService.all()
+      this.subdirectionService.getAll()
       .subscribe(subdirection => this.subdirections = subdirection)
   }
 
@@ -32,7 +32,6 @@ export class DepartmentCreateComponent implements OnInit {
   onSubmitDepartment( values ) {
     this.departmentService.create( values )
     .subscribe( res => {
-      console.log('Entra al metodo')
         if ( res ) {
           this.showSuccess()
         }

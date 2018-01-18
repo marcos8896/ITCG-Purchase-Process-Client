@@ -1,3 +1,5 @@
+import { RoleRadioComponent } from './components/role-radio/role-radio.component';
+import { RadioRoleInterface } from 'app/views/session/login/models/radio-role.interface';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/services/authentication.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -5,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'app/services';
 import { ToastrService } from 'ngx-toastr';
 import { Validators } from '@angular/forms';
+import { ViewChild } from '@angular/core/';
 
 @Component({
     selector: 'app-login',
@@ -12,9 +15,12 @@ import { Validators } from '@angular/forms';
 })
 
 export class LoginComponent {
+  // Get properties from RoleRadioComponent
+  @ViewChild(RoleRadioComponent)
+  public roleRadioComponent: RoleRadioComponent
 
+  // FormGroup for validation form purposes
   public loginForm: FormGroup
-  
   constructor( 
       private formBuilder: FormBuilder,
       private userService: UserService,
@@ -23,7 +29,7 @@ export class LoginComponent {
       private router: Router
     ) {
       this.createForm()
-      }
+    }
   
   createForm() {
     this.loginForm = this.formBuilder.group({
@@ -31,9 +37,10 @@ export class LoginComponent {
       password: ['', Validators.compose([Validators.required])],
     })
   }
-
+  
   onSubmitLogin( values ) {
-    this.authenticationService.login( values.email, values.password )
+    const lastEndpointEntry = this.roleRadioComponent.selectedRole.endPoint
+    this.authenticationService.login( values.email, values.password, lastEndpointEntry)
       .subscribe( res => {
         if ( res ) {
           this.showSuccess()
@@ -49,6 +56,6 @@ export class LoginComponent {
   }
 
   showError( error ) {
-    this.toastrService.error(error, '¡Ha numa!')
+    this.toastrService.error('Hubo un error al intentar iniciar sesión, por favor, verifica tus credenciales.', '¡Ha numa!')
   }
 }

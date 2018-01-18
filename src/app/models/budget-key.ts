@@ -4,5 +4,6 @@ export interface BudgetKeyInterface {
     id: number,
     projectId: number,
     subdirectionId: number,
-    programId: number
+    programId: number,
+    budgetKeyDetails?: any []
 }

@@ -22,7 +22,7 @@ export class ProjectCreateComponent implements OnInit {
   }
 
   getPrograms() {
-    this.programService.all()
+    this.programService.getAll()
       .subscribe( programs => this.programs = programs )
   }
 

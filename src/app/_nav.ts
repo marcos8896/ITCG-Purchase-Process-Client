@@ -7,7 +7,7 @@ export const navigation = [
       {
         name: 'Registrar',
         url: '/warehouse/concept/create',
-        icon: 'icon-note',
+        icon: 'icon-note'
       },
       {
         name: 'Consultar',
@@ -27,7 +27,7 @@ export const navigation = [
         icon: 'icon-note',
       },
       {
-        name: 'Consulta General',
+        name: 'Consultar',
         url: '/warehouse/budget-key/all',        
         icon: 'icon-note',
       }      
@@ -44,7 +44,7 @@ export const navigation = [
         icon: 'icon-note',
       },
       {
-        name: 'Consulta General',
+        name: 'Consultar',
         url: '/warehouse/provider/all',        
         icon: 'icon-note',
       }      
@@ -61,7 +61,7 @@ export const navigation = [
         icon: 'icon-note',
       },
       {
-        name: 'Consulta',
+        name: 'Consultar',
         url: '/warehouse/project/all',
         icon: 'icon-magnifier',
       }
@@ -78,7 +78,7 @@ export const navigation = [
         icon: 'icon-note',
       },
       {
-        name: 'Consulta General',
+        name: 'Consultar',
         url: '/warehouse/subdirection/all',
         icon: 'icon-note',
       }
@@ -95,7 +95,7 @@ export const navigation = [
         icon: 'icon-note',
       },
       {
-        name: 'Consulta general',
+        name: 'Consultar',
         url: '/warehouse/program/all',
         icon: 'icon-note',
       }
@@ -112,7 +112,7 @@ export const navigation = [
         icon: 'icon-note',
       },
       {
-        name: 'Consulta general',
+        name: 'Consultar',
         url: '/warehouse/department/all',
         icon: 'icon-note',
       }

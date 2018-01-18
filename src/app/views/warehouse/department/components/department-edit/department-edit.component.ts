@@ -25,7 +25,7 @@ export class DepartmentEditComponent implements OnInit {
     private router: Router
   ) {
     this.getUrlId();
-    this.subdirectionService.all()
+    this.subdirectionService.getAll()
       .subscribe(subdirection => this.subdirections = subdirection)
    }
 
