@@ -118,6 +118,25 @@ export const navigation = [
       }
     ]
   },
+  {
+    name: 'Procesos',
+    icon: 'icon-map',
+    url: '',
+    children: [
+      {
+        name: 'Requisición',
+        icon: 'icon-map',
+        url: '',
+        children: [
+          {
+            name: 'Registrar',
+            url: '/processes/requisition/create',
+            icon: 'icon-note',
+          }
+        ] 
+      } 
+    ]
+  },
   
         
 ];
