@@ -1,0 +1,169 @@
+
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <form #formBudgetKey="ngForm" (ngSubmit)="onSubmitBudgetKey(formBudgetKey.value); formBudgetKey.reset()">
+          <div class="card-header">
+            <h3 class="text-center display-5">Requisición de bienes y servicios</h3>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-body">
+                      
+                <div class="row">
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label for="budget_key_id">Nombre del jefe del area solicitante</label>
+                      <input type="text" readonly class="form-control read-only-normal-style" value="">
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label for="budget_key_id">Área solicitante</label>
+                      <input type="text" readonly class="form-control read-only-normal-style" value="">
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-4">
+                    <label for="budget_key_id">Fecha</label>
+                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-header">
+            <strong>Requisición</strong>
+            <small>Formulario</small>
+          </div>
+
+          <div class="row" style="margin: 10px;">
+            <div class="col-sm-12 col-md-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="budget_key_id">Clave presupuestal</label>
+                      <select class="form-control" #budgetDetails (click)="(budgetDetails.value)? onSelectBudget(budgetDetails.value): nothing()" required >
+                        <option *ngFor="let budgetKey of budgetKeys" [value]="budgetKey.id">{{ budgetKey.budget_key_id }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label >Partida</label>
+                      <select class="form-control" required>
+                        <option *ngFor="let concept of concepts" [value]="concept.id">
+                          {{ concept.description }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="subdirectionId">Cantidad</label>
+                        <input type="number" class="form-control read-only-normal-style" min=0>
+                      </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="programId">Unidad:</label>
+                      <select class="form-control" required>
+                        <option>kg</option>
+                        <option>gr</option>
+                        <option>pza</option>
+                        <option>serv</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12 col-md-8">
+                    <div class="form-group">
+                      <label >Descripción:</label>
+                      <textarea name="" id="" cols="42" rows="5"></textarea>
+                    </div>
+                  </div>
+                </div>
+                  
+                <button type="button" class="btn btn-outline-primary" (click)="onSubmitAddAction()"><i class="fa fa-check"></i>Agregar</button>
+              </div>
+            </div>
+
+              <div class="col-sm-12 col-md-8">
+                <ngx-datatable style="height: 400px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [rows]='programs'>
+                  <!-- Row Detail Template -->
+                  <ngx-datatable-row-detail [rowHeight]="320" #myDetailRow (toggle)="onDetailToggle($event)">
+                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+
+                      <div class="container scrollable-div">
+                        <ng-container *ngFor="let project of row.project">
+                          <div class="row">
+
+                            <div class="col-md-2">
+                              <div class="form-group">
+                                <label for="id" class="col-md-2 col-form-label">Acción:</label>
+                                <input type='text' readonly class="form-control read-only-normal-style" value="{{ project.project_number }}"/>
+                              </div>
+                            </div>
+
+                            <div class="col-md-8">
+                              <label for="nombre" class="col-md-8 col-form-label">Descripción:</label>
+                              <input type='text' readonly class="form-control read-only-normal-style" value="{{ project.description }}"/>
+                            </div>
+
+                            <div class="col-md-2">
+                              <div class="form-group">
+                                <ul class="list-group" style="margin-top: 35px;">
+                                  <button class="btn btn-lg btn-link pull-right" (click)="projectSelected(project, row)">Elegir</button>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </ng-container>
+
+                      </div>
+
+                    </ng-template>
+                  </ngx-datatable-row-detail>
+                <!-- Column Templates -->
+                    <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                      <a
+                        href="javascript:void(0)"
+                        [class.datatable-icon-right]="!expanded"
+                        [class.datatable-icon-down]="expanded"
+                        title="Expand/Collapse Row"
+                        (click)="toggleExpandRow(row)">
+                      </a>
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <!-- El [minWidth] es importante para cuando es responsive, chequenle bien gg -->
+                  <ngx-datatable-column [minWidth]="250" name="Acción" prop="description" width="250">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                      <div class="break-word"> <strong>{{value}}</strong> </div>
+                    </ng-template>
+                  </ngx-datatable-column>
+              </ngx-datatable>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div><!--/.col-->
+  </div><!-- row -->
+</div>
