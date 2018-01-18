@@ -17,7 +17,7 @@ export const navigation = [
     ]
   },  
   {
-    name: 'Claves Presupuestales',
+    name: 'C. Presupuestales',
     icon: 'icon-key',
     url: '',
     children: [
