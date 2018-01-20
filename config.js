@@ -18,7 +18,7 @@ const targetPath = `./src/environments/environment.${environment}.ts`;
 const envConfigFile = `
   export const environment = {
     production: ${isProd},
-    baseUrl: '${process.env.BASE_URL}'
+    BASE_URL: '${process.env.BASE_URL}'
   };
   `;
 
