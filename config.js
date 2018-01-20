@@ -21,9 +21,6 @@ const envConfigFile = `
     baseUrl: '${process.env.BASE_URL}'
   };
   `;
-console.log('VARS');
-console.log(process.env.BASE_URL);
-
 
 fs.writeFile(targetPath, envConfigFile, function (err) {
   if (err) {
