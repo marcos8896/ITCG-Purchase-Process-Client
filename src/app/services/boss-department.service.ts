@@ -6,6 +6,6 @@ import { BasicRequestService } from './basic-request.service';
 export class BossDepartmentService extends BasicRequestService {
 
     constructor( protected http: Http ) {
-        super ( http, 'Boss_departmens' )
+        super ( http, 'Boss_departments' )
      }
 }
