@@ -1,0 +1,36 @@
+<ngx-datatable
+    style="height: 330px" 
+    #userTable 
+    class='material expandable'
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="60"
+    [scrollbarV]="true"
+    [rows]='rows'>
+    <!-- Column Templates -->
+    <ngx-datatable-column [minWidth]="100" name="Permisos" width="50">
+        <ng-template ngx-datatable-cell-template>
+        <span class="badge badge-success">CONCEDIDOS</span>
+        <!-- <span class="badge badge-warning">DENEGADOS</span> -->
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [minWidth]="150" name="Nombre" prop="name" width="200">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+        <strong>{{ value }}</strong>
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [minWidth]="150" name="Usuario" prop="username" width="200">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+        <strong>{{ value }}</strong>
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [minWidth]="150" name="Email" prop="email" width="200">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+        <strong>{{ value }}</strong>
+        </ng-template>
+    </ngx-datatable-column>
+</ngx-datatable>
