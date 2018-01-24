@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { SubdirectionService } from './../../../../../services/subdirection.service';
 import { BudgetKeyInterface } from './../../../../../models/budget-key';
-import { Concept } from './../../../../../models/concept';
-
-import { BudgetKeyService, UserService } from 'app/services';
+import { BudgetKeyService } from 'app/services';
 import { ConceptService } from 'app/services/concept.service';
+
+import { Concept } from './../../../../../models/concept';
 
 @Component({
   selector: 'app-requisition-create',
@@ -13,25 +13,37 @@ import { ConceptService } from 'app/services/concept.service';
   styleUrls: ['./requisition-create.component.scss']
 })
 export class RequisitionCreateComponent implements OnInit {
-  public budgetKeys: BudgetKeyInterface
-  public concepts: Concept
-  public actions: any[]
+  public budgetKeys: BudgetKeyInterface[]
+  public concepts: Concept[]
+  public actions: any[] = []
+  public requisition: any[]
+  public action: String = ""
+  
+  public products: any[] = []
+  public product: Object = { 
+    budget : Number,
+    concept: Number,
+    quantity: Number,
+    unit: String,
+    price: Number,
+    description: String
+  }
+  @ViewChild('budgetSelect') Selection: any;
 
   constructor( 
     private budgetKeyService: BudgetKeyService, 
     private conceptService: ConceptService,
-    private userService: UserService
   ) { }
 
   ngOnInit() {
     this.getBudgetKeys()
-    this.getConcepts()
   }
 
   getBudgetKeys(): void {
     this.budgetKeyService.getAll()
     .subscribe ( data => {
       this.budgetKeys = data;
+      this.getConcepts()
     });
   }
 
@@ -43,18 +55,21 @@ export class RequisitionCreateComponent implements OnInit {
   }
 
   onSelectBudget( value ): void {
-    console.log(value)
     this.budgetKeyService.findById( value, {
       include: ['budget_key_details']
     }).subscribe( data => {
         this.actions = data;
-        console.log('this.budgetKey: ', this.actions);
+        console.log('Actions: ', this.actions);
     });
   }
   
-  nothing(){
-    
+  onSelectAction( value ): void {
+    this.action = value
+    console.log(this.action)
   }
-  
 
+  onSubmitProduct( values) {
+    let val: any = { prod: this.product }
+    this.products.push( val )
+  }
 }

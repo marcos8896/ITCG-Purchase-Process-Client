@@ -1,9 +1,9 @@
 
-<div class="animated fadeIn">
+<div class="animated fadeIn" *ngIf="budgetKeys">
   <div class="row">
     <div class="col-sm-12">
       <div class="card">
-        <form #formBudgetKey="ngForm" (ngSubmit)="onSubmitBudgetKey(formBudgetKey.value); formBudgetKey.reset()">
+        <form #formRequisition="ngForm" (ngSubmit)="formRequisition.reset()">
           <div class="card-header">
             <h3 class="text-center display-5">Requisición de bienes y servicios</h3>
           </div>
@@ -23,7 +23,7 @@
                   <div class="col-sm-12 col-md-4">
                     <div class="form-group">
                       <label for="budget_key_id">Área solicitante</label>
-                      <input type="text" readonly class="form-control read-only-normal-style" value="">
+                      <input type="text" readonly class="form-control read-only-normal-style" value="00.0.0">
                     </div>
                   </div>
 
@@ -45,36 +45,43 @@
           <div class="row" style="margin: 10px;">
             <div class="col-sm-12 col-md-4">
               <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="budget_key_id">Clave presupuestal</label>
-                      <select class="form-control" #budgetDetails (click)="(budgetDetails.value)? onSelectBudget(budgetDetails.value): nothing()" required >
-                        <option *ngFor="let budgetKey of budgetKeys" [value]="budgetKey.id">{{ budgetKey.budget_key_id }}</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
 
                 <div class="row">
+
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <label >Partida</label>
-                      <select class="form-control" required>
-                        <option *ngFor="let concept of concepts" [value]="concept.id">
-                          {{ concept.description }}
+                      <label>Clave presupuestal</label>
+                      <select ngModel #budgetKey="ngModel" name="budgetKey_" class="form-control" (change)="onSelectBudget(budgetKey.value)" required>
+                        <option value="" selected>Seleccionar clave presupuestal</option>
+                        <option *ngFor="let budgetK of budgetKeys" [value]="budgetK.id"> 
+                          {{ budgetK.budget_key_id }}
                         </option>
                       </select>
+                      <ul *ngIf="budgetKey.invalid && (budgetKey.dirty || budgetKey.touched)" class="alert alert-danger" style="margin-top: .5em">
+                        <li *ngIf="budgetKey.errors.required"> Debes ingresar una <strong>clave presupuestal.</strong> </li>                      
+                      </ul>
                     </div>
                   </div>
+
+                  <div class="col-sm-12">
+                      <div class="form-group">
+                        <label>Partida</label>
+                        <input type="text" class="form-control" [value]="">
+                      </div>
+                    </div>
+
                 </div>
 
                 <div class="row">
+
                   <div class="col-sm-6">
                       <div class="form-group">
-                        <label for="subdirectionId">Cantidad</label>
-                        <input type="number" class="form-control read-only-normal-style" min=0>
+                        <label for="quantity">Cantidad</label>
+                        <input ngModel #quantity="ngModel" name="quantity_" type="number" class="form-control read-only-normal-style" min=0>
                       </div>
+                      <ul *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger" style="margin-top: .5em">
+                        <li *ngIf="quantity.errors.required"> Debes ingresar <strong>la cantidad.</strong> </li>                      
+                      </ul>
                   </div>
 
                   <div class="col-sm-6">
@@ -88,78 +95,138 @@
                       </select>
                     </div>
                   </div>
+
                 </div>
 
                 <div class="row">
-                  <div class="col-sm-12 col-md-8">
+                  
+                  <div class="col-sm-12">
                     <div class="form-group">
-                      <label >Descripción:</label>
-                      <textarea name="" id="" cols="42" rows="5"></textarea>
+                        <label for="price">Costo estimado</label>
+                        <input ngModel #priceModel="ngModel" type="number" min=1 name="priceProduct" id="price" class="form-control" required>
+                        <ul *ngIf="priceModel.invalid && (priceModel.dirty || priceModel.touched)" class="alert alert-danger" style="margin-top: .5em">
+                          <li *ngIf="priceModel.errors.required"> Debes ingresar un <strong>costo aproximado.</strong> </li>                      
+                        </ul>
                     </div>
                   </div>
+  
+                </div>  
+
+                <div class="row">
+
+                  <div class="col-sm-12 col-md-12">
+                    <label >Descripción:</label>
+                    <textarea ngModel #descriptionModel="ngModel" name="description" class="form-control" rows="5" required minlength="2"></textarea>
+                    <ul *ngIf="descriptionModel.invalid && (descriptionModel.dirty || descriptionModel.touched)" class="alert alert-danger" style="margin-top: .5em">
+                        <li *ngIf="descriptionModel.errors.required"> Debes ingresar una <strong>descripción.</strong> </li>  
+                        <li *ngIf="descriptionModel.errors.minlength"> Debes ingresar una descripción como mínimo de <strong> {{ descriptionModel.errors.minlength.requiredLength }} </strong> caracteres </li>
+                      </ul>
+                  </div>
                 </div>
-                  
-                <button type="button" class="btn btn-outline-primary" (click)="onSubmitAddAction()"><i class="fa fa-check"></i>Agregar</button>
+                <br>
+                <button [disabled]="budgetKey.invalid && quantity.invalid && priceModel.invalid && descriptionModel.invalid" type="button" class="btn btn-outline-primary btn-block" (click)="onSubmitProduct()">
+                  <i class="fa fa-check"></i>Agregar
+                </button>
               </div>
             </div>
 
-              <div class="col-sm-12 col-md-8">
-                <ngx-datatable style="height: 400px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [rows]='programs'>
-                  <!-- Row Detail Template -->
-                  <ngx-datatable-row-detail [rowHeight]="320" #myDetailRow (toggle)="onDetailToggle($event)">
-                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+            <div class="col-sm-12 col-md-8">
+              <ngx-datatable #table style="height: 250px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [rows]='actions.budget_key_details'>
+                
+                <ngx-datatable-column [minWidth]="250" name="Acción" prop="description" width="250">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    <strong> {{value}} </strong>
+                  </ng-template>
+                </ngx-datatable-column>
+                  
+                <ngx-datatable-column [minWidth]="50" name="" prop="description" width="50">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    <button type="button" class="btn btn-outline-primary" (click)="onSelectAction( value )">
+                      <i class="fa fa-check"></i>Seleccionar
+                    </button>
+                  </ng-template>
+                </ngx-datatable-column>
 
-                      <div class="container scrollable-div">
-                        <ng-container *ngFor="let project of row.project">
-                          <div class="row">
+              </ngx-datatable>
+              <br>
+              <ngx-datatable #table style="height: 250px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [rows]='concepts'>
+                
+                <ngx-datatable-column [minWidth]="250" name="Partidas" prop="description" width="250">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    <strong> {{value}} </strong>
+                  </ng-template>
+                </ngx-datatable-column>
+                  
+                <ngx-datatable-column [minWidth]="50" name="" prop="description" width="50">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    <button type="button" class="btn btn-outline-primary" (click)="onSelectAction( value )">
+                      <i class="fa fa-check"></i>Seleccionar
+                    </button>
+                  </ng-template>
+                </ngx-datatable-column>
 
-                            <div class="col-md-2">
-                              <div class="form-group">
-                                <label for="id" class="col-md-2 col-form-label">Acción:</label>
-                                <input type='text' readonly class="form-control read-only-normal-style" value="{{ project.project_number }}"/>
-                              </div>
-                            </div>
-
-                            <div class="col-md-8">
-                              <label for="nombre" class="col-md-8 col-form-label">Descripción:</label>
-                              <input type='text' readonly class="form-control read-only-normal-style" value="{{ project.description }}"/>
-                            </div>
-
-                            <div class="col-md-2">
-                              <div class="form-group">
-                                <ul class="list-group" style="margin-top: 35px;">
-                                  <button class="btn btn-lg btn-link pull-right" (click)="projectSelected(project, row)">Elegir</button>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </ng-container>
-
-                      </div>
-
-                    </ng-template>
-                  </ngx-datatable-row-detail>
-                <!-- Column Templates -->
-                    <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
-                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                      <a
-                        href="javascript:void(0)"
-                        [class.datatable-icon-right]="!expanded"
-                        [class.datatable-icon-down]="expanded"
-                        title="Expand/Collapse Row"
-                        (click)="toggleExpandRow(row)">
-                      </a>
-                    </ng-template>
-                  </ngx-datatable-column>
-
-                  <!-- El [minWidth] es importante para cuando es responsive, chequenle bien gg -->
-                  <ngx-datatable-column [minWidth]="250" name="Acción" prop="description" width="250">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                      <div class="break-word"> <strong>{{value}}</strong> </div>
-                    </ng-template>
-                  </ngx-datatable-column>
               </ngx-datatable>
             </div>
+
+          </div>
+
+          <div class="card-header">
+            <strong>Datos</strong>
+            <small>requisición</small>
+          </div>
+
+          <div class="col-sm-12 col-md-12" style="margin: 10px;">
+            <ngx-datatable #table style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [rows]=''>
+              
+              <ngx-datatable-column [minWidth]="100" [maxWidth]="180" name="Clave presupuestal" prop="">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                  
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column [minWidth]="50" [maxWidth]="130" name="Partida" prop="">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                  
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column [minWidth]="50" [maxWidth]="100" name="Cantidad" prop="">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                  
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column [minWidth]="50" [maxWidth]="100" name="Unidad" prop="">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                  
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column [minWidth]="420" [maxWidth]="450" name="Descripción de bienes/servicios" prop="">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                  
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column [minWidth]="50" [maxWidth]="200" name="Costo estimado TOTAL + IVA" prop="">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                  
+                </ng-template>
+              </ngx-datatable-column>
+
+            </ngx-datatable>
+          </div> 
+
+          <!-- row for action select -->
+          <div class="row">
+
+            <div class="col-md-10 offset-md-1">
+              <div class="alert alert-success" role="alert" *ngIf="action">
+                <h4 class="alert-heading">Lo anterior sera utilizado en la acción</h4>
+                <p>{{ action }}</p>
+              </div>
+            </div>
+
           </div>
 
         </form>
