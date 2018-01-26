@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { ProductInterface } from './../../../../../models/product';
 import { Concept } from 'app/models/concept';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -21,8 +22,10 @@ export class RequisitionCreateComponent implements OnInit {
   public concept: any;
   public conceptDescription: any;
   
+  public products$: Observable<any[]>
   public products: any[] = []
-  public product: ProductInterface
+  public product: any = {quantity: 0, concept: 0, unit:"", description:"", status:"", requisitionId: 0}
+  public cost: any = 0
 
   constructor( 
     private budgetKeyService: BudgetKeyService, 
@@ -65,11 +68,11 @@ export class RequisitionCreateComponent implements OnInit {
   onSelectConcept( value ): void {
     this.conceptDescription = value
     this.concept = this.concepts.filter(concept => concept.description == value)
-    console.log('this.concept: ', this.concept);
+    this.product.concept = this.concept[0].concept_number;
   }
 
-  onSubmitProduct( values ) {
-    let val: any = { prod: this.product }
-    this.products.push( val )
+  onSubmitProduct() {
+    this.products.push( this.product )
+    console.log('this.products: ', this.products);
   }
 }
