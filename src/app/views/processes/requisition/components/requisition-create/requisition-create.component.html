@@ -7,46 +7,32 @@
           <div class="card-header">
             <h3 class="text-center display-5">Requisición de bienes y servicios</h3>
           </div>
-
+          <!--First part-->
           <div class="row">
-            <div class="col-sm-12">
+
+            <div class="col-sm-12 col-md-4">
               <div class="card-body">
                       
                 <div class="row">
-                  <div class="col-sm-12 col-md-4">
+
+                  <div class="col-sm-12">
                     <div class="form-group">
                       <label for="budget_key_id">Nombre del jefe del area solicitante</label>
                       <input type="text" readonly class="form-control read-only-normal-style" value="">
                     </div>
                   </div>
 
-                  <div class="col-sm-12 col-md-4">
+                  <div class="col-sm-12">
                     <div class="form-group">
                       <label for="budget_key_id">Área solicitante</label>
                       <input type="text" readonly class="form-control read-only-normal-style" value="00.0.0">
                     </div>
                   </div>
 
-                  <div class="col-sm-12 col-md-4">
+                  <div class="col-sm-12">
                     <label for="budget_key_id">Fecha</label>
                     <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
                   </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-header">
-            <strong>Requisición</strong>
-            <small>Formulario</small>
-          </div>
-
-          <div class="row" style="margin: 10px;">
-            <div class="col-sm-12 col-md-4">
-              <div class="card-body">
-
-                <div class="row">
 
                   <div class="col-sm-12">
                     <div class="form-group">
@@ -61,14 +47,53 @@
                         <li *ngIf="budgetKey.errors.required"> Debes ingresar una <strong>clave presupuestal.</strong> </li>                      
                       </ul>
                     </div>
-                  </div>
+                  </div>                     
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-8">
+              <ngx-datatable #table style="height: 250px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [rows]='actions.budget_key_details'>
+                  
+                <ngx-datatable-column [minWidth]="250" name="Acción" prop="description" width="250">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    <strong> {{value}} </strong>
+                  </ng-template>
+                </ngx-datatable-column>
+                  
+                <ngx-datatable-column [minWidth]="50" name="" prop="description" width="50">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    <button type="button" class="btn btn-outline-primary" (click)="onSelectAction( value )">
+                      <i class="fa fa-check"></i>Seleccionar
+                    </button>
+                  </ng-template>
+                </ngx-datatable-column>
+
+              </ngx-datatable>
+            </div>  
+
+          </div>
+
+          <div class="card-header">
+            <strong>Requisición</strong>
+            <small>Formulario</small>
+          </div>
+
+          <!--Second part-->
+          <div class="row" style="margin: 10px;">
+            <div class="col-sm-12 col-md-4">
+              <div class="card-body">
+
+                <div class="row">                  
 
                   <div class="col-sm-12">
-                      <div class="form-group">
-                        <label>Partida</label>
-                        <input type="text" class="form-control" [value]="">
-                      </div>
+                    <div class="form-group">
+                      <label for="conceptId">Partida:</label>
+                      <input *ngIf="concept" type='text' [(ngModel)]="conceptDescription" name="conceptId" #conceptInput #conceptId="ngModel" readonly class="form-control read-only-normal-style"/>
+                      <input *ngIf="!concept" type="text" readonly class="form-control read-only-normal-style">
                     </div>
+                  </div>                 
 
                 </div>
 
@@ -130,27 +155,10 @@
               </div>
             </div>
 
-            <div class="col-sm-12 col-md-8">
-              <ngx-datatable #table style="height: 250px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [rows]='actions.budget_key_details'>
-                
-                <ngx-datatable-column [minWidth]="250" name="Acción" prop="description" width="250">
-                  <ng-template let-value="value" ngx-datatable-cell-template>
-                    <strong> {{value}} </strong>
-                  </ng-template>
-                </ngx-datatable-column>
-                  
-                <ngx-datatable-column [minWidth]="50" name="" prop="description" width="50">
-                  <ng-template let-value="value" ngx-datatable-cell-template>
-                    <button type="button" class="btn btn-outline-primary" (click)="onSelectAction( value )">
-                      <i class="fa fa-check"></i>Seleccionar
-                    </button>
-                  </ng-template>
-                </ngx-datatable-column>
-
-              </ngx-datatable>
+            <div class="col-sm-12 col-md-8">              
               <br>
               <ngx-datatable #table style="height: 250px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [rows]='concepts'>
-                
+               
                 <ngx-datatable-column [minWidth]="250" name="Partidas" prop="description" width="250">
                   <ng-template let-value="value" ngx-datatable-cell-template>
                     <strong> {{value}} </strong>
@@ -159,11 +167,11 @@
                   
                 <ngx-datatable-column [minWidth]="50" name="" prop="description" width="50">
                   <ng-template let-value="value" ngx-datatable-cell-template>
-                    <button type="button" class="btn btn-outline-primary" (click)="onSelectAction( value )">
+                    <button type="button" class="btn btn-outline-primary" (click)="onSelectConcept( value )">
                       <i class="fa fa-check"></i>Seleccionar
                     </button>
                   </ng-template>
-                </ngx-datatable-column>
+                </ngx-datatable-column>              
 
               </ngx-datatable>
             </div>
@@ -175,6 +183,7 @@
             <small>requisición</small>
           </div>
 
+          <!--third part-->
           <div class="col-sm-12 col-md-12" style="margin: 10px;">
             <ngx-datatable #table style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [rows]=''>
               
