@@ -1,11 +1,11 @@
+import { ProductInterface } from './../../../../../models/product';
+import { Concept } from 'app/models/concept';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { SubdirectionService } from './../../../../../services/subdirection.service';
 import { BudgetKeyInterface } from './../../../../../models/budget-key';
 import { BudgetKeyService } from 'app/services';
 import { ConceptService } from 'app/services/concept.service';
-
-import { Concept } from './../../../../../models/concept';
 
 @Component({
   selector: 'app-requisition-create',
@@ -18,17 +18,11 @@ export class RequisitionCreateComponent implements OnInit {
   public actions: any[] = []
   public requisition: any[]
   public action: String = ""
+  public concept: any;
+  public conceptDescription: any;
   
   public products: any[] = []
-  public product: Object = { 
-    budget : Number,
-    concept: Number,
-    quantity: Number,
-    unit: String,
-    price: Number,
-    description: String
-  }
-  @ViewChild('budgetSelect') Selection: any;
+  public product: ProductInterface
 
   constructor( 
     private budgetKeyService: BudgetKeyService, 
@@ -68,7 +62,13 @@ export class RequisitionCreateComponent implements OnInit {
     console.log(this.action)
   }
 
-  onSubmitProduct( values) {
+  onSelectConcept( value ): void {
+    this.conceptDescription = value
+    this.concept = this.concepts.filter(concept => concept.description == value)
+    console.log('this.concept: ', this.concept);
+  }
+
+  onSubmitProduct( values ) {
     let val: any = { prod: this.product }
     this.products.push( val )
   }
