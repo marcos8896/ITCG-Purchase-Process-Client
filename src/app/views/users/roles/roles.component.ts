@@ -36,7 +36,4 @@ export class RolesComponent implements OnInit {
             .subscribe( data => this.vicePrincipals = data)
     }
 
-
-
-
 }

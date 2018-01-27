@@ -12,6 +12,9 @@ import { SigninRoutingModule } from './signin.routing';
     ReactiveFormsModule,
     SigninRoutingModule
   ],
-  declarations: [ SigninComponent ]
+  declarations: [
+    SigninComponent,
+    
+  ]
 })
 export class SigninModule { }
