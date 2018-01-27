@@ -1,5 +1,4 @@
-import { BossDepartmentService } from 'app/services/boss-department.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 import { ViewChild } from '@angular/core';
 

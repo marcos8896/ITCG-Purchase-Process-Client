@@ -26,8 +26,9 @@ export class RolesComponent implements OnInit {
     getAllBosses() {
         this.bossDepartmentService.getAll()
             .subscribe( data => {
+                console.log(data)
                 this.bossDepartments = data;
-        })
+            })
     }
 
     getAllVicePrincipals() {
