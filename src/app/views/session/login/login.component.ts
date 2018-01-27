@@ -1,5 +1,5 @@
-import { RoleRadioComponent } from './components/role-radio/role-radio.component';
-import { RadioRoleInterface } from 'app/views/session/login/models/radio-role.interface';
+import { RadioRoleInterface } from './../shared/models/radio-role.interface';
+import { RoleRadioComponent } from './../shared/components/role-radio/role-radio.component';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/services/authentication.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
