@@ -84,7 +84,9 @@ import {
   UserService,
   AuthenticationService,
   BudgetKeyService,
-  BudgetKeyDetailsService
+  BudgetKeyDetailsService,
+  BossDepartmentService,
+  VicePrincipalService
 } from './services'
 
 const SERVICES = [
@@ -98,7 +100,9 @@ const SERVICES = [
   UserService,
   AuthenticationService,
   BudgetKeyService,
-  BudgetKeyDetailsService
+  BudgetKeyDetailsService,
+  BossDepartmentService,
+  VicePrincipalService
 ]
 
 // Guards

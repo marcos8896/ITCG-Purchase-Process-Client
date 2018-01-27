@@ -118,6 +118,18 @@ export const navigation = [
       }
     ]
   },
+  {
+    name: 'Usuarios',
+    icon: 'icon-people',
+    url: '',
+    children: [
+      {
+        name: 'Asignar roles',
+        url: '/roles',
+        icon: 'icon-user-follow',
+      }
+    ]
+  },
   
         
 ];
