@@ -1,3 +1,6 @@
+import { ProviderService } from './../../../../../services/provider.service';
+import { Provider } from './../../../../../models/provider';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { ProductInterface } from './../../../../../models/product';
 import { Concept } from 'app/models/concept';
@@ -15,25 +18,37 @@ import { ConceptService } from 'app/services/concept.service';
 })
 export class RequisitionCreateComponent implements OnInit {
   public budgetKeys: BudgetKeyInterface[]
-  public concepts: Concept[]
+  public concepts: any[] = []
+  public providers: Provider[]
   public actions: any[] = []
-  public requisition: any[]
+
   public action: String = ""
   public concept: any;
   public conceptDescription: any;
   
   public products$: Observable<any[]>
   public products: any[] = []
-  public product: any = {quantity: 0, concept: 0, unit:"", description:"", status:"", requisitionId: 0}
-  public cost: any = 0
+  public behaviorSubject: BehaviorSubject<any[]>
+
+  public quantity: any = 0
+  public conceptNumber: any = 0
+  public unit: String = ""
+  public description: String = ""
+  public status: String = ""
+  public requisitionId: any = 0
+  public cost: any = 0  
 
   constructor( 
     private budgetKeyService: BudgetKeyService, 
     private conceptService: ConceptService,
+    private providerService: ProviderService
   ) { }
 
   ngOnInit() {
     this.getBudgetKeys()
+    this.getProviders()
+    this.behaviorSubject = new BehaviorSubject<any[]>( this.products );
+    this.products$ = this.behaviorSubject.map( data => data.map( a => a ))   
   }
 
   getBudgetKeys(): void {
@@ -44,6 +59,13 @@ export class RequisitionCreateComponent implements OnInit {
     });
   }
 
+  getProviders(): void {
+    this.providerService.getAll()
+    .subscribe ( data => {
+      this.providers = data;
+    });
+  }
+
   getConcepts(): void {
     this.conceptService.getAll()
     .subscribe ( data => {
@@ -51,28 +73,45 @@ export class RequisitionCreateComponent implements OnInit {
     });
   }
 
+  onSelectDate( value ) {
+    console.log('value: ', value);
+
+  }
+
   onSelectBudget( value ): void {
     this.budgetKeyService.findById( value, {
       include: ['budget_key_details']
     }).subscribe( data => {
         this.actions = data;
-        console.log('Actions: ', this.actions);
     });
   }
   
   onSelectAction( value ): void {
     this.action = value
-    console.log(this.action)
   }
 
   onSelectConcept( value ): void {
     this.conceptDescription = value
     this.concept = this.concepts.filter(concept => concept.description == value)
-    this.product.concept = this.concept[0].concept_number;
+    this.conceptNumber = this.concept[0].concept_number;
   }
 
   onSubmitProduct() {
-    this.products.push( this.product )
-    console.log('this.products: ', this.products);
+    let total = this.cost * this.quantity
+    let product = {quantity: this.quantity, unit: this.unit, description: this.description, concept: this.conceptNumber,cost: this.cost, total }
+    this.products.push( product )
+    this.behaviorSubject.next( this.products )
+  }
+
+  onFormRequisition( value ) {
+    var products: any[] = [];
+    this.products.forEach( product => {
+      var concept = this.concepts.filter(concept => concept.concept_number == product.concept)
+      let producto = {quantity: product.quantity, unit: product.unit, description: product.description,conceptId: concept[0].id}
+      products.push(producto)
+    })
+    var req = {action: this.action, providerId: value.provider_, budget_keyId: value.budgetKey_, status: "Esperando", Concept_Requisition: products}
+    
+    console.log('Objeto final', req);
   }
 }
