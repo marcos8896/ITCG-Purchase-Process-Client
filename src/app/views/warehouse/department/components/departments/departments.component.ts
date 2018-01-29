@@ -26,14 +26,15 @@ export class DepartmentsComponent implements OnInit {
     { value: "id", name: "ID" }, 
     { value: "name", name: "Nombre del departamento" },
     { value: "budget", name: "Presupuesto"},
-    { value: "subdirection", name: "Subdirección"}
+    { value: "subdirection", name: "Subdirección"},
+    { value: "boss_department", name: "Jefe de departamento"}
   ]
 
   // For debounce purpose
   private subject: BehaviorSubject<string>;
   public searchTextValue: string;
 
-  constructor( private departmentService: DepartmentService, private subdirectionService: SubdirectionService) { 
+  constructor( private departmentService: DepartmentService ) { 
     this.subject = new BehaviorSubject<string>(this.searchTextValue);
   }
 
@@ -45,7 +46,7 @@ export class DepartmentsComponent implements OnInit {
   }
 
   getDepartments(): void {
-    this.departmentService.getAll({ include: ['subdirection'] })
+    this.departmentService.getAll({ include: ['subdirection', 'boss_department'] })
       .subscribe( res => {
         this.temp = [...res];
         this.departments = res;
@@ -68,9 +69,10 @@ export class DepartmentsComponent implements OnInit {
         const val = searchTextValue.toLowerCase();
         
         // filter our data
-        const temp = ( this.selectedFilter !== "subdirection" ) ? 
-        this.temp.filter( element => element[this.selectedFilter].toString().toLowerCase().indexOf(val) !== -1 || !val ) :
-        this.temp.filter( element => element[this.selectedFilter].name.toString().toLowerCase().indexOf(val) !== -1 || !val )
+        
+        const temp = ( ( this.selectedFilter === 'subdirection' ) || ( this.selectedFilter === 'boss_department' ))  ? 
+        this.temp.filter( element => element[this.selectedFilter].name.toString().toLowerCase().indexOf(val) !== -1 || !val ) :
+        this.temp.filter( element => element[this.selectedFilter].toString().toLowerCase().indexOf(val) !== -1 || !val ) 
 
         // update the rows
         this.departments = temp;
