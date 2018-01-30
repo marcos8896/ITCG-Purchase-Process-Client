@@ -1,4 +1,4 @@
-import { RadioRoleInterface } from 'app/views/session/login/models/radio-role.interface';
+import { RadioRoleInterface } from './../../models/radio-role.interface';
 export const roles: RadioRoleInterface[] = [
     {
         id: 1,
