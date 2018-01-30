@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/services/authentication.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'app/services';
 import { ToastrService } from 'ngx-toastr';
 import { Validators } from '@angular/forms';
 import { ViewChild } from '@angular/core/';
@@ -23,7 +22,6 @@ export class LoginComponent {
   public loginForm: FormGroup
   constructor( 
       private formBuilder: FormBuilder,
-      private userService: UserService,
       private toastrService: ToastrService,
       private authenticationService: AuthenticationService,
       private router: Router
