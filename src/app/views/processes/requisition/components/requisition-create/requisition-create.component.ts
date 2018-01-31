@@ -38,6 +38,8 @@ export class RequisitionCreateComponent implements OnInit {
   public requisitionId: any = 0
   public cost: any = 0  
 
+  public dateRe = new Date()
+
   constructor( 
     private budgetKeyService: BudgetKeyService, 
     private conceptService: ConceptService,
@@ -45,10 +47,18 @@ export class RequisitionCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.dateRe);
     this.getBudgetKeys()
     this.getProviders()
     this.behaviorSubject = new BehaviorSubject<any[]>( this.products );
     this.products$ = this.behaviorSubject.map( data => data.map( a => a ))   
+  }
+
+  cleanProduct(){
+    this.quantity = 0
+    this.unit = ""
+    this.description = " "
+    this.cost = 0
   }
 
   getBudgetKeys(): void {
@@ -101,16 +111,18 @@ export class RequisitionCreateComponent implements OnInit {
     let product = {quantity: this.quantity, unit: this.unit, description: this.description, concept: this.conceptNumber,cost: this.cost, total }
     this.products.push( product )
     this.behaviorSubject.next( this.products )
+    this.cleanProduct()
   }
 
   onFormRequisition( value ) {
+    console.log('value: ', value);
     var products: any[] = [];
     this.products.forEach( product => {
       var concept = this.concepts.filter(concept => concept.concept_number == product.concept)
       let producto = {quantity: product.quantity, unit: product.unit, description: product.description,conceptId: concept[0].id}
       products.push(producto)
     })
-    var req = {action: this.action, providerId: value.provider_, budget_keyId: value.budgetKey_, status: "Esperando", Concept_Requisition: products}
+    var req = {date: value.date, action: this.action, providerId: value.provider_, budget_keyId: value.budgetKey_, status: "Esperando", Concept_Requisition: products}
     
     console.log('Objeto final', req);
   }

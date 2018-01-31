@@ -14,24 +14,24 @@
               <div class="card-body">
                       
                 <div class="row">
+                  
+                  <div class="col-sm-7 offset-md-5" *ngIf="dateRe">
+                    <label for="">Fecha</label>
+                    <input type="date" name="date" class="form-control" [ngModel]="dateRe | date:'yyyy-MM-dd'" required>
+                  </div>
 
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <label for="budget_key_id">Nombre del jefe del area solicitante</label>
+                      <label for="">Nombre del jefe del area solicitante</label>
                       <input type="text" readonly class="form-control read-only-normal-style" value="">
                     </div>
                   </div>
 
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <label for="budget_key_id">Área solicitante</label>
+                      <label for="">Área solicitante</label>
                       <input type="text" readonly class="form-control read-only-normal-style" value="">
                     </div>
-                  </div>
-
-                  <div class="col-sm-12">
-                    <label for="budget_key_id">Fecha</label>
-                    <input ngModel #date="ngModel" name="date_" (click)="onSelectDate(date)" class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
                   </div>
 
                   <div class="col-sm-12">
@@ -73,7 +73,9 @@
                   
                 <ngx-datatable-column [minWidth]="250" name="Acción" prop="description" width="250">
                   <ng-template let-value="value" ngx-datatable-cell-template>
-                    <strong> {{value}} </strong>
+                    <div class="break-word">
+                      <strong> {{value}} </strong>
+                    </div>                    
                   </ng-template>
                 </ngx-datatable-column>
                   
@@ -87,7 +89,7 @@
 
               </ngx-datatable>
 
-              <div class="col-md-10 offset-md-1">
+              <div class="col-md-11">
                 <div class="alert alert-success" role="alert" *ngIf="action" style="margin-top: 45px;">
                   <h5 class="alert-heading">Acción</h5>
                   <p>{{ action }}</p>
@@ -163,10 +165,9 @@
 
                   <div class="col-sm-12 col-md-12">
                     <label >Descripción:</label>
-                    <textarea [(ngModel)]="description" #descriptionModel="ngModel" name="description" class="form-control" rows="5" required minlength="2"></textarea>
+                    <textarea [(ngModel)]="description" #descriptionModel="ngModel" name="description" class="form-control" rows="5" required></textarea>
                     <ul *ngIf="descriptionModel.invalid && (descriptionModel.dirty || descriptionModel.touched)" class="alert alert-danger" style="margin-top: .5em">
                         <li *ngIf="descriptionModel.errors.required"> Debes ingresar una <strong>descripción.</strong> </li>  
-                        <li *ngIf="descriptionModel.errors.minlength"> Debes ingresar una descripción como mínimo de <strong> {{ descriptionModel.errors.minlength.requiredLength }} </strong> caracteres </li>
                       </ul>
                   </div>
                 </div>                
@@ -179,7 +180,9 @@
                
                 <ngx-datatable-column [minWidth]="250" name="Partidas" prop="description" width="250">
                   <ng-template let-value="value" ngx-datatable-cell-template>
-                    <strong> {{value}} </strong>
+                    <div class="break-word">
+                      <strong> {{value}} </strong>
+                    </div>                    
                   </ng-template>
                 </ngx-datatable-column>
                   
