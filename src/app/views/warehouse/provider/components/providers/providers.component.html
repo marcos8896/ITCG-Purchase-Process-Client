@@ -1,4 +1,4 @@
-<div class="container animated fadeIn">  
+<div class="animated fadeIn">  
   <div class="col-sm-12 col-md-12">
     <div class="card border-primary">
       <div class="card-header">
@@ -34,7 +34,7 @@
     </div>
   </div>
   
-  <div class="col-md-12">
+  <div class="col-sm-12 col-md-12">
     <ngx-datatable style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="60" [scrollbarV]="true" [rows]='providers'>
       <!-- Row Detail Template -->
       <ngx-datatable-row-detail [rowHeight]="200" #myDetailRow (toggle)="onDetailToggle($event)">
