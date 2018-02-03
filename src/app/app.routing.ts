@@ -59,7 +59,7 @@ export const routes: Routes = [
       },
       {
         data: {
-          guards: [ GUARDS.PLANNING_DEPARTMENT ]
+          guards: [ GUARDS.BOSS_DEPARTMENT ]
         },
         canActivate:  [ LoggedUserGuard ],
         path: 'processes',

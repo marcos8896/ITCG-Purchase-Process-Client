@@ -1,3 +1,4 @@
+import { BossDepartmentsService } from './services/boss-department';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -98,7 +99,8 @@ const SERVICES = [
   UserService,
   AuthenticationService,
   BudgetKeyService,
-  BudgetKeyDetailsService
+  BudgetKeyDetailsService,
+  BossDepartmentsService
 ]
 
 // Guards

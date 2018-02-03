@@ -1,3 +1,4 @@
+import { BossDepartmentsService } from './../../../../../services/boss-department';
 import { ProviderService } from './../../../../../services/provider.service';
 import { Provider } from './../../../../../models/provider';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -8,7 +9,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { SubdirectionService } from './../../../../../services/subdirection.service';
 import { BudgetKeyInterface } from './../../../../../models/budget-key';
-import { BudgetKeyService } from 'app/services';
+import { BudgetKeyService, UserService } from 'app/services';
 import { ConceptService } from 'app/services/concept.service';
 
 @Component({
@@ -43,7 +44,8 @@ export class RequisitionCreateComponent implements OnInit {
   constructor( 
     private budgetKeyService: BudgetKeyService, 
     private conceptService: ConceptService,
-    private providerService: ProviderService
+    private providerService: ProviderService,
+    private bossDepartmentsService: BossDepartmentsService
   ) { }
 
   ngOnInit() {
@@ -52,6 +54,8 @@ export class RequisitionCreateComponent implements OnInit {
     this.getProviders()
     this.behaviorSubject = new BehaviorSubject<any[]>( this.products );
     this.products$ = this.behaviorSubject.map( data => data.map( a => a ))   
+    
+    this.bossDepartmentsService.findById(JSON.parse(localStorage.getItem("ITCG_userId")), { include: ['department'] }).subscribe( res => console.log(res))
   }
 
   cleanProduct(){
