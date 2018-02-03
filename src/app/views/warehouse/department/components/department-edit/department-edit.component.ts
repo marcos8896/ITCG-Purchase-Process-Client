@@ -1,3 +1,4 @@
+import { BossDepartmentService } from 'app/services/boss-department.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -16,10 +17,13 @@ export class DepartmentEditComponent implements OnInit {
   public department: DepartmentInterface
   // Subdirections array
   public subdirections;
+  //Bosses array
+  public bosses;
 
   constructor(
     private departmentService: DepartmentService,
     private subdirectionService: SubdirectionService,
+    private bossDepartment: BossDepartmentService,
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService, 
     private router: Router
@@ -30,8 +34,12 @@ export class DepartmentEditComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.getBosses()
   }
-
+  getBosses(){
+    this.bossDepartment.getAll( )
+    .subscribe( bosses  => this.bosses = bosses )
+  }
   getUrlId() {
     this.activatedRoute.params.subscribe( params => {
       this.id = params['id']
@@ -50,7 +58,7 @@ export class DepartmentEditComponent implements OnInit {
         this.router.navigate(['/warehouse/department/all']);
       }
     },
-    data => this.showError(data.console.error.message),
+    data => this.showError(data.error.message),
     () => console.log('Completed'))
   }
   
