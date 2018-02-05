@@ -13,3 +13,4 @@ export * from './budget-key.service';
 export * from './budget-key-details.service';
 export * from './boss-department.service';
 export * from './vice-principal.service';
+export * from './planning.service';
