@@ -1,4 +1,7 @@
-import { BossDepartmentsService } from './services/boss-department';
+import { RequisitionService } from './services/requisition.service';
+
+import { ConceptRequisitionService } from 'app/services/concept-requisition.service';
+import { BossDepartmentsService } from 'app/services/boss-department';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -86,7 +89,6 @@ import {
   AuthenticationService,
   BudgetKeyService,
   BudgetKeyDetailsService,
-  BossDepartmentService,
   VicePrincipalService
 } from './services'
 
@@ -102,8 +104,10 @@ const SERVICES = [
   AuthenticationService,
   BudgetKeyService,
   BudgetKeyDetailsService,
-  BossDepartmentService,
-  VicePrincipalService
+  VicePrincipalService,
+  BossDepartmentsService,
+  RequisitionService,
+  ConceptRequisitionService
 ]
 
 // Guards

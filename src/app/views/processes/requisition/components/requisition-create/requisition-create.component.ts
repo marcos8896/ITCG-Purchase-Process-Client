@@ -1,3 +1,6 @@
+import { ToastrService } from 'ngx-toastr';
+import { ConceptRequisitionService } from './../../../../../services/concept-requisition.service';
+import { RequisitionService } from './../../../../../services/requisition.service';
 import { BossDepartmentsService } from './../../../../../services/boss-department';
 import { ProviderService } from './../../../../../services/provider.service';
 import { Provider } from './../../../../../models/provider';
@@ -38,6 +41,7 @@ export class RequisitionCreateComponent implements OnInit {
   public status: String = ""
   public requisitionId: any = 0
   public cost: any = 0  
+  public boss;
 
   public dateRe = new Date()
 
@@ -45,25 +49,28 @@ export class RequisitionCreateComponent implements OnInit {
     private budgetKeyService: BudgetKeyService, 
     private conceptService: ConceptService,
     private providerService: ProviderService,
-    private bossDepartmentsService: BossDepartmentsService
+    private bossDepartmentsService: BossDepartmentsService,
+    private requisitionService: RequisitionService,
+    private conceptRequisitionService: ConceptRequisitionService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     console.log(this.dateRe);
     this.getBudgetKeys()
     this.getProviders()
+    this.getBoss()
+    
     this.behaviorSubject = new BehaviorSubject<any[]>( this.products );
     this.products$ = this.behaviorSubject.map( data => data.map( a => a ))   
-    
-    this.bossDepartmentsService.findById(JSON.parse(localStorage.getItem("ITCG_userId")), { include: ['department'] }).subscribe( res => console.log(res))
   }
 
-  cleanProduct(){
-    this.quantity = 0
-    this.unit = ""
-    this.description = " "
-    this.cost = 0
-  }
+  getBoss(){
+    this.bossDepartmentsService.findById(
+      JSON.parse(localStorage.getItem("ITCG_userId")), { 
+      include: ['department'] 
+    }).subscribe( res => this.boss = res)
+  } 
 
   getBudgetKeys(): void {
     this.budgetKeyService.getAll()
@@ -119,15 +126,52 @@ export class RequisitionCreateComponent implements OnInit {
   }
 
   onFormRequisition( value ) {
-    console.log('value: ', value);
     var products: any[] = [];
     this.products.forEach( product => {
       var concept = this.concepts.filter(concept => concept.concept_number == product.concept)
       let producto = {quantity: product.quantity, unit: product.unit, description: product.description,conceptId: concept[0].id}
       products.push(producto)
+      
     })
-    var req = {date: value.date, action: this.action, providerId: value.provider_, budget_keyId: value.budgetKey_, status: "Esperando", Concept_Requisition: products}
+    var req = {folio: "18", date: value.date, action: this.action, check_boss: true, providerId: value.provider_, budget_keyId: value.budgetKeyId, status: "Esperando", boss_departmentId: this.boss.id}
     
     console.log('Objeto final', req);
+    console.log('products: ', products);
+
+    this.requisitionService.create(req)
+      .subscribe( res => {
+          products.forEach( producto => producto.requisitionId = res.id )
+          this.conceptRequisitionService.create( products )
+          .subscribe( re => {
+            this.cleanProductsTable();
+            this.showSuccess();
+          },
+          data => this.showError(data.error.message),
+          () => console.log('Completed')
+        )          
+      },
+      data => this.showError(data.error.message),
+      () => console.log('Completed')
+    )
+  }
+
+  cleanProduct(){
+    this.quantity = 0
+    this.unit = ""
+    this.description = " "
+    this.cost = 0
+  }
+
+  cleanProductsTable(){
+    this.products = []
+    this.behaviorSubject.next( this.products )
+  }
+
+  showSuccess() {
+    this.toastr.success('Registro agregado exitosamente', '¡Registro agregado!')
+  }
+
+  showError( error ) {
+    this.toastr.error(error, '¡Ha numa!')
   }
 }
