@@ -132,9 +132,14 @@ export const navigation = [
             name: 'Registrar',
             url: '/processes/requisition/create',
             icon: 'icon-note',
+          },
+          {
+            name: 'Consultar',
+            url: '/processes/requisition/all',
+            icon: 'icon-note',
           }
         ] 
-      }
+      },
     ]
     },
     { 

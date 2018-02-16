@@ -6,6 +6,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { RequisitionRoutingModule } from './requisition.routing';
 import { RequisitionCreateComponent } from './components/requisition-create/requisition-create.component';
+import { RequisitionsComponent } from 'app/views/processes/requisition/components/requisitions/requisitions.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { RequisitionCreateComponent } from './components/requisition-create/requ
     NgxDatatableModule
   ],
   declarations: [
-    RequisitionCreateComponent,  
+    RequisitionCreateComponent,
+    RequisitionsComponent  
   ]
 })
 export class RequisitionModule { }

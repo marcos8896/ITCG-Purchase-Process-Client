@@ -133,7 +133,7 @@ export class RequisitionCreateComponent implements OnInit {
       products.push(producto)
       
     })
-    var req = {folio: "18", date: value.date, action: this.action, check_boss: true, providerId: value.provider_, budget_keyId: value.budgetKeyId, status: "Esperando", boss_departmentId: this.boss.id}
+    var req = {folio: "8", date: value.date, action: this.action, check_boss: true, providerId: value.provider_, budget_keyId: value.budgetKeyId, status: "Esperando", boss_departmentId: this.boss.id}
     
     console.log('Objeto final', req);
     console.log('products: ', products);

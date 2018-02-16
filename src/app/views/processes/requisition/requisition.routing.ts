@@ -1,3 +1,4 @@
+import { RequisitionsComponent } from './../requisition/components/requisitions/requisitions.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -10,6 +11,13 @@ const routes: Routes = [
     component: RequisitionCreateComponent,
     data: {
       title: 'Registrar requisición'
+    }
+  },
+  {
+    path: 'all',
+    component: RequisitionsComponent,
+    data: {
+      title: 'Consulta General'
     }
   }
 ];

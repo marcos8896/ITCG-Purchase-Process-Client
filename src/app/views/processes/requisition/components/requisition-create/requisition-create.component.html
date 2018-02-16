@@ -17,7 +17,7 @@
                   
                   <div class="col-sm-7 offset-md-5" *ngIf="dateRe">
                     <label for="">Fecha</label>
-                    <input type="date" name="date" class="form-control" [ngModel]="dateRe | date:'yyyy-MM-dd'" required>
+                    <input type="date" name="date" #dateR class="form-control" [ngModel]="dateRe | date:'yyyy-MM-dd'" required>
                   </div>
 
                   <div class="col-sm-12">
@@ -270,7 +270,7 @@
 
           </div>
           <div class="card-footer text-right">
-            <button [disabled]="" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
+            <button [disabled]="(products.length < 1) || !action || !provider" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
           </div>
 
         </form>
