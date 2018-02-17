@@ -133,7 +133,13 @@ export class RequisitionCreateComponent implements OnInit {
       products.push(producto)
       
     })
-    var req = {folio: "8", date: value.date, action: this.action, check_boss: true, providerId: value.provider_, budget_keyId: value.budgetKeyId, status: "Esperando", boss_departmentId: this.boss.id}
+    var req = { 
+      date: value.date, 
+      action: this.action, 
+      providerId: value.provider_, 
+      budget_keyId: value.budgetKeyId, 
+      boss_departmentId: this.boss.id
+    }
     
     console.log('Objeto final', req);
     console.log('products: ', products);
@@ -153,6 +159,11 @@ export class RequisitionCreateComponent implements OnInit {
       data => this.showError(data.error.message),
       () => console.log('Completed')
     )
+  }
+
+  close( val ){
+    this.products = this.products.filter( product => product.description !== val )
+    this.behaviorSubject.next( this.products )
   }
 
   cleanProduct(){
