@@ -36,4 +36,12 @@ export class RolesComponent implements OnInit {
             .subscribe( data => this.vicePrincipals = data)
     }
 
+    handleBossUpdated( user ) {
+        this.getAllBosses()
+    }
+
+    handleSubUpdated( user ) {
+        this.getAllVicePrincipals()
+    }
+
 }
