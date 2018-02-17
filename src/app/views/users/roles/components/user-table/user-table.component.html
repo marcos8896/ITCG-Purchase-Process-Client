@@ -10,8 +10,8 @@
     [rows]='rows'>
     <!-- Column Templates -->
     <ngx-datatable-column [minWidth]="100" name="Permisos" prop="hasRole" width="50">
-        <ng-template let-value="value" ngx-datatable-cell-template>
-            <span [ngClass]="{'badge-warning': !value, 'badge-success': value}" class="badge">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <span (click)="setPermissions(value, row)" [ngClass]="{'badge-warning': !value, 'badge-success': value}" class="badge" style="cursor: pointer;">
                 {{ value ? 'CONCEDIDOS' : 'DENEGADOS' }}
             </span>
         </ng-template>
