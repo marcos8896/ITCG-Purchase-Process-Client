@@ -13,32 +13,29 @@ export class PlanningService {
 
     constructor( private http: Http ) {
         this.endPoint = `${ConfigUrlService.BASE_URL}/Plannings`
-        this.headers = new Headers({
-            'Content-Type': 'application/json',
-            'Authorization': JSON.parse(localStorage.getItem('ITCG_token'))
-        })
+        this.headers = new Headers({ 'Content-Type': 'application/json' })
     }
 
     addBoss( id: string ): Observable<any> {
-        return this.http.post(`${this.endPoint}/addBoss/${id}`, { headers: this.headers })
+        return this.http.post(`${this.endPoint}/addBoss/${id}`, { }, { headers: this.generateHeaderObject() })
             .map( res => res.json() || {} )
             .catch( this.handleError );
     }
 
     addVicePrincipal( id: string ): Observable<any> {
-        return this.http.post(`${this.endPoint}/addVicePrincipal/${id}`, { headers: this.headers })
+        return this.http.post(`${this.endPoint}/addVicePrincipal/${id}`, { }, { headers: this.generateHeaderObject() })
             .map( res => res.json() || {} )
             .catch( this.handleError );
     }
 
     removeBoss( id: string ): Observable<any> {
-        return this.http.delete(`${this.endPoint}/removeBoss/${id}`, { headers: this.headers })
+        return this.http.delete(`${this.endPoint}/removeBoss/${id}`, { headers: this.generateHeaderObject() })
             .map( res => res.json() || {} )
             .catch( this.handleError );
     }
 
     removeVicePrincipal( id: string ): Observable<any> {
-        return this.http.delete(`${this.endPoint}/removeVicePrincipal/${id}`, { headers: this.headers })
+        return this.http.delete(`${this.endPoint}/removeVicePrincipal/${id}`, { headers: this.generateHeaderObject() })
             .map( res => res.json() || {} )
             .catch( this.handleError );
     }
@@ -46,4 +43,10 @@ export class PlanningService {
     private handleError(error: Response) {
         return Observable.throw(error.json() || 'Server error')
     }
+    
+    private generateHeaderObject(): Headers {
+        const headers = Object.create(this.headers);
+        headers.set('Authorization', JSON.parse(localStorage.getItem('ITCG_token')));
+        return headers;
+      }
 }
