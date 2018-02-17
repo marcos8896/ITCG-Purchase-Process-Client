@@ -89,7 +89,9 @@ import {
   AuthenticationService,
   BudgetKeyService,
   BudgetKeyDetailsService,
-  VicePrincipalService
+  BossDepartmentService,
+  VicePrincipalService,
+  PlanningService
 } from './services'
 
 const SERVICES = [
@@ -107,7 +109,8 @@ const SERVICES = [
   VicePrincipalService,
   BossDepartmentsService,
   RequisitionService,
-  ConceptRequisitionService
+  ConceptRequisitionService,
+  PlanningService
 ]
 
 // Guards
@@ -141,7 +144,7 @@ const GUARDS = [
       useClass: HashLocationStrategy
     },
     ...SERVICES,
-    ...GUARDS
+    ...GUARDS,
   ],
   bootstrap: [ AppComponent ]
 })

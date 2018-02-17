@@ -11,6 +11,19 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
+                    <label for="">Nombre</label>
+                    <input formControlName="name" name="name" type="text" class="form-control" placeholder="Nombre completo...">
+                    <ul *ngIf="signinForm.controls.name.invalid && (signinForm.controls.name.dirty || signinForm.controls.name.touched)" class="alert alert-danger" style="margin-top: .5em">
+                        <li *ngIf="signinForm.controls.name.errors.required"> 
+                          Debes ingresar un <strong>nombre</strong>
+                        </li>
+                    </ul>
+                  </div>
+                </div>
+              </div><!--/.row-->
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
                     <label for="">Nombre de usuario</label>
                     <input formControlName="username" name="username" type="text" class="form-control" placeholder="Nombre de usuario...">
                     <ul *ngIf="signinForm.controls.username.invalid && (signinForm.controls.username.dirty || signinForm.controls.username.touched)" class="alert alert-danger" style="margin-top: .5em">
@@ -68,6 +81,15 @@
                     </ul>
                   </div>
                 </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <div class="pull-right">
+                        <app-role-radio></app-role-radio>
+                      </div>
+                    </div>
+                  </div>
               </div>
             </div>
             <div class="card-footer text-right">

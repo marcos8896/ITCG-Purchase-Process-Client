@@ -13,12 +13,12 @@ export class UserService {
     private endPoint: string
 
     constructor( private http: Http ) {
-        this.endPoint = `${ConfigUrlService.BASE_URL}/Users`
+        this.endPoint = `${ConfigUrlService.BASE_URL}/`
         this.headers = new Headers({ 'Content-Type': 'application/json' })
     }
     
-    public create( obj ): Observable<any> {
-        return this.http.post(`${this.endPoint}`, obj, { headers: this.headers })
+    public create( lastEntry: string, obj ): Observable<any> {
+        return this.http.post(`${this.endPoint}/${lastEntry}`, obj, { headers: this.headers })
             .map( res => res.json() || { } )
             .catch( this.handleError )
     }
