@@ -20,6 +20,20 @@
             </div>
           </div>
           </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="nameB">Jefe de departamento</label>
+                <select required [(ngModel)]="department.boss_departmentId" name="boss_departmentId" #selectBoss #selectBoss="ngModel" class="form-control">
+                  <option value="">Seleccione jefe de departamento </option>
+                  <option *ngFor= 'let boss of bosses' [value]="boss.id" > {{boss.name}}</option>
+                  <ul *ngIf="selectBoss.invalid" class="alert alert-danger" style="margin-top: .5em">
+                    <li *ngIf="selectBoss.errors.required"> Debes seleccionar <strong>un jefe de departamento</strong> </li>
+                  </ul>
+                </select>
+              </div>
+            </div>
+          </div><!--/.row-->
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group">

@@ -23,6 +23,20 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group">
+                  <label for="name">Jefe de departamento</label>
+                  <select required ngModel name="boss_departmentId" #selectBoss #selectBoss="ngModel" class="form-control">
+                    <option value="">Seleccione jefe de departamento </option>
+                    <option *ngFor= 'let boss of bosses' [value]="boss.id" > {{boss.name}}</option>
+                    <ul *ngIf="selectBoss.invalid" class="alert alert-danger" style="margin-top: .5em">
+                      <li *ngIf="selectBoss.errors.required"> Debes seleccionar <strong>un jefe de departamento</strong> </li>
+                    </ul>
+                  </select>
+                </div>
+              </div>
+            </div><!--/.row-->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
                   <label for="name">Presupuesto</label>
                     <input ngModel name="budget" #moneyInput #money="ngModel" type="number"  min=0 class="form-control" placeholder=".." required>
                     <ul *ngIf="money.invalid && (money.dirty || money.touched)" class="alert alert-danger" style="margin-top: .5em">

@@ -121,7 +121,7 @@ export class AppSidebarNavLinkComponent {
 @Component({
   selector: 'app-sidebar-nav-dropdown',
   template: `
-    <a class="nav-link nav-dropdown-toggle" appNavDropdownToggle>
+    <a class="nav-link nav-dropdown-toggle pointer" appNavDropdownToggle>
       <i *ngIf="isIcon()" class="{{ link.icon }}"></i>
       {{ link.name }}
       <span *ngIf="isBadge()" [ngClass]="'badge badge-' + link.badge.variant">{{ link.badge.text }}</span>

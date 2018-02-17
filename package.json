@@ -8,17 +8,22 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "config": "node ./config.js",
+    "start": "node server.js",
+    "build": "npm run config -- --environment=prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "npm run build prod && npm --production=false install && ng build --env=prod"
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/core": "0.0.28",
     "@angular/animations": "*",
+    "@angular/cli": "1.5.0",
     "@angular/common": "5.0.1",
     "@angular/compiler": "5.0.1",
+    "@angular/compiler-cli": "5.0.1",
     "@angular/core": "5.0.1",
     "@angular/forms": "5.0.1",
     "@angular/http": "5.0.1",
@@ -30,6 +35,8 @@
     "bootstrap": "4.0.0-beta.2",
     "chart.js": "2.7.1",
     "core-js": "2.5.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
     "font-awesome": "^4.7.0",
     "moment": "2.19.1",
     "ng2-charts": "1.6.0",
@@ -41,8 +48,6 @@
     "zone.js": "0.8.18"
   },
   "devDependencies": {
-    "@angular/cli": "1.5.0",
-    "@angular/compiler-cli": "5.0.1",
     "@types/jasmine": "2.6.3",
     "@types/node": "8.0.50",
     "codelyzer": "4.0.1",
@@ -60,7 +65,7 @@
     "typescript": "^2.4.2"
   },
   "engines": {
-    "node": ">= 6.9.0",
-    "npm": ">= 3.0.0"
+    "node": "~8.9.1",
+    "npm": "~5.5.1"
   }
 }

@@ -1,0 +1,37 @@
+<ngx-datatable
+    style="height: 330px" 
+    #userTable 
+    class='material expandable'
+    [columnMode]="'force'"
+    [headerHeight]="40"
+    [footerHeight]="40"
+    [rowHeight]="60"
+    [scrollbarV]="true"
+    [rows]='rows'>
+    <!-- Column Templates -->
+    <ngx-datatable-column [minWidth]="100" name="Permisos" prop="hasRole" width="50">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <span (click)="setPermissions(value, row)" [ngClass]="{'badge-warning': !value, 'badge-success': value}" class="badge" style="cursor: pointer;">
+                {{ value ? 'CONCEDIDOS' : 'DENEGADOS' }}
+            </span>
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [minWidth]="150" name="Nombre" prop="name" width="200">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+        <strong>{{ value }}</strong>
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [minWidth]="150" name="Usuario" prop="username" width="200">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+        <strong>{{ value }}</strong>
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [minWidth]="150" name="Email" prop="email" width="200">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+        <strong>{{ value }}</strong>
+        </ng-template>
+    </ngx-datatable-column>
+</ngx-datatable>

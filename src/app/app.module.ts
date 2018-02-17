@@ -1,3 +1,7 @@
+import { RequisitionService } from './services/requisition.service';
+
+import { ConceptRequisitionService } from 'app/services/concept-requisition.service';
+import { BossDepartmentsService } from 'app/services/boss-department';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -84,7 +88,10 @@ import {
   UserService,
   AuthenticationService,
   BudgetKeyService,
-  BudgetKeyDetailsService
+  BudgetKeyDetailsService,
+  BossDepartmentService,
+  VicePrincipalService,
+  PlanningService
 } from './services'
 
 const SERVICES = [
@@ -98,7 +105,12 @@ const SERVICES = [
   UserService,
   AuthenticationService,
   BudgetKeyService,
-  BudgetKeyDetailsService
+  BudgetKeyDetailsService,
+  VicePrincipalService,
+  BossDepartmentsService,
+  RequisitionService,
+  ConceptRequisitionService,
+  PlanningService
 ]
 
 // Guards
@@ -132,7 +144,7 @@ const GUARDS = [
       useClass: HashLocationStrategy
     },
     ...SERVICES,
-    ...GUARDS
+    ...GUARDS,
   ],
   bootstrap: [ AppComponent ]
 })

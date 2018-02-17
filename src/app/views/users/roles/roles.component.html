@@ -1,0 +1,16 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <h2> Usuarios </h2>
+            <h5>Jefes de Departamento</h5>
+            <app-user-table (userUpdate)="handleBossUpdated($event)" [rows]="bossDepartments"></app-user-table>
+            <hr>
+
+            <h5>Subdirectores</h5>
+            <app-user-table (userUpdate)="handleSubUpdated($event)" [rows]="vicePrincipals"></app-user-table>
+        </div>
+        <div class="col-md-12">
+            <h2>Formulario</h2>
+        </div>
+    </div>
+</div>
