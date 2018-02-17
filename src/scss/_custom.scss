@@ -42,6 +42,10 @@
   width: 3px;
 }
 
+.pointer {
+  cursor: pointer !important;
+}
+
 /* ngx-datatable END----- */
 
 @import '~@swimlane/ngx-datatable/release/index.css';

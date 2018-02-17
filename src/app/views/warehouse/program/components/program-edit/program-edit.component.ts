@@ -43,7 +43,7 @@ export class ProgramEditComponent implements OnInit {
         this.router.navigate(['/warehouse/program/all']);
       }
     },
-    data => this.showError(data.console.error.message),
+    data => this.showError(data.error.message),
     () => console.log('Completed'))
   }
 
