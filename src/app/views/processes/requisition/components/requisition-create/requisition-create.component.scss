@@ -17,3 +17,11 @@
   border-radius: 0;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
+
+.fa-close {
+  color: red;
+  &:hover {
+    color: rgb(252, 89, 89);
+    cursor: pointer;
+  }
+}

@@ -58,7 +58,7 @@
                   <div class="col-sm-12">
                     <div class="form-group">
                       <label>Proveedor</label>
-                      <select ngModel #provider="ngModel" name="provider_" class="form-control" (change)="onSelectBudget(provider.value)" required>
+                      <select ngModel #provider="ngModel" name="provider_" class="form-control" required>
                         <option value="" selected>Seleccionar un proveedor</option>
                         <option *ngFor="let provider of providers" [value]="provider.id"> 
                           {{ provider.name }}
@@ -77,7 +77,7 @@
             <div class="col-sm-12 col-md-7">
               <ngx-datatable #table #myTable class='material table expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [rows]='actions.budget_key_details'>
                   
-                <ngx-datatable-column [minWidth]="250" name="Acción" prop="description" width="250">
+                <ngx-datatable-column [minWidth]="300" name="Acción" prop="description" width="300">
                   <ng-template let-value="value" ngx-datatable-cell-template>
                     <div class="break-word">
                       <strong> {{value}} </strong>
@@ -184,7 +184,7 @@
               <br>
               <ngx-datatable #table style="height: 320px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [rows]='concepts'>
                
-                <ngx-datatable-column [minWidth]="250" name="Partidas" prop="description" width="250">
+                <ngx-datatable-column [minWidth]="300" name="Partidas" prop="description" width="300">
                   <ng-template let-value="value" ngx-datatable-cell-template>
                     <div class="break-word">
                       <strong> {{value}} </strong>
@@ -276,7 +276,7 @@
 
           </div>
           <div class="card-footer text-right">
-            <button [disabled]="(products.length < 1) || !action || !provider" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
+            <button [disabled]="(products.length < 1) || !action || !provider" type="submit" class="btn btn-outline-primary btn-lg"><i class="fa fa-check"></i> Registrar</button>
           </div>
 
         </form>

@@ -1,4 +1,4 @@
-<div class="animated fadeIn" *ngIf="requisitions.length">
+<div class="animated fadeIn">
 
   <div class="col-sm-12 col-md-12">
     <div class="card border-primary">
@@ -127,7 +127,7 @@
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
           <ng-container *ngIf="!row.folio && (row.status == 'Esperando')">
             <a href="javascript:void(0)"  title="Expand/Collapse Row" class="btn btn-outline-danger" (click)="onCancel( row.id )">
-              <i class="fa fa-check"></i>Cancelar
+              <i class="fa fa-close"></i>Cancelar
             </a>
           </ng-container>          
         </ng-template>
