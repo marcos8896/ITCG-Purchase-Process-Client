@@ -123,6 +123,7 @@ export const navigation = [
           }
         ]
       }
+      
     ],
     
   },
@@ -147,7 +148,24 @@ export const navigation = [
             icon: 'icon-note',
           }
         ] 
-      }
+      },
+      {
+        name: 'Aceptar requis',
+        url: '',
+        icon: 'icon-user-follow',
+        children: [
+          {
+            name: 'Subdirector',
+            url: '/acceptances/vice/all',
+            icon: 'icon-note',
+          },
+          {
+            name: 'Planeación',
+            url: '/acceptance/planning',
+            icon: 'icon-note',
+          }
+        ] 
+      }    
       
     ]
   },
@@ -162,24 +180,7 @@ export const navigation = [
         icon: 'icon-user-follow',
       }
     ]
-  },
-  {
-    name: 'Aceptar requis',
-    url: '',
-    icon: 'icon-user-follow',
-    children: [
-      {
-        name: 'Subdirector',
-        url: '/acceptances/vice/all',
-        icon: 'icon-note',
-      },
-      {
-        name: 'Planeación',
-        url: '/acceptance/planning',
-        icon: 'icon-note',
-      }
-    ] 
-  }       
+  }   
 ];
 
 
