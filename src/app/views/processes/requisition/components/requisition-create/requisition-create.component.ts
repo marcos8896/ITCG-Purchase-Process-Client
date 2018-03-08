@@ -1,7 +1,7 @@
 import { ToastrService } from 'ngx-toastr';
 import { ConceptRequisitionService } from './../../../../../services/concept-requisition.service';
 import { RequisitionService } from './../../../../../services/requisition.service';
-import { BossDepartmentsService } from './../../../../../services/boss-department';
+import { BossDepartmentService } from './../../../../../services/boss-department.service';
 import { ProviderService } from './../../../../../services/provider.service';
 import { Provider } from './../../../../../models/provider';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -49,7 +49,7 @@ export class RequisitionCreateComponent implements OnInit {
     private budgetKeyService: BudgetKeyService, 
     private conceptService: ConceptService,
     private providerService: ProviderService,
-    private bossDepartmentsService: BossDepartmentsService,
+    private bossDepartmentsService: BossDepartmentService,
     private requisitionService: RequisitionService,
     private conceptRequisitionService: ConceptRequisitionService,
     private toastr: ToastrService
