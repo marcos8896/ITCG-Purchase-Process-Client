@@ -59,6 +59,14 @@ export const routes: Routes = [
       },
       {
         data: {
+          guards: [ GUARDS.PLANNING_DEPARTMENT ]
+        },
+        canActivate:  [ LoggedUserGuard ],
+        path: 'roles',
+        loadChildren: './views/users/roles/roles.module#RolesModule'
+      },
+      {
+        data: {
           guards: [ GUARDS.BOSS_DEPARTMENT ]
         },
         canActivate:  [ LoggedUserGuard ],

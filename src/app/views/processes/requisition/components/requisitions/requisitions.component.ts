@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { RequisitionService } from './../../../../../services/requisition.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BossDepartmentsService } from 'app/services/boss-department';
+import { BossDepartmentService } from 'app/services/boss-department.service';
 import 'rxjs/add/operator/debounceTime';
 
 @Component({
@@ -14,7 +14,7 @@ export class RequisitionsComponent implements OnInit {
   public requisitions: any[] = [];
   public allRequisitions: any[] = [];
 
-  public selectedFilter = "status";
+  public selectedFilter = 'status';
   public filterBy = [
     { value: 'status', name: 'Estado de requisición' },
     { value: 'provider', name: 'Proveedor' }
@@ -27,7 +27,7 @@ export class RequisitionsComponent implements OnInit {
 
   constructor( 
     private requisitionService: RequisitionService,
-    private bossDepartmentService: BossDepartmentsService
+    private bossDepartmentService: BossDepartmentService
    ) { 
     this.subject  = new BehaviorSubject<string>(this.searchTextValue);
    }
@@ -50,7 +50,7 @@ export class RequisitionsComponent implements OnInit {
 
   getRequisitions(){
     this.bossDepartmentService.findById(
-      JSON.parse(localStorage.getItem("ITCG_userId")), { 
+      JSON.parse(localStorage.getItem('ITCG_userId')), { 
       include: ['requisition'] 
     }).subscribe( res => { 
       this.allRequisitions = [...res.requisition];
