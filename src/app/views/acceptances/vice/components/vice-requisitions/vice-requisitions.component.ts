@@ -28,12 +28,6 @@ export class ViceRequisitionsComponent implements OnInit {
         include: ['subdirection'] 
       }).subscribe( res => {
         console.log("res:     ", res) 
-        this.subdirectionsService.findById(res.subdirection.id, {
-          include: ['department']
-        }).subscribe( res2 =>{
-          console.log('res2: ', res2);
-          
-        })
       })
   }
 

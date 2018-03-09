@@ -26,14 +26,18 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group">
-                  <label for="boss_ame">Nombre del jefe</label>
-                  <input ngModel name="boss_name" #boss_nameInput #boss_name="ngModel" type="text" class="form-control" placeholder="Ingrese el nombre del jefe de la subdirección..." required>
-                  <ul *ngIf="boss_name.invalid && (boss_name.dirty || boss_name.touched)" class="alert alert-danger" style="margin-top: .5em">
-                      <li *ngIf="boss_name.errors.required"> Debes ingresar nombre de <strong>jefe</strong> </li>
+                  <label for="viceprincipal">Subdirectores</label>
+                  <select ngModel #viceprincipal="ngModel" #viceprincipalInput name="viceprincipalId" id="viceprincipal" type="text" class="form-control" required>
+                    <option *ngFor="let viceprincipal of vicePrincipals" [value]="viceprincipal.id">
+                      {{ viceprincipal.name }}
+                    </option>
+                  </select>                  
+                  <ul *ngIf="viceprincipal.invalid && (viceprincipal.dirty || viceprincipal.touched)" class="alert alert-danger" style="margin-top: .5em">
+                    <li *ngIf="viceprincipal.errors.required"> Debes ingresar un <strong>subdirector</strong> </li>
                   </ul>
                 </div>
               </div>
-            </div>
+            </div><!--/.row-->
 
           </div>
           <div class="card-footer text-right">
