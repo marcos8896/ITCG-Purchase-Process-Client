@@ -27,7 +27,7 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <label for="viceprincipal">Subdirectores</label>
-                  <select ngModel #viceprincipal="ngModel" #viceprincipalInput name="viceprincipalId" id="viceprincipal" type="text" class="form-control" required>
+                  <select ngModel #viceprincipal="ngModel" #viceprincipalInput name="vice_principalId" id="viceprincipal" type="text" class="form-control" required>
                     <option *ngFor="let viceprincipal of vicePrincipals" [value]="viceprincipal.id">
                       {{ viceprincipal.name }}
                     </option>
