@@ -23,7 +23,7 @@
                   <div class="col-sm-12">
                     <div class="form-group">
                       <label for="">Nombre del jefe del area solicitante</label>
-                      <input *ngIf="!boss" type="text" readonly class="form-control read-only-normal-style" value="">
+                      <!-- <input *ngIf="!boss" type="text" readonly class="form-control read-only-normal-style" value=""> -->
                       <div *ngIf="boss" class="fakeInput">
                         {{ boss.name }}
                       </div>  
@@ -33,7 +33,7 @@
                   <div class="col-sm-12">
                     <div class="form-group">
                       <label for="">Área solicitante</label>
-                      <input *ngIf="!boss" type="text" readonly class="form-control read-only-normal-style" value="">
+                      <!-- <input *ngIf="!boss" type="text" readonly class="form-control read-only-normal-style" value=""> -->
                       <div *ngIf="boss" class="fakeInput">
                         {{ boss.department.name }}
                       </div>  
