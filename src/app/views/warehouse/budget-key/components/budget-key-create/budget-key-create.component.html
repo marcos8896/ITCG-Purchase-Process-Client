@@ -28,7 +28,6 @@
                           <label for="piid_ojectives">Objetivos PIID</label>
                           <input ngModel name="piid_ojectives" #piidInput #piid="ngModel" type="number" class="form-control" placeholder="Ingrese el objetivo PIID..." required min="00">
                           <ul *ngIf="piid.invalid && (piid.dirty || piid.touched)" class="alert alert-danger" style="margin-top: .5em">
-                              <li *ngIf="piid.errors.minlength"> Debes ingresar un teléfono como mínimo de <strong> {{ phone.errors.minlength.requiredLength }} </strong> caracteres </li>
                               <li *ngIf="piid.errors.required"> Debes ingresar un <strong>objetivo PIID.</strong> </li> 
                           </ul>
                         </div>
