@@ -4,14 +4,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SigninComponent } from './signin.component';
 import { SigninRoutingModule } from './signin.routing';
+import { SessionSharedModule } from 'app/views/session/shared/session-shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SigninRoutingModule
+    SigninRoutingModule,
+    SessionSharedModule
   ],
-  declarations: [ SigninComponent ]
+  declarations: [
+    SigninComponent,
+    
+  ]
 })
 export class SigninModule { }

@@ -45,7 +45,7 @@ import { Router } from '@angular/router';
     </li>
     <ng-template #dropdown>
       <li [ngClass]="hasClass() ? 'nav-item nav-dropdown ' + item.class : 'nav-item nav-dropdown'"
-          [class.open]="isActive()"
+          [class.open]="!isActive()"
           routerLinkActive="open"
           appNavDropdown>
         <app-sidebar-nav-dropdown [link]='item'></app-sidebar-nav-dropdown>
@@ -69,7 +69,7 @@ export class AppSidebarNavItemComponent {
   }
 
   public isActive() {
-    return this.router.isActive(this.thisUrl(), true)
+    return this.router.isActive(this.thisUrl(), false)
   }
 
   constructor( private router: Router )  { }
@@ -121,7 +121,7 @@ export class AppSidebarNavLinkComponent {
 @Component({
   selector: 'app-sidebar-nav-dropdown',
   template: `
-    <a class="nav-link nav-dropdown-toggle" appNavDropdownToggle>
+    <a class="nav-link nav-dropdown-toggle pointer" appNavDropdownToggle>
       <i *ngIf="isIcon()" class="{{ link.icon }}"></i>
       {{ link.name }}
       <span *ngIf="isBadge()" [ngClass]="'badge badge-' + link.badge.variant">{{ link.badge.text }}</span>

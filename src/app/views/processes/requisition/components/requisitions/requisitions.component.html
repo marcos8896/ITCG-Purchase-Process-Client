@@ -1,0 +1,139 @@
+<div class="animated fadeIn">
+
+  <div class="col-sm-12 col-md-12">
+    <div class="card border-primary">
+      <div class="card-header">
+        Opciones
+      </div>
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-md-6 form-group">
+            <label>Filtrar por:</label>
+            <select name="" id="" class="form-control" [(ngModel)]="selectedFilter">
+              <ng-container *ngFor="let filter of filterBy">
+                <option value="{{ filter.value }}"> {{ filter.name }} </option>
+              </ng-container>
+            </select>
+          </div>
+
+          <div class="col-md-6 form-group">
+            <label>Ingrese el texto a filtrar</label>
+            <input [(ngModel)]="searchTextValue" type='text' class="form-control" placeholder='Filtrar por columna...' (keyup)='updateFilter()'/>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-footer">
+        <h5>
+          <small>
+            <a href="javascript:void(0)" (click)="table.rowDetail.expandAllRows()">Expandir todas las filas</a> |
+            <a href="javascript:void(0)" (click)="table.rowDetail.collapseAllRows()">Colapsar todas las filas</a>
+          </small>
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-md-12">
+    <ngx-datatable style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+      [rowHeight]="60" [scrollbarV]="true" [scrollbarH]="true" [rows]='requisitions'>
+      <!-- Row Detail Template -->
+      <ngx-datatable-row-detail [rowHeight]="300" #myDetailRow (toggle)="onDetailToggle($event)">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+
+          <div class="container scrollable-div">
+
+            <ng-container *ngFor="let producto of row.concept_requisition">
+              <div class="row">
+                    
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="concept_number" class="col-md-2 col-form-label">Cantidad:</label>
+                    <input type='text' readonly class="form-control read-only-normal-style" value="{{ producto.quantity }}"/>
+                  </div>
+                </div>          
+                
+                <div class="col-md-7">
+                  <label for="nombre" class="col-md-2 col-form-label">Descripción:</label>
+                  <input type='text' readonly class="form-control read-only-normal-style" value="{{ producto.description }}"/>
+                </div>
+      
+                <div class="col-md-3">
+                  <label for="nombre" class="col-md-2 col-form-label">Unidad:</label>
+                  <input type='text' readonly class="form-control read-only-normal-style" value="{{ producto.unit }}"/>
+                </div>
+      
+              </div>
+            </ng-container>
+
+            
+          </div>
+
+        </ng-template>
+      </ngx-datatable-row-detail>
+      <!-- Column Templates -->
+      <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="Expand/Collapse Row"
+            (click)="toggleExpandRow(row)">
+          </a>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [minWidth]="70" [maxWidth]="100" name="Folio" prop="folio" width="70">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <div class="break-word"> <strong>{{ value }}</strong> </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [minWidth]="150" [maxWidth]="150" name="Fecha" prop="date" width="150">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+              <div class="break-word"> <strong>{{ value | date }}</strong> </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+      <ngx-datatable-column [minWidth]="200" [maxWidth]="300" name="Acción" prop="action" width="200">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+              <div class="break-word"> <strong>{{ value }}</strong> </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+      <ngx-datatable-column [minWidth]="150" name="Proveedor" prop="provider" width="200">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <div class="break-word"> <strong>{{ value.name }}</strong> </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [minWidth]="100" name="Estado" prop="status" width="100">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <div class="break-word"> <strong>{{ value }}</strong> </div>
+        </ng-template>
+      </ngx-datatable-column>      
+
+      <ngx-datatable-column [minWidth]="90" name="Subdirección" prop="check_subdirection" width="90">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <div class="break-word"> <strong>{{ value }}</strong> </div>
+        </ng-template>
+      </ngx-datatable-column> 
+
+      <ngx-datatable-column [minWidth]="90" name="Planeación" prop="check_planning" width="90">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <div class="break-word"> <strong>{{ value }}</strong> </div>
+        </ng-template>
+      </ngx-datatable-column>  
+
+      <ngx-datatable-column [width]="150" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <ng-container *ngIf="!row.folio && (row.status == 'Esperando')">
+            <a href="javascript:void(0)"  title="Expand/Collapse Row" class="btn btn-outline-danger" (click)="onCancel( row.id )">
+              <i class="fa fa-close"></i>Cancelar
+            </a>
+          </ng-container>          
+        </ng-template>
+      </ngx-datatable-column>
+      
+
+    </ngx-datatable>
+  </div>
+</div>
