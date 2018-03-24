@@ -1,0 +1,4 @@
+@import "../../../../../../scss/_bootstrap-variables";
+:host /deep/ .datatable-body-row.active .datatable-row-group {
+  background-color: $cyan !important;
+}
