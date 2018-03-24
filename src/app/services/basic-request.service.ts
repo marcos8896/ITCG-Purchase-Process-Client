@@ -61,16 +61,18 @@ export class BasicRequestService {
   }
 
   public update( obj ): Observable<any> {
+    console.log("dadas",obj)
     return this.http.put(`${this.endPoint}/${obj.id}`, obj, { headers: this.generateHeaderObject() })
       .map( res => res.json() || {} )
       .catch( this.handleError );
   }
 
-  private handleError(error: Response) {
+
+  public handleError(error: Response) {
     return Observable.throw(error.json()|| 'Server error')
   }
 
-  private generateHeaderObject(): Headers {
+  public generateHeaderObject(): Headers {
     let headers = Object.create(this.headers);
     headers.set('Authorization', JSON.parse(localStorage.getItem("ITCG_token")));
     return headers;
