@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: 'requisition',
     loadChildren: './requisition/requisition.module#RequisitionModule'
+  },
+  {
+    path: 'purchase-order',
+    loadChildren: './purchase-order/purchase-order.module#PurchaseOrderModule'
   }
   
 ];

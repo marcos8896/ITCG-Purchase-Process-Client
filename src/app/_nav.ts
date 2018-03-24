@@ -165,7 +165,24 @@ export const navigation = [
             icon: 'icon-note',
           }
         ] 
-      }    
+      },
+      {
+        name: 'Órdenes de compra',
+        icon: 'icon-map',
+        url: '',
+        children: [
+          {
+            name: 'Registrar',
+            url: '/processes/purchase-order/create',
+            icon: 'icon-note',
+          },
+          // {
+          //   name: 'Consultar',
+          //   url: '/processes/requisition/all',
+          //   icon: 'icon-note',
+          // }
+        ] 
+      },    
       
     ]
   },
