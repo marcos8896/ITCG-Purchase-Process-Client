@@ -61,7 +61,6 @@ export class BasicRequestService {
   }
 
   public update( obj ): Observable<any> {
-    console.log("dadas",obj)
     return this.http.put(`${this.endPoint}/${obj.id}`, obj, { headers: this.generateHeaderObject() })
       .map( res => res.json() || {} )
       .catch( this.handleError );
