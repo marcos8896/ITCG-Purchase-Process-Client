@@ -1,3 +1,9 @@
+import { Provider } from './../../../../../models/provider';
+import { Requisition } from './../../../../../models/requisition';
+import { RequisitionService } from './../../../../../services/requisition.service';
+import { REQUISITION_STATES } from './../../../../../shared/_requisition_states';
+import { ViewChild } from '@angular/core/';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,48 +13,62 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PurchaseOrderCreateComponent implements OnInit {
 
-  constructor() { }
+  public requisitions: Requisition[] = [];
+  public providers: Provider[] = [];
+  public selectedProvider: Provider [] = [];
+  // public allRequisitions: any[] = [];
 
-  ngOnInit() {
+  // public selectedFilter = 'status';
+  // public filterBy = [
+  //   { value: 'status', name: 'Estado de requisición' },
+  //   { value: 'provider', name: 'Proveedor' }
+  // ]
+  
+  private subject: BehaviorSubject<string>;
+  // public searchTextValue: string;
+
+  // @ViewChild('myTable') table: any;
+
+  constructor(
+    private requisitionService: RequisitionService,
+  ) {
+    // this.subject  = new BehaviorSubject<string>(this.searchTextValue);
   }
 
-  selected = [];
+  ngOnInit() {
+    this.getRequisitionsWithProvider();
+    // this.debounce();
+  }
+
+  getRequisitionsWithProvider(){
+    console.log("Before")
+    this.requisitionService.getAll({
+      where: { 
+        check_boss: REQUISITION_STATES.ACEPTADA,
+        check_planning: REQUISITION_STATES.ACEPTADA,
+        //Not equals to null
+        folio: { "neq":  null }
+       },
+      include: ['provider']
+    }).subscribe( requistions => { 
+      this.requisitions = requistions;
+      this.providers = this.requisitions.map( requisition => requisition.provider );
+      console.log('this.providers: ', this.providers);
+      console.log('this.requisitions: ', this.requisitions);
+      
+    })
+  }
+
+  // selected = [];
 
   columns: any[] = [
-    { prop: 'name'} , 
-    { name: 'Company' }, 
-    { name: 'Gender' }
+    { name: 'ID', prop: 'id'} , 
+    { name: 'Nombre', prop: 'name'}
   ];
 
-  data = [
-      {
-      "name": "Ethel Price",
-      "gender": "female",
-      "company": "Johnson, Johnson and Partners, LLC CMP DDC",
-      "age": 22
-      },
-      {
-      "name": "Claudine Neal",
-      "gender": "female",
-      "company": "Sealoud",
-      "age": 55
-      },
-      {
-      "name": "Beryl Rice",
-      "gender": "female",
-      "company": "Velity",
-      "age": 67
-      },
-      {
-      "name": "Wilder Gonzales",
-      "gender": "male",
-      "company": "Geekko"
-      },
-    ]
-
-    onSelect({ selected }) {
-      console.log('Select Event', selected, this.selected);
-    }
+  onSelect({ selected }) {
+    console.log('Select Event', selected);
+  }
 
     
 

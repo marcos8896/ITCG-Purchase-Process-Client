@@ -1,4 +1,4 @@
-<div class="animated fadeIn">
+<div *ngIf="providers && requisitions" class="animated fadeIn">
   <div class="row">
 
     
@@ -7,29 +7,29 @@
         
         <ngx-datatable
           class="material"
-          [rows]="data"
+          [rows]="providers"
           [columnMode]="'force'"
           [columns]="columns"
           [headerHeight]="50"
           [footerHeight]="50"
           [rowHeight]="'auto'"
           [limit]="5"
-          [selected]="selected"
+          [selected]="selectedProvider"
           [selectionType]="'single'"
-          (select)='onSelect($event)'>
+          >
         </ngx-datatable>
 
       </div>
-
-      <div class='selected-column'>
+      
+      <div *ngIf="selectedProvider" class='selected-column'>
         <h4>Selections</h4>
         <ul>
-          <li *ngFor='let sel of selected'>
+          <li *ngFor='let sel of selectedProvider'>
             {{sel.name}}
           </li>
-          <li *ngIf="!selected.length">No Selections</li>
-        </ul>
-      </div>
+          <li *ngIf="!selectedProvider.length">No Selections</li>
+       </ul>
+     </div>
     </div>
-    </div><!--/.col-->
-  </div><!-- row -->
+    </div>
+</div>
