@@ -67,12 +67,12 @@ export class BasicRequestService {
   }
 
   private handleError(error: Response) {
-    return Observable.throw(error.json()|| 'Server error')
+    return Observable.throw(error.json() || 'Server error')
   }
 
   private generateHeaderObject(): Headers {
-    let headers = Object.create(this.headers);
-    headers.set('Authorization', JSON.parse(localStorage.getItem("ITCG_token")));
+    const headers = Object.create(this.headers);
+    headers.set('Authorization', JSON.parse(localStorage.getItem('ITCG_token')));
     return headers;
   }
 
