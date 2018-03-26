@@ -72,6 +72,14 @@ export const routes: Routes = [
         canActivate:  [ LoggedUserGuard ],
         path: 'processes',
         loadChildren: './views/processes/processes.module#ProcessesModule'
+      },
+      {
+        data: {
+          guards: [ GUARDS.PLANNING_DEPARTMENT, GUARDS.VICE_PRINCIPAL ]
+        },
+        canActivate:  [ LoggedUserGuard ],
+        path: 'aprovements',
+        loadChildren: './views/aprovements/aprovements.module#AprovementsModule'
       }
     ]
   }
