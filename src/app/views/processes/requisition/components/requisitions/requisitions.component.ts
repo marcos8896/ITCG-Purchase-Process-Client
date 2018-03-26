@@ -40,7 +40,7 @@ export class RequisitionsComponent implements OnInit {
   onCancel( id ){
     if (confirm('¿Está seguro de querer cancelar esa requisicion?')) {
       let deleteRequi = this.allRequisitions.find( requi => requi.id == id )
-      deleteRequi.status = 'Cancelado'
+      deleteRequi.status = 'Cancelada'
       this.requisitionService.update( deleteRequi )
       .subscribe( res => {
         this.filterRequisitions();

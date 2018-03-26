@@ -69,7 +69,10 @@ export class RequisitionCreateComponent implements OnInit {
     this.bossDepartmentsService.findById(
       JSON.parse(localStorage.getItem("ITCG_userId")), { 
       include: ['department'] 
-    }).subscribe( res => this.boss = res)
+    }).subscribe( res => {
+      console.log('res: ', res);
+      this.boss = res
+    })
   } 
 
   getBudgetKeys(): void {

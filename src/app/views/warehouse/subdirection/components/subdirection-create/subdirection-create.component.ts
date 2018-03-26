@@ -1,3 +1,5 @@
+import { VicePrincipalService } from './../../../../../services/vice-principal.service';
+import { VicePrincipalInterface } from './../../../../../models/vice-principal';
 import { Component, OnInit } from '@angular/core';
 import { SubdirectionService } from 'app/services/subdirection.service';
 import { ViewChild } from '@angular/core';
@@ -12,9 +14,21 @@ export class SubdirectionCreateComponent implements OnInit {
   @ViewChild('boss_nameInput') boss_name: any;
   @ViewChild('nameInput') name: any;
 
-  constructor( private subdirectionService: SubdirectionService, private toastrService: ToastrService ) { }
+  public vicePrincipals: any[]
+
+  constructor( 
+    private subdirectionService: SubdirectionService, 
+    private toastrService: ToastrService,
+    private vicePrincipalService: VicePrincipalService
+  ) { }
 
   ngOnInit() {
+    this.getVicePrincipals()
+  }
+
+  getVicePrincipals(){
+    this.vicePrincipalService.getAll()
+      .subscribe( res => this.vicePrincipals = res )
   }
 
   onSubmitSubdirection( values ) {
