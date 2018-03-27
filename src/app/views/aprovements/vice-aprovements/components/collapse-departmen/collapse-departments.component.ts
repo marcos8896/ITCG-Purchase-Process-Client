@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'app-collapse-department',
@@ -6,11 +6,15 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CollapseDepartmentComponent implements OnInit {
+    @Input() department: string;
+    
     isCollapsed = true;
     
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        // console.log(this.department);
+     }
     
     collapsed(event: any): void {
         // console.log(event);
