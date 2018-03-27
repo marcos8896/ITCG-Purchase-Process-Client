@@ -16,6 +16,7 @@ export class SelectableTableComponent implements OnChanges, OnInit {
   @Input() selected: any [];
   @Input() selectionType: string;
   @Input() messages: Object;
+  @Input() enableFiltering: boolean;
 
   @Output() selectedElement: EventEmitter<any[]> = new EventEmitter();
 
