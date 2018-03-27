@@ -4,6 +4,7 @@ import { ViceAprovementsRoutingModule } from './vice-aprovements.routing';
 // Custom Components
 import { ViceAprovementsComponent } from './vice-aprovements.component';
 import { CollapseDepartmentComponent } from './components/collapse-departmen/collapse-departments.component';
+import { TableRequisitionComponent } from './components/table-requisition/table-requisition.component';
 
 // Modules
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -22,7 +23,8 @@ import { CommonModule } from '@angular/common';
     exports: [],
     declarations: [
         ViceAprovementsComponent,
-        CollapseDepartmentComponent
+        CollapseDepartmentComponent,
+        TableRequisitionComponent
     ],
     providers: [],
 })
