@@ -5,4 +5,6 @@ export interface BossDepartmentInterface {
     email: string;
     emailVerified: boolean;
     realm: string;
+    hasRole?: boolean;
+    type?: string;
 }

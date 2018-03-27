@@ -8,7 +8,7 @@ import { ProcessesComponent } from './processes.component';
 const routes: Routes = [
   {
     data: {
-      guards: [ GUARDS.BOSS_DEPARTMENT]
+      guards: [ GUARDS.BOSS_DEPARTMENT ]
     },
     canActivate:  [ LoggedUserGuard ],
     path: 'requisition',
@@ -21,7 +21,16 @@ const routes: Routes = [
     canActivate:  [ LoggedUserGuard ],
     path: 'input-output',
     loadChildren: './input-output/input-output.module#InputOutputModule'
-  }  
+  },
+  {
+  data: {
+      guards: [ GUARDS.PLANNING_DEPARTMENT ]
+    },
+    canActivate:  [ LoggedUserGuard ],
+    path: 'purchase-order',
+    loadChildren: './purchase-order/purchase-order.module#PurchaseOrderModule'
+  }
+  
 ];
 
 @NgModule({
