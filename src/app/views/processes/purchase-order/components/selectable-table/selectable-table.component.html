@@ -1,65 +1,71 @@
 <div class="col-sm-12" *ngIf="rows">
 
-    <div class="col-sm-12 col-md-12" *ngIf="enableFiltering">
+  <div class="row">
+    
+    <div class="col-sm-6 col-md-6">
       <div class="card border-primary">
-        <div class="card-header">
-          Opciones
+        <div class="card-header text-center">
+          {{messages.primaryTable}}
         </div>
-        <div class="card-body">
-          <div class="row">
-
-            <div class="col-md-6 form-group">
-              <label>Filtrar por:</label>
-              <select name="" id="" class="form-control" [(ngModel)]="selectedFilter">
-                <ng-container *ngFor="let filter of columns">
-                  <option value="{{ filter.prop }}"> {{ filter.name }} </option>
-                </ng-container>
-              </select>
-            </div>
-
-            <div class="col-md-6 form-group">
-              <label>Ingrese el texto a filtrar</label>
-              <input [(ngModel)]="searchTextValue" type='text' class="form-control" placeholder='Filtrar por columna...' (keyup)='updateFilter()'/>
-            </div>
-
-          </div>
-        </div>
+        <ngx-datatable #myTable class="material" [rows]="rows" [columnMode]="'force'" [columns]="columns" [headerHeight]="50" [footerHeight]="50"
+          [rowHeight]="'auto'" [limit]="5" [selected]="selected" [selectionType]="selectionType" (select)='onSelect($event)'>
+        </ngx-datatable>
       </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-6 col-md-6">
-            <div class="card">
-              <div class="card-header text-center">
-                {{messages.primaryTable}}
+
+    <div class="col-sm-6 col-md-6">
+  
+      <div class="col-sm-12 col-md-12" *ngIf="enableFiltering">
+        <div class="card border-primary">
+          <div class="card-header">
+            Opciones
+          </div>
+          <div class="card-body">
+            <div class="row">
+  
+              <div class="col-md-6 form-group">
+                <label>Filtrar por:</label>
+                <select name="" id="" class="form-control" [(ngModel)]="selectedFilter">
+                  <ng-container *ngFor="let filter of columns">
+                    <option value="{{ filter.prop }}"> {{ filter.name }} </option>
+                  </ng-container>
+                </select>
               </div>
-                <ngx-datatable #myTable class="material" [rows]="rows" [columnMode]="'force'" [columns]="columns" [headerHeight]="50" [footerHeight]="50"
-                  [rowHeight]="'auto'" [limit]="5" [selected]="selected" [selectionType]="selectionType" (select)='onSelect($event)'>
-                </ngx-datatable>
+  
+              <div class="col-md-6 form-group">
+                <label>Ingrese el texto a filtrar</label>
+                <input [(ngModel)]="searchTextValue" type='text' class="form-control" placeholder='Filtrar por columna...' (keyup)='updateFilter()'
+                />
+              </div>
+  
             </div>
           </div>
-          
-        
-          <div class="col-sm-6 col-md-6">
-            <div class="card">
-              <div class="card-header text-center">
-                {{messages.secondaryTable}}
-              </div>
-              <div *ngIf="selected.length > 0">
-                  <ngx-datatable
-                    class="material"
-                    [rows]="selected"
-                    [columnMode]="'force'"
-                    [columns]="columns"
-                    [headerHeight]="50"
-                    [footerHeight]="50"
-                    [rowHeight]="'auto'"
-                    [limit]="5"
-                  >
-                </ngx-datatable>
-              </div>
-                  <div class="" *ngIf="!selected.length">{{messages.noSelection}}</div>
+        </div>
+      </div>
+
+      <div *ngIf="selected.length > 0" class="col-sm-12 col-md-12">
+        <div class="card border-primary">
+          <div class="card-header text-center">
+            {{messages.secondaryTable}}
           </div>
+          <div >
+            <ngx-datatable class="material" [rows]="selected" [columnMode]="'force'" [columns]="columns" [headerHeight]="50" [footerHeight]="50"
+              [rowHeight]="'auto'" [limit]="5">
+            </ngx-datatable>
+          </div>
+          
+        </div>
+      </div>
+
+      <div *ngIf="!selected.length" class="col-sm-12 col-md-12">
+      <div class="card card-accent-danger">
+        <div class="card-body">
+          <div>{{messages.noSelection}}</div>
+        </div>
+      </div>
+      </div>
+
     </div>
 
   </div>
