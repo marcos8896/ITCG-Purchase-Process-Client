@@ -5,7 +5,7 @@ import { AprovementsComponent } from './aprovements.component';
 
 @NgModule({
     imports: [
-        AprovementsRoutingModule
+        AprovementsRoutingModule,
     ],
     exports: [],
     declarations: [AprovementsComponent],
