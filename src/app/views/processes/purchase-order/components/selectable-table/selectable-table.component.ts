@@ -37,11 +37,12 @@ export class SelectableTableComponent implements OnChanges, OnInit {
 
 
   ngOnInit() {
-    console.log('ngOnInit: ');
+    
     this.selectedFilter = this.columns[0].prop;
     this.debounce();
 
   }
+
 
   ngOnChanges(changes: SimpleChanges) {
 
@@ -49,16 +50,11 @@ export class SelectableTableComponent implements OnChanges, OnInit {
       if (property === 'rows') {
 
         if( changes['rows'].currentValue.length > 0 && !this.isTheRowsArrayFiltered ) {
-          // console.log("En if");
-          // console.log('this[rows]: ', this['rows']);
-          // this['rows'] = this.removeDuplicates(this['rows']);
-          // console.log('this[rows]: ', this['rows']);
+          this['rows'] = [ ...this.removeDuplicates(this['rows']) ];
           this.temp = [ ...this['rows'] ];
           this.isTheRowsArrayFiltered = true;
         }
-        console.log('Previous:', changes[property].previousValue);
-        console.log('Current:', changes[property].currentValue);
-        console.log('firstChange:', changes[property].firstChange);
+
       } 
   }
 
@@ -78,13 +74,7 @@ export class SelectableTableComponent implements OnChanges, OnInit {
         const val = searchTextValue.toLocaleLowerCase();
         
         // filter our data
-        const temp = this.temp.filter( element => {
-          console.log('element[this.selectedFilter].toString().toLowerCase(): ', element[this.selectedFilter].toString().toLowerCase());
-          return element[this.selectedFilter].toString().toLowerCase().indexOf(val) !== -1 || !val
-
-
-        } );
-        console.log('temp: ', temp);
+        const temp = this.temp.filter( element => element[this.selectedFilter].toString().toLowerCase().indexOf(val) !== -1 || !val );
         
         // update the rows
         this.rows = temp;
@@ -99,18 +89,16 @@ export class SelectableTableComponent implements OnChanges, OnInit {
     this.subject.next(this.searchTextValue);
   }
 
-//   removeDuplicates(a) {
-//     return a.reduce(function(a,b){
-//       if (a.indexOf(b) < 0 ) a.push(b);
-//       return a;
-//     },[]);
-// }
 
-  logear() {
-    console.log('rows: ', this.rows);
-    console.log('temp: ', this.temp);
-    console.log('columns: ', this.columns);
-    console.log('this.selectedFilter: ', this.selectedFilter);
+  removeDuplicates(arr) {
+    var hashTable = {};
+
+    return arr.filter(function (el) {
+      var key = JSON.stringify(el);
+      var match = Boolean(hashTable[key]);
+
+      return (match ? false : hashTable[key] = true);
+    });
   }
 
 }
