@@ -1,5 +1,5 @@
 <div class="animated fadeIn">
-
+  
   <div class="col-sm-12 col-md-12">
     <div class="card border-primary">
       <div class="card-header">
@@ -21,7 +21,7 @@
             <label>Ingrese el texto a filtrar</label>
             <input [(ngModel)]="searchTextValue" type='text' class="form-control" placeholder='Filtrar por columna...' (keyup)='updateFilter()'/>
           </div>
-
+          {{ searchTextValue }}
         </div>
       </div>
       <div class="card-footer">
@@ -86,58 +86,37 @@
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [minWidth]="70" [maxWidth]="100" name="Folio" prop="folio" width="70">
+      <ngx-datatable-column [minWidth]="150" [maxWidth]="150" name="Folio" prop="folio" width="150">
         <ng-template let-value="value" ngx-datatable-cell-template>
             <div class="break-word"> <strong>{{ value }}</strong> </div>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column [minWidth]="150" [maxWidth]="150" name="Fecha" prop="date" width="150">
+      <ngx-datatable-column [minWidth]="200" [maxWidth]="200" name="Fecha" prop="date" width="200">
           <ng-template let-value="value" ngx-datatable-cell-template>
               <div class="break-word"> <strong>{{ value | date }}</strong> </div>
           </ng-template>
         </ngx-datatable-column>
 
-      <ngx-datatable-column [minWidth]="200" [maxWidth]="300" name="Acción" prop="action" width="200">
+      <ngx-datatable-column [minWidth]="300" [maxWidth]="500" name="Acción" prop="action" width="300">
           <ng-template let-value="value" ngx-datatable-cell-template>
               <div class="break-word"> <strong>{{ value }}</strong> </div>
           </ng-template>
         </ngx-datatable-column>
 
-      <ngx-datatable-column [minWidth]="150" name="Proveedor" prop="provider" width="200">
+      <ngx-datatable-column [minWidth]="200" name="Proveedor" prop="provider" width="200">
         <ng-template let-value="value" ngx-datatable-cell-template>
             <div class="break-word"> <strong>{{ value.name }}</strong> </div>
         </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column [minWidth]="100" name="Estado" prop="status" width="100">
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          <div class="break-word"> <strong>{{ value }}</strong> </div>
-        </ng-template>
-      </ngx-datatable-column>      
-
-      <ngx-datatable-column [minWidth]="90" name="Subdirección" prop="check_subdirection" width="90">
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          <div class="break-word"> <strong>{{ value }}</strong> </div>
-        </ng-template>
       </ngx-datatable-column> 
 
-      <ngx-datatable-column [minWidth]="90" name="Planeación" prop="check_planning" width="90">
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          <div class="break-word"> <strong>{{ value }}</strong> </div>
+      <ngx-datatable-column [width]="150" name="Generar Entrada/Salida" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>          
+          <a href="javascript:void(0)"  title="Expand/Collapse Row" class="btn btn-primary" [routerLink]="['../create/', row.id]">
+            Entrada/Salida
+          </a>      
         </ng-template>
-      </ngx-datatable-column>  
-
-      <ngx-datatable-column [width]="150" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
-        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-          <ng-container *ngIf="!row.folio && (row.status == 'Esperando')">
-            <a href="javascript:void(0)"  title="Expand/Collapse Row" class="btn btn-outline-danger" (click)="onCancel( row.id )">
-              <i class="fa fa-close"></i>Cancelar
-            </a>
-          </ng-container>          
-        </ng-template>
-      </ngx-datatable-column>
-      
+      </ngx-datatable-column>     
 
     </ngx-datatable>
   </div>
