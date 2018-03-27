@@ -1,0 +1,42 @@
+<div class="col-sm-12">
+
+  <div class="col-md-12">
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <div class="card">
+              <div class="card-header text-center">
+                {{messages.primaryTable}}
+              </div>
+                <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [columns]="columns" [headerHeight]="50" [footerHeight]="50"
+                  [rowHeight]="'auto'" [limit]="5" [selected]="selected" [selectionType]="selectionType" (select)='onSelect($event)'>
+                </ngx-datatable>
+            </div>
+          </div>
+          
+        
+          <div class="col-sm-6 col-md-6">
+            <div class="card">
+              <div class="card-header text-center">
+                {{messages.secondaryTable}}
+              </div>
+              <div *ngIf="selected.length > 0">
+                  <ngx-datatable
+                    class="material"
+                    [rows]="selected"
+                    [columnMode]="'force'"
+                    [columns]="columns"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    [rowHeight]="'auto'"
+                    [limit]="5"
+                  >
+                </ngx-datatable>
+              </div>
+                  <div class="" *ngIf="!selected.length">{{messages.noSelection}}</div>
+          </div>
+    </div>
+
+  </div>
+
+</div>

@@ -2,9 +2,10 @@ import { Provider } from './../../../../../models/provider';
 import { Requisition } from './../../../../../models/requisition';
 import { RequisitionService } from './../../../../../services/requisition.service';
 import { REQUISITION_STATES } from './../../../../../shared/_requisition_states';
-import { ViewChild } from '@angular/core/';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Component, OnInit } from '@angular/core';
+
+import { SelectableTableComponent } from './../selectable-table/selectable-table.component';
 
 @Component({
   selector: 'app-purchase-order-create',
@@ -16,32 +17,17 @@ export class PurchaseOrderCreateComponent implements OnInit {
   public requisitions: Requisition[] = [];
   public providers: Provider[] = [];
   public selectedProvider: Provider [] = [];
-  // public allRequisitions: any[] = [];
-
-  // public selectedFilter = 'status';
-  // public filterBy = [
-  //   { value: 'status', name: 'Estado de requisición' },
-  //   { value: 'provider', name: 'Proveedor' }
-  // ]
-  
-  private subject: BehaviorSubject<string>;
-  // public searchTextValue: string;
-
-  // @ViewChild('myTable') table: any;
 
   constructor(
     private requisitionService: RequisitionService,
   ) {
-    // this.subject  = new BehaviorSubject<string>(this.searchTextValue);
   }
 
   ngOnInit() {
     this.getRequisitionsWithProvider();
-    // this.debounce();
   }
 
   getRequisitionsWithProvider(){
-    console.log("Before")
     this.requisitionService.getAll({
       where: { 
         check_boss: REQUISITION_STATES.ACEPTADA,
@@ -59,18 +45,22 @@ export class PurchaseOrderCreateComponent implements OnInit {
     })
   }
 
-  // selected = [];
-
   columns: any[] = [
     { name: 'ID', prop: 'id'} , 
     { name: 'Nombre', prop: 'name'}
   ];
 
-  onSelect({ selected }) {
-    console.log('Select Event', selected);
+  providerTableMessages = {
+    primaryTable: "Selecciona un proveedor",
+    secondaryTable: "Proveedor seleccionado",
+    noSelection: "Seleccione un proveedor, por favor"
   }
 
-    
+  selectedElementHandler( element ) {
+    this.selectedProvider = element;
+  }
+
+  
 
 
 }
