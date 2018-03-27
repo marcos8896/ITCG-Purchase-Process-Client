@@ -1,0 +1,15 @@
+<div *ngIf="providers && requisitions" class="animated fadeIn">
+  <div class="row">
+
+    <app-selectable-table class="col-md-12"
+      [rows]="providers"
+      [columns]="columns"
+      [selected]="selectedProvider"
+      [selectionType]="'single'"
+      [messages]="providerTableMessages"
+      [enableFiltering]="true"
+      (selectedElement)="selectedElementHandler($event)"
+    ></app-selectable-table>
+    
+    </div>
+</div>
