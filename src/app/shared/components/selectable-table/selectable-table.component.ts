@@ -1,4 +1,4 @@
-import { ViewChild } from '@angular/core/';
+import { ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Component, EventEmitter, Input, Output, OnChanges, OnInit, SimpleChanges, SimpleChange } from '@angular/core';
 import 'rxjs/add/operator/debounceTime';

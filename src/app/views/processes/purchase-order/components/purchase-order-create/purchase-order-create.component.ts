@@ -5,7 +5,6 @@ import { REQUISITION_STATES } from './../../../../../shared/_requisition_states'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Component, OnInit } from '@angular/core';
 
-import { SelectableTableComponent } from './../selectable-table/selectable-table.component';
 
 @Component({
   selector: 'app-purchase-order-create',
