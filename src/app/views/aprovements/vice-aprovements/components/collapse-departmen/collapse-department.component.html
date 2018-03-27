@@ -1,0 +1,23 @@
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-header">
+            Bootstrap Collapse
+        <div class="card-actions">
+            <a (click)="isCollapsed = !isCollapsed" style="cursor: pointer;">
+            <small className="text-muted">Ver</small>
+            </a>
+        </div>
+        </div>
+        <div class="card-body"
+            (collapsed)="collapsed($event)"
+            (expanded)="expanded($event)"
+            [collapse]="isCollapsed">
+        <p>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+            consequat.
+        </p>
+        </div>
+        <!-- <div class="card-footer">
+        </div> -->
+    </div>
+</div>
