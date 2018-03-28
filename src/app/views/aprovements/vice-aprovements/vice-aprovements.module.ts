@@ -1,3 +1,4 @@
+import { DateParserService } from './../../../services/date-parser.service';
 import { SelectableTableModule } from './../../../shared/selectable-table/selectable-table.module';
 import { NgModule } from '@angular/core';
 import { ViceAprovementsRoutingModule } from './vice-aprovements.routing';
@@ -28,6 +29,8 @@ import { CommonModule } from '@angular/common';
         CollapseDepartmentComponent,
         TableRequisitionComponent
     ],
-    providers: [],
+    providers: [
+        DateParserService
+    ],
 })
 export class ViceAprovementsModule { }
