@@ -16,6 +16,7 @@ export class PurchaseOrderCreateComponent implements OnInit {
   public providers: Provider[] = [];
   public selectedProvider: Provider [] = [];
   public requisitionsSelectedProvider: Requisition[] = [];
+  public selectedProviderRequisitionDetails: any [] = [];
   public emitSelectedProvider$ = new Subject();
 
   public columnsProvider: any[] = [
@@ -66,8 +67,12 @@ export class PurchaseOrderCreateComponent implements OnInit {
     this.emitSelectedProvider$
       .subscribe((provider:any) => {
 
-        this.requisitionsSelectedProvider = [ ... this.requisitions
+        const requisitionsSelectedProvider = [ ... this.requisitions
           .filter( requisition => requisition.provider.id == provider.id ) ];
+          console.log('requisitionsSelectedProvider: ', requisitionsSelectedProvider);
+
+        this.selectedProviderRequisitionDetails = 
+          requisitionsSelectedProvider.map( requisition => requisition.concept_requisition);
         
       })
 
