@@ -9,6 +9,14 @@
   <!-- <button class="navbar-toggler d-md-down-none" type="button" appAsideMenuToggler>
     <span class="navbar-toggler-icon"></span>
   </button> -->
+  <div class="ml-auto mr-auto" *ngIf="userLogged">
+    <div *ngIf="userLogged.type == 'viceprincipal'">
+        {{ userLogged.subdirection.name }}
+    </div>
+    <div *ngIf="userLogged.type == 'bossdepartment'">
+        {{ userLogged.department.name }}
+    </div>
+  </div>
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
