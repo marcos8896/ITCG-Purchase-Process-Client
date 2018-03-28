@@ -15,11 +15,16 @@ export class InputOutputCreateComponent implements OnInit {
   public requisition: any
   public bill: any
 
+  public total: any = 0
+  public total$: Observable<any>
+  public behaviorSubjectTotal: BehaviorSubject<any>
+
   public products$: Observable<any[]>
   public products: any[] = []
   public behaviorSubject: BehaviorSubject<any[]>
 
   public dateRe = new Date()
+  
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -27,10 +32,21 @@ export class InputOutputCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getRequisition()
-
     this.behaviorSubject = new BehaviorSubject<any[]>( this.products );
     this.products$ = this.behaviorSubject.map( data => data.map( a => a ))   
+
+    this.behaviorSubjectTotal = new BehaviorSubject<any>( this.total );
+    this.total$ = this.behaviorSubjectTotal.map( data => data)   
+    this.getRequisition()    
+    console.log('dateRe: ', this.dateRe);
+  }
+
+  initializateCosts(){
+    this.products.forEach( product => {
+      product.cost = 0;
+    })
+    this.behaviorSubject.next( this.products )
+    this.getTotal();
   }
 
   getRequisition() {
@@ -39,10 +55,10 @@ export class InputOutputCreateComponent implements OnInit {
       this.requisitionService.findById( this.id , {
         include : ['provider','concept_requisition', 'boss_department', 'budget_key']
       }).subscribe( res => {
-        console.log('res: ', res);
         this.requisition = res;
         this.products = res.concept_requisition;
         this.behaviorSubject.next(this.products);
+        this.initializateCosts();        
       })
     })
   }
@@ -50,28 +66,46 @@ export class InputOutputCreateComponent implements OnInit {
   close( val ){
     this.products = this.products.filter( product => product.description !== val )
     this.behaviorSubject.next( this.products )
+    this.getTotal()
   }
 
   onQuantity(quantity, id){
-    console.log('event: ', quantity, id);
     this.products.forEach( product => {
-      if (product.id == id)
-        product.quantity = quantity;
+      if (product.id == id){
+        if (quantity == '')
+          product.quantity = 0;
+        else
+          product.quantity = quantity;          
+      }        
     })
     this.behaviorSubject.next( this.products )
+    this.getTotal()
   }
 
   onCost(cost, id){
-    console.log('cost, id: ', cost, id);
     this.products.forEach( product => {
-      if (product.id == id)
+      if (product.id == id){
+        if (cost == '')
+          product.cost = 0;
+        else
         product.cost = cost;
+      }        
     })
     this.behaviorSubject.next( this.products )
+    this.getTotal()
   }
 
-  jiji(){
-    console.log(this.products);
+  getTotal(){
+    this.total = 0;
+    this.products.forEach( product => {
+      this.total += ( product.quantity * product.cost )
+    })
+    this.behaviorSubjectTotal.next( this.total )
+  }
+
+  onFormInputOutput(values){
+    console.log('values: ', values);
+
   }
 
 }

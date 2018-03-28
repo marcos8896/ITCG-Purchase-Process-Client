@@ -56,7 +56,6 @@ export class RequisitionCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.dateRe);
     this.getBudgetKeys()
     this.getProviders()
     this.getBoss()

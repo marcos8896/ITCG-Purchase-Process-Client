@@ -111,24 +111,18 @@
                   </ng-template>
                 </ngx-datatable-column>
   
-                <!-- <ngx-datatable-column [minWidth]="50" [maxWidth]="200" name="Costo" prop="cost">
-                  <ng-template let-value="value" ngx-datatable-cell-template>
-                    <div class="break-word"><strong> {{value}} </strong></div> 
-                  </ng-template>
-                </ngx-datatable-column>
-  
-                <ngx-datatable-column [minWidth]="50" [maxWidth]="200" name="TOTAL" prop="total">
+                <!-- <ngx-datatable-column [minWidth]="50" [maxWidth]="200" name="TOTAL" prop="total">
                   <ng-template let-value="value" ngx-datatable-cell-template>
                     <div class="break-word"><strong> {{value}} </strong></div> 
                   </ng-template>
                 </ngx-datatable-column> -->
 
-                <ngx-datatable-column [minWidth]="160" [maxWidth]="160" name="Precio Unitario" width="160" prop="id">
-                  <ng-template let-value="value" ngx-datatable-cell-template>
-                    <input class="form-control" type="number" style="width:130px" #cost (keyup)="onCost(cost.value, value)">
+                <ngx-datatable-column [minWidth]="160" [maxWidth]="160" name="Precio Unitario" width="160">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <input class="form-control" type="number" style="width:130px" [value]="row.cost > 0 ? row.cost : ''" [placeholder]="row.cost == 0 ? '0':''" #cost (keyup)="onCost(cost.value, row.id)">
                   </ng-template>
                 </ngx-datatable-column>
-  
+                  
                 <ngx-datatable-column [minWidth]="50" name="" prop="description" width="50">
                     <ng-template let-value="value" ngx-datatable-cell-template>
                       <i (click)="close(value)" class="fa fa-close"></i>
@@ -139,8 +133,8 @@
             </div>   
           
           </div>
-
           <div class="card-footer text-right">
+            <h2>Total: ${{ total$ | async }}</h2>
             <button [disabled]="" type="submit" class="btn btn-outline-primary btn-lg"><i class="fa fa-check"></i> Registrar</button>
           </div>
 
