@@ -209,7 +209,20 @@ export const navigation = [
         icon: 'icon-user-follow',
       }
     ]
-  }   
+  }, 
+  // Esta opción sólo se mostrará cuando sea un usuario de tipo "VicePrincipal"
+  {
+    name: 'Aprobaciones',
+    icon: 'icon-check',
+    url: '/aprovements/vice-principal',
+  },
+  // Esta opción sólo se mostrará cuando sea un usuario de tipo "Planning"
+  {
+    name: 'Aprobaciones',
+    icon: 'icon-check',
+    url: '/aprovements/planning',
+  }
+  
 ];
 
 

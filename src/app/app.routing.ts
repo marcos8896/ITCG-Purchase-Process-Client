@@ -75,11 +75,11 @@ export const routes: Routes = [
       },
       {
         data: {
-          guards: [ GUARDS.VICE_PRINCIPAL ]
+          guards: [ GUARDS.PLANNING_DEPARTMENT, GUARDS.VICE_PRINCIPAL ]
         },
         canActivate:  [ LoggedUserGuard ],
-        path: 'acceptances',
-        loadChildren: './views/acceptances/acceptances.module#AcceptancesModule'
+        path: 'aprovements',
+        loadChildren: './views/aprovements/aprovements.module#AprovementsModule'
       }
     ]
   }
