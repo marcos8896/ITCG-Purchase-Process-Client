@@ -16,6 +16,14 @@ const routes: Routes = [
   },
   {
     data: {
+      guards: [ GUARDS.PLANNING_DEPARTMENT]
+    },
+    canActivate:  [ LoggedUserGuard ],
+    path: 'input-output',
+    loadChildren: './input-output/input-output.module#InputOutputModule'
+  },
+  {
+  data: {
       guards: [ GUARDS.PLANNING_DEPARTMENT ]
     },
     canActivate:  [ LoggedUserGuard ],

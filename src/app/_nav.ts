@@ -150,6 +150,18 @@ export const navigation = [
         ] 
       },
       {
+        name: 'Entradas-Salidas',
+        icon: 'icon-map',
+        url: '',
+        children: [
+          {
+            name: 'Registrar',
+            url: '/processes/input-output/all',
+            icon: 'icon-note',
+          }
+        ] 
+      },
+      {
         name: 'Aceptar requis',
         url: '',
         icon: 'icon-user-follow',
