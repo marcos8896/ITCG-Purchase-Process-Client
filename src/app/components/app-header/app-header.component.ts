@@ -25,7 +25,7 @@ export class AppHeaderComponent implements OnInit {
    }
 
   getUser(){
-    var role = JSON.stringify(localStorage.getItem("ITCG_role"))
+    var role = JSON.parse(localStorage.getItem("ITCG_role"))
     role == 'viceprincipal' ? this.getVice() : this.getBoss();    
   }
 
