@@ -1,3 +1,4 @@
+import { DateParserService } from './../../../../../services/date-parser.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -9,7 +10,6 @@ export class TableRequisitionComponent implements OnInit {
     @Input() requisitions: any;
     public selectedRequisition: any[] = [];
     public columns = [
-        { name: 'Jefe ID', prop: 'boss_departmentId'},
         { name: 'Fecha', prop: 'date'},
         { name: 'Acción', prop: 'action'}
     ];
@@ -20,19 +20,30 @@ export class TableRequisitionComponent implements OnInit {
     };
     public columnsSize = 12;
 
-    constructor() { }
+    constructor(
+        private dateParserService: DateParserService
+    ) { }
 
     ngOnInit() {
-        this.requisitions.forEach( requisition => {
-            
-
-        })
-
+        this.parseRequisitionsDate();
     }
 
     selectedElementHandler( element ) {
         this.selectedRequisition = element;
         console.log(this.selectedRequisition);
+    }
+
+    parseRequisitionsDate() {
+        const parser = this.dateParserService;
+        const parserOptions = {
+            locale: 'es',
+            format: 'LLL' 
+        };
+
+        this.requisitions.forEach( requisition => {
+            const { date } = requisition;
+            requisition.date = parser.formatDate(date, parserOptions);
+        })
     }
     
 }
