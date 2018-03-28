@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: 'vice.component.html'
+  templateUrl: 'input-output.component.html'
 })
-export class ViceComponent {
+export class InputOutputComponent {
 
   constructor( ) { }
 
