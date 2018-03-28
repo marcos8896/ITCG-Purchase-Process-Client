@@ -17,12 +17,15 @@ export class SelectableTableComponent implements OnChanges, OnInit {
   @Input() selectionType: string;
   @Input() messages: Object;
   @Input() enableFiltering: boolean;
+  @Input() showSecondaryTable = true;
+  @Input() columnsSize = 6;
 
   @Output() selectedElement: EventEmitter<any[]> = new EventEmitter();
 
   @ViewChild('myTable') table: any;
-
-
+  
+  // Adding css class for column size
+  public columnCss: string;
   //Filtering concerns
   public temp: any = [];
   public selectedFilter = '';
@@ -38,7 +41,7 @@ export class SelectableTableComponent implements OnChanges, OnInit {
 
 
   ngOnInit() {
-    
+    this.columnCss = `col-md-${this.columnsSize}`;    
     this.selectedFilter = this.columns[0].prop;
     this.debounce();
 
