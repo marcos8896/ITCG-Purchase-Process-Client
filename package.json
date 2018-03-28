@@ -34,7 +34,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "font-awesome": "^4.7.0",
-    "moment": "2.19.1",
+    "moment": "^2.19.1",
     "ng2-charts": "1.6.0",
     "ngx-bootstrap": "1.9.3",
     "ngx-toastr": "^8.0.0",

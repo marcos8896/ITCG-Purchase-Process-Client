@@ -35,7 +35,7 @@ export class PurchaseOrderCreateComponent implements OnInit {
         folio: { "neq":  null }
        },
       include: ['provider']
-    }).subscribe( requistions => { 
+    }).subscribe( requistions => {
       this.requisitions = requistions;
       this.providers = this.requisitions.map( requisition => requisition.provider );
       console.log('this.providers: ', this.providers);

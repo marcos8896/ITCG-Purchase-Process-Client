@@ -1,4 +1,5 @@
-@import "../../../../scss/_bootstrap-variables.scss";
+@import "../../../scss/_bootstrap-variables.scss";
+
 :host /deep/ .datatable-body-row.active .datatable-row-group {
   background-color: $cyan !important;
   cursor: default;
