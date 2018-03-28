@@ -34,7 +34,7 @@ export class PurchaseOrderCreateComponent implements OnInit {
         //Not equals to null
         folio: { "neq":  null }
        },
-      include: ['provider']
+      include: ['provider', 'concept_requisition']
     }).subscribe( requistions => { 
       this.requisitions = requistions;
       this.providers = this.requisitions.map( requisition => requisition.provider );

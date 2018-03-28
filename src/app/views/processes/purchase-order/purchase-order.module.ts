@@ -6,6 +6,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PurchaseOrderCreateComponent } from './components/purchase-order-create/purchase-order-create.component';
 import { PurchaseOrderRoutingModule } from './purchase-order.routing';
 import { SelectableTableComponent } from './../../../shared/components/selectable-table/selectable-table.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 // import { RequisitionRoutingModule } from './requisition.routing';
 // import { RequisitionCreateComponent } from './components/requisition-create/requisition-create.component';
 // import { RequisitionsComponent } from 'app/views/processes/requisition/components/requisitions/requisitions.component';
@@ -16,7 +17,8 @@ import { SelectableTableComponent } from './../../../shared/components/selectabl
     ChartsModule,
     CommonModule,
     FormsModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    TabsModule
   ],
   declarations: [
     // RequisitionCreateComponent,

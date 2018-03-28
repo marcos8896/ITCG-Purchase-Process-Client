@@ -1,15 +1,38 @@
-<div *ngIf="providers && requisitions" class="animated fadeIn">
-  <div class="row">
 
-    <app-selectable-table class="col-md-12"
-      [rows]="providers"
-      [columns]="columns"
-      [selected]="selectedProvider"
-      [selectionType]="'single'"
-      [messages]="providerTableMessages"
-      [enableFiltering]="true"
-      (selectedElement)="selectedElementHandler($event)"
-    ></app-selectable-table>
-    
-    </div>
-</div>
+
+<div class="animated fadeIn">
+  <!-- Nav tabs -->
+  <tabset>
+
+    <tab>
+      <ng-template tabHeading><i class="icon-people"></i> Seleccionar proveedor &nbsp;<span class="badge badge-pill badge-warning">!</span></ng-template>
+      
+      <div *ngIf="providers && requisitions" class="animated fadeIn">
+        <div class="row">
+      
+          <app-selectable-table class="col-md-12"
+            [rows]="providers"
+            [columns]="columns"
+            [selected]="selectedProvider"
+            [selectionType]="'single'"
+            [messages]="providerTableMessages"
+            [enableFiltering]="true"
+            (selectedElement)="selectedElementHandler($event)"
+          ></app-selectable-table>
+          
+          </div>
+      </div>
+
+    </tab>
+
+    <tab>
+      <ng-template tabHeading><i class="icon-people"></i> Seleccionar proveedor &nbsp;<span class="badge badge-pill badge-warning">!</span></ng-template>
+      
+      
+    </tab>
+    <tab>
+      <ng-template tabHeading><i class="icon-pie-chart"></i> Charts</ng-template>
+      4. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </tab>
+  </tabset>
+</div><!--/.col-->
