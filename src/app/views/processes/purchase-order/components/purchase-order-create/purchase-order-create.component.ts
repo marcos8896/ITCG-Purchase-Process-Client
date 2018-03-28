@@ -2,8 +2,8 @@ import { Provider } from './../../../../../models/provider';
 import { Requisition } from './../../../../../models/requisition';
 import { RequisitionService } from './../../../../../services/requisition.service';
 import { REQUISITION_STATES } from './../../../../../shared/_requisition_states';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 
 @Component({
@@ -13,18 +13,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PurchaseOrderCreateComponent implements OnInit {
 
-  public requisitions: Requisition[] = [];
   public providers: Provider[] = [];
   public selectedProvider: Provider [] = [];
+  public requisitionsSelectedProvider: Requisition[] = [];
+  public emitSelectedProvider$ = new Subject();
 
-  constructor(
-    private requisitionService: RequisitionService,
-  ) {
+  public columnsProvider: any[] = [
+    { name: 'ID', prop: 'id'} , 
+    { name: 'Nombre', prop: 'name'}
+  ];
+
+  public providerTableMessages = {
+    primaryTable: "Selecciona un proveedor",
+    secondaryTable: "Proveedor seleccionado",
+    noSelection: "Seleccione un proveedor, por favor"
   }
+
+  public requisitions: Requisition[] = [];
+  
+
+  constructor( private requisitionService: RequisitionService ) { }
+
 
   ngOnInit() {
     this.getRequisitionsWithProvider();
+    this.loadSelectedProviderRequisitions();
   }
+
+
 
   getRequisitionsWithProvider(){
     this.requisitionService.getAll({
@@ -36,27 +52,30 @@ export class PurchaseOrderCreateComponent implements OnInit {
        },
       include: ['provider', 'concept_requisition']
     }).subscribe( requistions => { 
+
       this.requisitions = requistions;
       this.providers = this.requisitions.map( requisition => requisition.provider );
-      console.log('this.providers: ', this.providers);
-      console.log('this.requisitions: ', this.requisitions);
       
     })
   }
 
-  columns: any[] = [
-    { name: 'ID', prop: 'id'} , 
-    { name: 'Nombre', prop: 'name'}
-  ];
 
-  providerTableMessages = {
-    primaryTable: "Selecciona un proveedor",
-    secondaryTable: "Proveedor seleccionado",
-    noSelection: "Seleccione un proveedor, por favor"
+  
+  loadSelectedProviderRequisitions() {
+    
+    this.emitSelectedProvider$
+      .subscribe((provider:any) => {
+
+        this.requisitionsSelectedProvider = [ ... this.requisitions
+          .filter( requisition => requisition.provider.id == provider.id ) ];
+        
+      })
+
   }
 
-  selectedElementHandler( element ) {
-    this.selectedProvider = element;
+
+  selectedElementHandler( element: any[]) {
+    this.emitSelectedProvider$.next(element[0]);
   }
 
   
