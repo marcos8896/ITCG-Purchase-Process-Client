@@ -9,7 +9,7 @@
         <i class="icon-people"></i> 
         Seleccionar proveedor &nbsp;
         <span 
-          *ngIf="!selectedProviderRequisitionDetails.length" 
+          *ngIf="!providerIsSelected" 
           class="badge badge-pill badge-warning">!
         </span>
       </ng-template>
@@ -38,28 +38,34 @@
         Tabla de productos y servicios a ordenar &nbsp;
         <span 
           class="badge badge-pill badge-warning"
-          *ngIf="!selectedProviderRequisitionDetails.length">!
+          *ngIf="!providerIsSelected">!
         </span>
       </ng-template>
       
-      <div *ngIf="selectedProviderRequisitionDetails.length" class="animated fadeIn">
-          <ngx-datatable #conceptRequisitionTable class="material" 
-          [rows]="selectedProviderRequisitionDetails" 
-          [columnMode]="'force'" 
-          [columns]="columnsConceptRequisitions" 
-          [headerHeight]="50" 
-          [footerHeight]="50"  
-          [rowHeight]="'auto'" 
-          [limit]="5"
-          >
-          </ngx-datatable>
-      </div>
+      <div  class="animated fadeIn">
+        <div *ngIf="selectedProviderRequisitionDetails.length" class="col-sm-12 col-md-12">
+            
+          <div class="card border-primary">
+            <ngx-datatable #conceptRequisitionTable class="material" 
+            [rows]="selectedProviderRequisitionDetails" 
+            [columnMode]="'force'" 
+            [columns]="columnsConceptRequisitions" 
+            [headerHeight]="50" 
+            [footerHeight]="50"  
+            [rowHeight]="'auto'" 
+            [limit]="5"
+            ></ngx-datatable>
+          </div>
+
+        </div>
 
         <div *ngIf="!selectedProviderRequisitionDetails.length" class="card card-accent-danger">
           <div class="card-body">
             <div>Selecciona un proveedor en la pestaña anterior para poder continuar :)</div>
           </div>
         </div>
+
+      </div>
       
     </tab>
     <tab>

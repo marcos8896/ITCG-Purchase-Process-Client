@@ -20,6 +20,8 @@ export class PurchaseOrderCreateComponent implements OnInit {
   public selectedProviderRequisitionDetails: any [] = [];
   public emitSelectedProvider$ = new Subject();
 
+  public providerIsSelected: boolean = false;
+
   public columnsProvider: any[] = [
     { name: 'ID', prop: 'id'} , 
     { name: 'Nombre', prop: 'name'}
@@ -41,8 +43,6 @@ export class PurchaseOrderCreateComponent implements OnInit {
 
   public requisitions: Requisition[] = [];
 
-  @ViewChild('conceptRequisitionTable') conceptRequisitionTable: any;
-  
 
   constructor( private requisitionService: RequisitionService ) { }
 
@@ -93,12 +93,18 @@ export class PurchaseOrderCreateComponent implements OnInit {
     this.emitSelectedProvider$
       .subscribe((provider:any) => {
 
+        this.providerIsSelected = true;
+
         let requisitionsSelectedProvider = [ ... this.getSelectedProviderRequisitions(provider) ];
 
         requisitionsSelectedProvider = this.addFolioAndDepartmentToConcepts( requisitionsSelectedProvider );
 
-        this.selectedProviderRequisitionDetails =  this.getConceptRequisitionsSelectedProvider(requisitionsSelectedProvider);
-        this.conceptRequisitionTable.recalculate();
+        this.selectedProviderRequisitionDetails = [];
+        
+        //Little hack to avoid wrong rezising on the 'selectedProviderRequisitionDetails' table.
+        setTimeout(() => {
+          this.selectedProviderRequisitionDetails = [ ... this.getConceptRequisitionsSelectedProvider(requisitionsSelectedProvider) ];
+        }, 0);
         
       })
 
