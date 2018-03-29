@@ -20,7 +20,9 @@ export class PurchaseOrderCreateComponent implements OnInit {
   public selectedProviderRequisitionDetails: any [] = [];
   public emitSelectedProvider$ = new Subject();
 
-  public miDate: Date = new Date();
+  public purchaseOrder:any = {
+    date: new Date()
+  };
 
   public providerIsSelected: boolean = false;
 
@@ -149,7 +151,18 @@ export class PurchaseOrderCreateComponent implements OnInit {
     return requisitionsSelectedProvider;
   }
 
-  
+  onSubmit() {
+    this.purchaseOrder.purchase_order_requisition = this.filterDetailsBeforeSubmit();
+    console.log('this.purchaseOrder: ', this.purchaseOrder);
+
+  }
+
+
+  filterDetailsBeforeSubmit() {
+    return this.selectedProviderRequisitionDetails.map( re => {
+      return { quantity: re.quantity, unit: re.unit, description: re.description }
+    })
+  }
 
 
 }

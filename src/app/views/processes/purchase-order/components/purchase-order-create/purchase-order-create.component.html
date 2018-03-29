@@ -74,14 +74,14 @@
             
             </div>
     
-              <div class="col-sm-4 col-md-4" *ngIf="miDate">
+              <div class="col-sm-4 col-md-4" *ngIf="purchaseOrder.date">
                 <div class="card card-accent-primary">
                   <div class="card-header text-center">
                     Fecha de la orden de compra
                   </div>
                   <div class="container">
                     <label for="">Selecciona una fecha:</label>
-                    <input type="date" name="date" #dateR class="form-control" [ngModel]="miDate | date:'yyyy-MM-dd'" required>
+                    <input type="date" name="date" #dateR class="form-control" [ngModel]="purchaseOrder.date | date:'yyyy-MM-dd'" required>
                     &nbsp;
                   </div>
                 </div>
@@ -103,6 +103,13 @@
             ></ngx-datatable>
           </div>
 
+          <button 
+            type="button" 
+            (click)="onSubmit()" 
+            class="btn btn-lg btn-primary">
+            <i class="fa fa-check"></i> Registrar orden de compra
+          </button>
+
         </div>
 
         <div *ngIf="!selectedProviderRequisitionDetails.length" class="card card-accent-danger">
@@ -112,11 +119,8 @@
         </div>
 
       </div>
+        
       
-    </tab>
-    <tab>
-      <ng-template tabHeading><i class="icon-pie-chart"></i> Charts</ng-template>
-      4. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </tab>
   </tabset>
 </div><!--/.col-->
