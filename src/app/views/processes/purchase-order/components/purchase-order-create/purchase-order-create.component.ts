@@ -20,6 +20,8 @@ export class PurchaseOrderCreateComponent implements OnInit {
   public selectedProviderRequisitionDetails: any [] = [];
   public emitSelectedProvider$ = new Subject();
 
+  public miDate: Date = new Date();
+
   public providerIsSelected: boolean = false;
 
   public columnsProvider: any[] = [
@@ -93,6 +95,7 @@ export class PurchaseOrderCreateComponent implements OnInit {
     this.emitSelectedProvider$
       .subscribe((provider:any) => {
 
+        this.selectedProvider = [ provider ];
         this.providerIsSelected = true;
 
         let requisitionsSelectedProvider = [ ... this.getSelectedProviderRequisitions(provider) ];

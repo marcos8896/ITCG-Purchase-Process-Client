@@ -35,7 +35,7 @@
     <tab>
       <ng-template tabHeading>
         <i class="icon-list"></i> 
-        Tabla de productos y servicios a ordenar &nbsp;
+        Datos generales de orden de compra &nbsp;
         <span 
           class="badge badge-pill badge-warning"
           *ngIf="!providerIsSelected">!
@@ -43,9 +43,55 @@
       </ng-template>
       
       <div  class="animated fadeIn">
+
         <div *ngIf="selectedProviderRequisitionDetails.length" class="col-sm-12 col-md-12">
             
+          <div class="row">
+            <div class="col-sm-8 col-md-8">
+            
+              <div class="card card-accent-primary" *ngIf="selectedProvider[0]">
+                <div class="card-header text-center">
+                  Proveedor seleccionado
+                </div>
+                <div class="container">
+                  <div class="row">
+            
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="" class="col-md-12 col-form-label">ID:</label>
+                        <input type='text' readonly class="form-control read-only-normal-style" value="{{ selectedProvider[0].id }}" />
+                      </div>
+                    </div>
+            
+                    <div class="col-md-8">
+                      <label for="nombre" class="col-md-12 col-form-label">Nombre del proveedor seleccionado:</label>
+                      <input type='text' readonly class="form-control read-only-normal-style" value="{{ selectedProvider[0].name }}" />
+                    </div>
+            
+                  </div>
+                </div>
+              </div>
+            
+            </div>
+    
+              <div class="col-sm-4 col-md-4" *ngIf="miDate">
+                <div class="card card-accent-primary">
+                  <div class="card-header text-center">
+                    Fecha de la orden de compra
+                  </div>
+                  <div class="container">
+                    <label for="">Selecciona una fecha:</label>
+                    <input type="date" name="date" #dateR class="form-control" [ngModel]="miDate | date:'yyyy-MM-dd'" required>
+                    &nbsp;
+                  </div>
+                </div>
+              </div>
+          </div>
+
           <div class="card border-primary">
+            <div class="card-header text-center">
+              Detalle de orden de compra
+            </div>
             <ngx-datatable #conceptRequisitionTable class="material" 
             [rows]="selectedProviderRequisitionDetails" 
             [columnMode]="'force'" 
