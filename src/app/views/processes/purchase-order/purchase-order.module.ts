@@ -7,9 +7,6 @@ import { PurchaseOrderCreateComponent } from './components/purchase-order-create
 import { PurchaseOrderRoutingModule } from './purchase-order.routing';
 import { SelectableTableComponent } from './../../../shared/components/selectable-table/selectable-table.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-// import { RequisitionRoutingModule } from './requisition.routing';
-// import { RequisitionCreateComponent } from './components/requisition-create/requisition-create.component';
-// import { RequisitionsComponent } from 'app/views/processes/requisition/components/requisitions/requisitions.component';
 
 @NgModule({
   imports: [
@@ -24,7 +21,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     // RequisitionCreateComponent,
     // RequisitionsComponent  
     PurchaseOrderCreateComponent,
-    SelectableTableComponent
+    SelectableTableComponent,
   ]
 })
 export class PurchaseOrderModule { }

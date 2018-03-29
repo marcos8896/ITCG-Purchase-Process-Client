@@ -1,3 +1,4 @@
+import { ViewChild } from '@angular/core/';
 import { Provider } from './../../../../../models/provider';
 import { Requisition } from './../../../../../models/requisition';
 import { RequisitionService } from './../../../../../services/requisition.service';
@@ -24,6 +25,14 @@ export class PurchaseOrderCreateComponent implements OnInit {
     { name: 'Nombre', prop: 'name'}
   ];
 
+  public columnsConceptRequisitions: any[] = [
+    { name: 'Cantidad', prop: 'quantity'} , 
+    { name: 'Unidad', prop: 'unit'},
+    { name: 'Description', prop: 'description'},
+    { name: 'Folio de requisición', prop: 'folioRequisition'},
+    { name: 'Departamento', prop: 'nameDepartment'},
+  ];
+
   public providerTableMessages = {
     primaryTable: "Selecciona un proveedor",
     secondaryTable: "Proveedor seleccionado",
@@ -31,6 +40,8 @@ export class PurchaseOrderCreateComponent implements OnInit {
   }
 
   public requisitions: Requisition[] = [];
+
+  @ViewChild('conceptRequisitionTable') conceptRequisitionTable: any;
   
 
   constructor( private requisitionService: RequisitionService ) { }
@@ -49,9 +60,24 @@ export class PurchaseOrderCreateComponent implements OnInit {
         check_boss: REQUISITION_STATES.ACEPTADA,
         check_planning: REQUISITION_STATES.ACEPTADA,
         //Not equals to null
-        folio: { "neq":  null }
+        folio: { "neq":  null },
        },
-      include: ['provider', 'concept_requisition']
+      include: [
+        { relation: 'provider' },
+        { relation: 'concept_requisition' },
+        {
+          relation: 'boss_department',
+          scope: {
+          fields: ['id'],
+            include: {
+                relation: 'department',
+                scope: {
+                    fields: ['name', 'boss_departmentId'],
+                }
+            }
+          }
+        }
+      ]
     }).subscribe( requistions => { 
 
       this.requisitions = requistions;
@@ -67,20 +93,51 @@ export class PurchaseOrderCreateComponent implements OnInit {
     this.emitSelectedProvider$
       .subscribe((provider:any) => {
 
-        const requisitionsSelectedProvider = [ ... this.requisitions
-          .filter( requisition => requisition.provider.id == provider.id ) ];
-          console.log('requisitionsSelectedProvider: ', requisitionsSelectedProvider);
+        let requisitionsSelectedProvider = [ ... this.getSelectedProviderRequisitions(provider) ];
 
-        this.selectedProviderRequisitionDetails = 
-          requisitionsSelectedProvider.map( requisition => requisition.concept_requisition);
+        requisitionsSelectedProvider = this.addFolioAndDepartmentToConcepts( requisitionsSelectedProvider );
+
+        this.selectedProviderRequisitionDetails =  this.getConceptRequisitionsSelectedProvider(requisitionsSelectedProvider);
+        this.conceptRequisitionTable.recalculate();
         
       })
+
+  }
+
+  
+  getSelectedProviderRequisitions( provider: any ): any[] {
+    return this.requisitions.filter( requisition => requisition.provider.id == provider.id )
+  }
+
+
+  getConceptRequisitionsSelectedProvider( requisitionsSelectedProvider: any[] ) :any[] {
+    return requisitionsSelectedProvider
+    .map( requisition => requisition.concept_requisition)
+    .reduce((accumulator, currentValue) => accumulator.concat(currentValue),[]);
 
   }
 
 
   selectedElementHandler( element: any[]) {
     this.emitSelectedProvider$.next(element[0]);
+  }
+
+
+  //Add Folio and department to requisitions
+  addFolioAndDepartmentToConcepts( requisitionsSelectedProvider: any[] ): any [] {
+
+    requisitionsSelectedProvider.forEach( requisition => {
+
+      if(requisition.concept_requisition) {
+        requisition.concept_requisition.forEach( concept => {
+          concept.folioRequisition = requisition.folio;
+          concept.nameDepartment = requisition.boss_department.department.name;
+        })
+      }
+
+    })
+
+    return requisitionsSelectedProvider;
   }
 
   

@@ -33,20 +33,26 @@
     </tab>
 
     <tab>
-      <ng-template tabHeading><i class="icon-list"></i> Tabla de productos y servicios a ordenar &nbsp;<span class="badge badge-pill badge-warning">!</span></ng-template>
+      <ng-template tabHeading>
+        <i class="icon-list"></i> 
+        Tabla de productos y servicios a ordenar &nbsp;
+        <span 
+          class="badge badge-pill badge-warning"
+          *ngIf="!selectedProviderRequisitionDetails.length">!
+        </span>
+      </ng-template>
       
-      <div *ngIf="selectedProviderRequisitionDetails" class="animated fadeIn">
-          <!-- <ngx-datatable #myTable class="material" 
-          [rows]="rows" 
+      <div *ngIf="selectedProviderRequisitionDetails.length" class="animated fadeIn">
+          <ngx-datatable #conceptRequisitionTable class="material" 
+          [rows]="selectedProviderRequisitionDetails" 
           [columnMode]="'force'" 
-          [columns]="columns" 
+          [columns]="columnsConceptRequisitions" 
           [headerHeight]="50" 
           [footerHeight]="50"  
           [rowHeight]="'auto'" 
-          [limit]="5" 
-          [selected]="selected" 
-          [selectionType]="selectionType" (select)='onSelect($event)'>
-          </ngx-datatable> -->
+          [limit]="5"
+          >
+          </ngx-datatable>
       </div>
 
         <div *ngIf="!selectedProviderRequisitionDetails.length" class="card card-accent-danger">
