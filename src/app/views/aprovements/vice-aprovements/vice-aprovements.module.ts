@@ -1,3 +1,4 @@
+import { RequisitionDetailsComponent } from './components/requisition-details/requisition-details.component';
 import { DateParserService } from './../../../services/date-parser.service';
 import { SelectableTableModule } from './../../../shared/selectable-table/selectable-table.module';
 import { NgModule } from '@angular/core';
@@ -27,7 +28,8 @@ import { CommonModule } from '@angular/common';
     declarations: [
         ViceAprovementsComponent,
         CollapseDepartmentComponent,
-        TableRequisitionComponent
+        TableRequisitionComponent,
+        RequisitionDetailsComponent
     ],
     providers: [
         DateParserService
