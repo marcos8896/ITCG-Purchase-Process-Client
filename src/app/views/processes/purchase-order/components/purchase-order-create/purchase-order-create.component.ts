@@ -194,16 +194,16 @@ export class PurchaseOrderCreateComponent implements OnInit {
 
 
   /**
-   * Adds folioRequistion and nameDeparment to the concept_requisition sub-array
+   * Adds folioRequistion, requisitionId, boss_departmentId, and nameDeparment to the concept_requisition sub-array
    * on the requisitionsSelectedProvider array.
    * @author Marcos Barrera del Río <elyomarcos@gmail.com>
    * @param {Requisition[]} requisitionsSelectedProvider An array which contains all 
    * the requisitions that belong to the current selected provider.
    * @returns {any[]} A new array which contains all the requisitions that belong
    * to the current selected provider with their concept_requisition containing the
-   * 'folioRequisition' and 'nameDepartment' properties.
+   * folioRequistion, requisitionId, boss_departmentId, and nameDeparment properties.
    * @memberof PurchaseOrderCreateComponent
-   */
+  */
   addFolioAndDepartmentToConcepts( requisitionsSelectedProvider: any[] ): any [] {
 
     requisitionsSelectedProvider.forEach( requisition => {
@@ -211,7 +211,9 @@ export class PurchaseOrderCreateComponent implements OnInit {
       if(requisition.concept_requisition) {
         requisition.concept_requisition.forEach( concept => {
           concept.folioRequisition = requisition.folio;
+          concept.requisitionId = requisition.id;
           concept.nameDepartment = requisition.boss_department.department.name;
+          concept.boss_departmentId = requisition.boss_department.id;
         })
       }
 
@@ -231,7 +233,13 @@ export class PurchaseOrderCreateComponent implements OnInit {
    */
   filterDetailsBeforeSubmit( requisitionDetails: any[] ) {
     return this.selectedProviderRequisitionDetails.map( re => {
-      return { quantity: re.quantity, unit: re.unit, description: re.description }
+      return { 
+        quantity: re.quantity, 
+        unit: re.unit, 
+        description: re.description,
+        requisitionId: re.requisitionId,
+        boss_departmentId: re.boss_departmentId
+       }
     })
   }
 
