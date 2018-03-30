@@ -6,7 +6,7 @@ export class DateParserService {
 
   constructor() { }
 
-  formatDate(date, options = { locale: 'en', format: 'LLL' }) {
+  formatDate(date, options = { locale: 'es', format: 'LLL' }) {
     const { locale, format } = options;
     const mDate = moment(date);
     mDate.locale(locale);
