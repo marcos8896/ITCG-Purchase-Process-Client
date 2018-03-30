@@ -17,6 +17,7 @@
       <div *ngIf="providers && requisitions" class="animated fadeIn">
         <div class="row">
       
+          <!-- Providers Table -->
           <app-selectable-table class="col-md-12"
             [rows]="providers"
             [columns]="columnsProvider"
@@ -92,6 +93,8 @@
             <div class="card-header text-center">
               Detalle de orden de compra
             </div>
+
+            <!-- Requisition's Details Table -->
             <ngx-datatable #conceptRequisitionTable class="material" 
             [rows]="selectedProviderRequisitionDetails" 
             [columnMode]="'force'" 

@@ -52,13 +52,23 @@ export class PurchaseOrderCreateComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getRequisitionsWithProvider();
+    this.getRequisitionsWithRelatedModels();
     this.loadSelectedProviderRequisitions();
   }
 
 
-
-  getRequisitionsWithProvider(){
+  /**
+   * 
+   * Gets all the requisitions that are accepted by the boss_deparment,
+   * accepted by the planning department and have a folio currently.
+   * This method also includes to the requisitions the 'provider',
+   * 'concept_requisition' normal relationships and a nested one
+   * that includes the related 'boss_deparment' with his or her 'deparment'.
+   * @author Marcos Barrera del Río <elyomarcos@gmail.com>
+   * @param {*}
+   * @memberof PurchaseOrderCreateComponent
+   */
+  getRequisitionsWithRelatedModels(){
     this.requisitionService.getAll({
       where: { 
         check_boss: REQUISITION_STATES.ACEPTADA,
@@ -91,7 +101,19 @@ export class PurchaseOrderCreateComponent implements OnInit {
   }
 
 
-  
+  /**
+   * 
+   * Load the selected provider' requisitions by subscribing to the 'emitSelectedProvider'
+   * Subject which emits the current selected provider every time is selected
+   * on the Providers Table from the template.
+   * After a provider is selected this method makes all the array concerns to get a proper
+   * array called selectedProviderRequisitionDetails objects that contains the fields
+   * 'quantity', 'unit', 'description', 'folioRequisition' and 'nameDepartment' in order
+   * to display them on the Requisition's Details Table
+   * @author Marcos Barrera del Río <elyomarcos@gmail.com>
+   * @param {*}
+   * @memberof PurchaseOrderCreateComponent
+   */
   loadSelectedProviderRequisitions() {
     
     this.emitSelectedProvider$
@@ -115,12 +137,33 @@ export class PurchaseOrderCreateComponent implements OnInit {
 
   }
 
-  
+
+  /**
+   * 
+   * Gets the current selected provider' requisitions from the main requisitions array.
+   * @author Marcos Barrera del Río <elyomarcos@gmail.com>
+   * @param provider The current provider selected from the Providers Table.
+   * @returns {Requisition[]} A new array which contains all the requisitions that 
+   * belong to the current selected provider.
+   * @memberof PurchaseOrderCreateComponent
+   */
   getSelectedProviderRequisitions( provider: any ): any[] {
-    return this.requisitions.filter( requisition => requisition.provider.id == provider.id )
+    return this.requisitions.filter( requisition => requisition.provider.id === provider.id )
   }
 
 
+  /**
+   * 
+   * Get all the Concept_Requisitions (Requisitions details) from the requisitions
+   * that are related to the current selected provider.
+   * @author Marcos Barrera del Río <elyomarcos@gmail.com>
+   * @param requisitionsSelectedProvider - An array with the requisitions that belong
+   * to a certain provider, in this case, the current selected provider. This array
+   * has to contain a sub-array with the concept_requisitions
+   * @returns {any[]} A new array which contains all the concept_requisitions from the
+   * requisitions that belong to the current selected provider.
+   * @memberof PurchaseOrderCreateComponent
+  */
   getConceptRequisitionsSelectedProvider( requisitionsSelectedProvider: any[] ) :any[] {
     return requisitionsSelectedProvider
     .map( requisition => requisition.concept_requisition)
@@ -129,12 +172,32 @@ export class PurchaseOrderCreateComponent implements OnInit {
   }
 
 
+  /**
+   * 
+   * This handler method receives the selected provider from the child 'app-selectable-table' 
+   * component and pass it to the 'emitSelectedProvider$' Subject.
+   * @author Marcos Barrera del Río <elyomarcos@gmail.com>
+   * @param element An array which only contains on element. This element is the one that is
+   * selected on the 'app-selectable-table' component.
+   * @returns {*}
+   * @memberof PurchaseOrderCreateComponent
+  */
   selectedElementHandler( element: any[]) {
     this.emitSelectedProvider$.next(element[0]);
   }
 
 
-  //Add Folio and department to requisitions
+  /**
+   * Adds folioRequistion and nameDeparment to the concept_requisition sub-array
+   * on the requisitionsSelectedProvider array.
+   * @author Marcos Barrera del Río <elyomarcos@gmail.com>
+   * @param {Requisition[]} requisitionsSelectedProvider An array which contains all 
+   * the requisitions that belong to the current selected provider.
+   * @returns {any[]} A new array which contains all the requisitions that belong
+   * to the current selected provider with their concept_requisition containing the
+   * 'folioRequisition' and 'nameDepartment' properties.
+   * @memberof PurchaseOrderCreateComponent
+   */
   addFolioAndDepartmentToConcepts( requisitionsSelectedProvider: any[] ): any [] {
 
     requisitionsSelectedProvider.forEach( requisition => {
@@ -151,17 +214,27 @@ export class PurchaseOrderCreateComponent implements OnInit {
     return requisitionsSelectedProvider;
   }
 
-  onSubmit() {
-    this.purchaseOrder.purchase_order_requisition = this.filterDetailsBeforeSubmit();
-    console.log('this.purchaseOrder: ', this.purchaseOrder);
 
-  }
-
-
-  filterDetailsBeforeSubmit() {
+  /**
+   * Removes the 'folio' and 'nameDeparment' properties from the 'concept_requisition'
+   * before sending the data to the API.
+   * @author Marcos Barrera del Río <elyomarcos@gmail.com>
+   * @returns {any[]} A new array which only contains the 'quantity', 'unit' and
+   * 'description' properties on its objects.
+   * @memberof PurchaseOrderCreateComponent
+   */
+  filterDetailsBeforeSubmit( requisitionDetails: any[] ) {
     return this.selectedProviderRequisitionDetails.map( re => {
       return { quantity: re.quantity, unit: re.unit, description: re.description }
     })
+  }
+
+
+  onSubmit() {
+    this.purchaseOrder.purchase_order_requisition = 
+      this.filterDetailsBeforeSubmit(this.selectedProviderRequisitionDetails);
+    console.log('this.purchaseOrder: ', this.purchaseOrder);
+
   }
 
 
