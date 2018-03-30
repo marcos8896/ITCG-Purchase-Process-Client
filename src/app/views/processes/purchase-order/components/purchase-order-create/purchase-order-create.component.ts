@@ -1,11 +1,14 @@
-import { ViewChild } from '@angular/core/';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { ToastrService } from 'ngx-toastr';
+
+import { REQUISITION_STATES } from './../../../../../shared/_requisition_states';
+
+import { RequisitionService } from './../../../../../services/requisition.service';
+import { PurchaseOrderService } from './../../../../../services/purchase-order.service';
+
 import { Provider } from './../../../../../models/provider';
 import { Requisition } from './../../../../../models/requisition';
-import { RequisitionService } from './../../../../../services/requisition.service';
-import { REQUISITION_STATES } from './../../../../../shared/_requisition_states';
-import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-
 
 @Component({
   selector: 'app-purchase-order-create',
@@ -48,7 +51,10 @@ export class PurchaseOrderCreateComponent implements OnInit {
   public requisitions: Requisition[] = [];
 
 
-  constructor( private requisitionService: RequisitionService ) { }
+  constructor( private requisitionService: RequisitionService, 
+               private purchaseOrderService: PurchaseOrderService,
+               private toastrService: ToastrService
+  ) { }
 
 
   ngOnInit() {
@@ -233,9 +239,25 @@ export class PurchaseOrderCreateComponent implements OnInit {
   onSubmit() {
     this.purchaseOrder.purchase_order_requisition = 
       this.filterDetailsBeforeSubmit(this.selectedProviderRequisitionDetails);
+
+    this.purchaseOrder.provider = this.selectedProvider[0];
+
     console.log('this.purchaseOrder: ', this.purchaseOrder);
+    this.purchaseOrderService.create(this.purchaseOrder)
+    .subscribe( res => {
+      if ( res ) this.showSuccess()
+    },
+    data => this.showError(data.error.message),
+    () => console.log('Completed'))
 
   }
 
+  showSuccess() {
+    this.toastrService.success('Registro agregado exitosamente', '¡Registro agregado!')
+  }
+
+  showError( error ) {
+    this.toastrService.error(error, '¡Ha numa!')
+  }
 
 }

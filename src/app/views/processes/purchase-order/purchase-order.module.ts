@@ -1,3 +1,4 @@
+import { PurchaseOrderService } from './../../../services/purchase-order.service';
 import { SelectableTableModule } from './../../../shared/selectable-table/selectable-table.module';
 import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
@@ -21,6 +22,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
   ],
   declarations: [
     PurchaseOrderCreateComponent,
-  ]
+  ],
+  providers: [ PurchaseOrderService ]
 })
 export class PurchaseOrderModule { }
