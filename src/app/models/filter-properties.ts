@@ -8,7 +8,7 @@
    */
 export interface FilterPropertiesInterface {
     where?: any,
-    include?: string | string[],
+    include?: string | any[],
     limit?: number,
     skip?: number,
     order?: string | string[],

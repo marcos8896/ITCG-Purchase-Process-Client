@@ -1,7 +1,10 @@
+import { ToastrService } from 'ngx-toastr';
+import { InputOutputDetailsService } from './../../../../../services/input-output-details.services';
+import { InputOutputService } from './../../../../../services/input-output.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { RequisitionService } from './../../../../../services/requisition.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -23,12 +26,16 @@ export class InputOutputCreateComponent implements OnInit {
   public products: any[] = []
   public behaviorSubject: BehaviorSubject<any[]>
 
-  public dateRe = new Date()
+  public dateIO = new Date()
   
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private requisitionService: RequisitionService
+    private requisitionService: RequisitionService,
+    private inputOutputService: InputOutputService,
+    private inputOutputDetailsService: InputOutputDetailsService,
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -38,12 +45,11 @@ export class InputOutputCreateComponent implements OnInit {
     this.behaviorSubjectTotal = new BehaviorSubject<any>( this.total );
     this.total$ = this.behaviorSubjectTotal.map( data => data)   
     this.getRequisition()    
-    console.log('dateRe: ', this.dateRe);
   }
 
   initializateCosts(){
     this.products.forEach( product => {
-      product.cost = 0;
+      product.price = 0;
     })
     this.behaviorSubject.next( this.products )
     this.getTotal();
@@ -53,12 +59,40 @@ export class InputOutputCreateComponent implements OnInit {
     this.activatedRoute.params.subscribe( params => {
       this.id = params['id'];
       this.requisitionService.findById( this.id , {
-        include : ['provider','concept_requisition', 'boss_department', 'budget_key']
+        include : [
+          {relation: 'provider'},
+          {relation: 'budget_key'},
+          {
+            relation: 'concept_requisition',
+            scope: {
+              fields: ['id', 'conceptId', 'unit', 'quantity', 'description'],
+                include: {
+                  relation: 'concept',
+                  scope: {
+                      fields: ['concept_number'],
+                  }
+                }
+              }
+          },
+          {
+            relation: 'boss_department',
+            scope: {
+            fields: ['id', 'name'],
+              include: {
+                relation: 'department',
+                scope: {
+                    fields: ['name'],
+                }
+              }
+            }
+          }
+          
+        ]
       }).subscribe( res => {
         this.requisition = res;
-        this.products = res.concept_requisition;
-        this.behaviorSubject.next(this.products);
-        this.initializateCosts();        
+        this.products = [...res.concept_requisition]
+        this.behaviorSubject.next(this.products);        
+        this.initializateCosts();  
       })
     })
   }
@@ -82,13 +116,13 @@ export class InputOutputCreateComponent implements OnInit {
     this.getTotal()
   }
 
-  onCost(cost, id){
+  onCost(price, id){
     this.products.forEach( product => {
       if (product.id == id){
-        if (cost == '')
-          product.cost = 0;
+        if (price == '')
+          product.price = 0;
         else
-        product.cost = cost;
+        product.price = price;
       }        
     })
     this.behaviorSubject.next( this.products )
@@ -98,14 +132,35 @@ export class InputOutputCreateComponent implements OnInit {
   getTotal(){
     this.total = 0;
     this.products.forEach( product => {
-      this.total += ( product.quantity * product.cost )
+      this.total += ( product.quantity * product.price )
     })
     this.behaviorSubjectTotal.next( this.total )
   }
 
   onFormInputOutput(values){
-    console.log('values: ', values);
-
+    var products: any[] = [];
+    
+    values.requisitionId = this.requisition.id;
+    this.inputOutputService.create(values)
+      .subscribe( res =>{
+        this.products.forEach(element => {
+          products.push({ quantity: element.quantity, unit: element.unit, description: element.description, price: element.price, input_outputId: res.id, conceptId: element.conceptId })
+        });
+        this.inputOutputDetailsService.create(products)        
+          .subscribe( res => {
+            this.requisition.status = "Facturado";
+            this.requisitionService.update( this.requisition )
+              .subscribe( resp => {
+                this.showSuccess(); 
+                this.router.navigate(['../../all']);
+              })
+          })
+      })
+      
+    
   }
 
+  showSuccess() {
+    this.toastr.success('Registro agregado exitosamente', '¡Registro agregado!')
+  }
 }
