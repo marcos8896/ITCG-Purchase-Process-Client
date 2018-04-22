@@ -2,7 +2,7 @@
 
 <div class="animated fadeIn">
   <!-- Nav tabs -->
-  <tabset *ngIf="providers.length > 0 && requisitions.length > 0">
+  <tabset *ngIf="providers.length > 0 && requisitions.length > 0 && !loadingData.providers">
 
     <tab>
       <ng-template tabHeading>

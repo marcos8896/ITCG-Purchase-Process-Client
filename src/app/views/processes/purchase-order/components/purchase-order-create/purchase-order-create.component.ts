@@ -255,15 +255,49 @@ export class PurchaseOrderCreateComponent implements OnInit {
       this.filterDetailsBeforeSubmit(this.selectedProviderRequisitionDetails);
 
     this.purchaseOrder.provider = this.selectedProvider[0];
+    const currentProvider = { ...this.purchaseOrder.provider };
 
     this.purchaseOrderService.create(this.purchaseOrder)
     .subscribe( res => {
-      if ( res ) this.showSuccess()
+      if ( res ) this.showSuccess();
+      this.resetPurchaseProcessState(currentProvider);
+
     },
     data => this.showError(data.error.message),
     () => console.log('Completed'))
 
   }
+
+
+  /**
+   * Reset all the Purchase Process state to begin it once again if need it.
+   * It removes the current provider that was already registered.
+   * It Removes current selected provider's requisitions from array.
+   * @author Marcos Barrera del Río <elyomarcos@gmail.com>
+   * @returns {*}
+   */
+  resetPurchaseProcessState(currentProvider: any): void {
+    const index = 
+    this.providers.findIndex((provider:any) => currentProvider.id === provider.id);
+
+    //Remove current selected provider's requisitions from array.
+    this.requisitions = this.requisitions.filter( requisition => 
+      requisition.provider.id !== currentProvider.id
+    );
+
+    this.selectedProviderRequisitionDetails = [];
+
+    this.loadingData.providers = true;
+
+
+    //Little hack to avoid wrong rezising on the Providers Table.
+    setTimeout(() => {
+      this.providers = this.requisitions.map( requisition => requisition.provider );
+      this.loadingData.providers = false;
+    }, 0);
+
+  }
+
 
   showSuccess() {
     this.toastrService.success('Registro agregado exitosamente', '¡Registro agregado!')
