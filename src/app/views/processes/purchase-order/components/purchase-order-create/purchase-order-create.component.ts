@@ -50,6 +50,10 @@ export class PurchaseOrderCreateComponent implements OnInit {
 
   public requisitions: Requisition[] = [];
 
+  public loadingData = {
+    providers: true,
+  }
+
 
   constructor( private requisitionService: RequisitionService, 
                private purchaseOrderService: PurchaseOrderService,
@@ -79,6 +83,7 @@ export class PurchaseOrderCreateComponent implements OnInit {
       where: { 
         check_boss: REQUISITION_STATES.ACEPTADA,
         check_planning: REQUISITION_STATES.ACEPTADA,
+        status: REQUISITION_STATES.ACEPTADA,
         //Not equals to null
         folio: { "neq":  null },
        },
@@ -102,6 +107,7 @@ export class PurchaseOrderCreateComponent implements OnInit {
 
       this.requisitions = requistions;
       this.providers = this.requisitions.map( requisition => requisition.provider );
+      this.loadingData.providers = false;
       
     })
   }
@@ -250,7 +256,6 @@ export class PurchaseOrderCreateComponent implements OnInit {
 
     this.purchaseOrder.provider = this.selectedProvider[0];
 
-    console.log('this.purchaseOrder: ', this.purchaseOrder);
     this.purchaseOrderService.create(this.purchaseOrder)
     .subscribe( res => {
       if ( res ) this.showSuccess()

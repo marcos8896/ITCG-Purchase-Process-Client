@@ -2,7 +2,7 @@
 
 <div class="animated fadeIn">
   <!-- Nav tabs -->
-  <tabset>
+  <tabset *ngIf="providers.length > 0 && requisitions.length > 0">
 
     <tab>
       <ng-template tabHeading>
@@ -14,7 +14,7 @@
         </span>
       </ng-template>
       
-      <div *ngIf="providers && requisitions" class="animated fadeIn">
+      <div class="animated fadeIn">
         <div class="row">
       
           <!-- Providers Table -->
@@ -126,4 +126,14 @@
       
     </tab>
   </tabset>
+
+  <div *ngIf="providers.length === 0 && requisitions.length === 0 && !loadingData.providers" class="card border-info">
+    <div class="card-header">
+      Aviso
+    </div>
+    <div class="card-body">
+      No hay ningún proveedor con órdenes de compra pendientes en este momento.
+    </div>
+  </div>
+
 </div><!--/.col-->
