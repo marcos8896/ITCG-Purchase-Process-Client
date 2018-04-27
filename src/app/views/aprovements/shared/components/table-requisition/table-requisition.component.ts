@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
-import { DateParserService } from './../../../../../services/date-parser.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { DateParserService } from '../../../../../services/date-parser.service';
 
 @Component({
     selector: 'app-table-requisition',
@@ -32,7 +32,8 @@ export class TableRequisitionComponent implements OnInit {
 
     selectedElementHandler( element ) {
         this.selectedRequisition = element;
-        const route = '/aprovements/vice-principal/requisition-details';
+        // const route = '/aprovements/vice-principal/requisition-details';
+        const route = '/aprovements/requisition-details';
         const { id } = this.selectedRequisition[0];
         this.router.navigate([ route, id ])
     }

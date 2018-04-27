@@ -1,4 +1,4 @@
-import { RequisitionDetailsComponent } from './components/requisition-details/requisition-details.component';
+import { SharedAprovementsModule } from './../shared/shared-aprovements.module';
 import { DateParserService } from './../../../services/date-parser.service';
 import { SelectableTableModule } from './../../../shared/selectable-table/selectable-table.module';
 import { NgModule } from '@angular/core';
@@ -6,8 +6,6 @@ import { ViceAprovementsRoutingModule } from './vice-aprovements.routing';
 
 // Custom Components
 import { ViceAprovementsComponent } from './vice-aprovements.component';
-import { CollapseDepartmentComponent } from './components/collapse-departmen/collapse-departments.component';
-import { TableRequisitionComponent } from './components/table-requisition/table-requisition.component';
 
 // Modules
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -19,17 +17,11 @@ import { CommonModule } from '@angular/common';
     imports: [
         ViceAprovementsRoutingModule,
         CommonModule,
-        FormsModule,
-        NgxDatatableModule,
-        CollapseModule.forRoot(),
-        SelectableTableModule
+        SharedAprovementsModule,
     ],
     exports: [],
     declarations: [
         ViceAprovementsComponent,
-        CollapseDepartmentComponent,
-        TableRequisitionComponent,
-        RequisitionDetailsComponent
     ],
     providers: [
         DateParserService

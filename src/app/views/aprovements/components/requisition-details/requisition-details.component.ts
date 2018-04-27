@@ -1,7 +1,7 @@
 import { ToastrService } from 'ngx-toastr';
-import { REQUISITION_STATES } from './../../../../../shared/_requisition_states';
+import { REQUISITION_STATES } from './../../../../shared/_requisition_states';
 import { filters } from './_filter-requisition';
-import { RequisitionService } from './../../../../../services/requisition.service';
+import { RequisitionService } from './../../../../services/requisition.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
@@ -64,7 +64,7 @@ export class RequisitionDetailsComponent implements OnInit, OnDestroy {
     acceptRequisition() {
         const { id } = this.requisition;
         const { ACEPTADA } = REQUISITION_STATES;
-        this.requisitionService.checkSubdirection( id, ACEPTADA)
+        this.requisitionService.checkSubdirection( id, ACEPTADA )
             .subscribe( res => this.showSuccess('La requisición ha sido aceptada'),
                         error => this.showError(error));
     }
@@ -72,9 +72,9 @@ export class RequisitionDetailsComponent implements OnInit, OnDestroy {
     cancelRequisition() {
         const { id } = this.requisition;
         const { CANCELADA } = REQUISITION_STATES;
-        this.requisitionService.checkSubdirection( id, CANCELADA)
-        .subscribe( res => this.showSuccess('La requisición ha sido cancelada'),
-                    error => this.showError(error));
+        this.requisitionService.checkSubdirection( id, CANCELADA )
+            .subscribe( res => this.showSuccess('La requisición ha sido cancelada'),
+                        error => this.showError(error));
     }
 
     showSuccess( message ) {
@@ -83,6 +83,7 @@ export class RequisitionDetailsComponent implements OnInit, OnDestroy {
     }
 
     showError( error ) {
+        console.log(error);
         this.toastrService.warning(error, '¡Ha numa!')
     }
 
