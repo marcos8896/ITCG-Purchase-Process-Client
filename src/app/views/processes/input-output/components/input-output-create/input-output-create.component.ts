@@ -138,6 +138,7 @@ export class InputOutputCreateComponent implements OnInit {
   }
 
   onFormInputOutput(values){
+    console.log('values: ', values);
     var products: any[] = [];
     
     values.requisitionId = this.requisition.id;
@@ -152,7 +153,6 @@ export class InputOutputCreateComponent implements OnInit {
             this.requisitionService.update( this.requisition )
               .subscribe( resp => {
                 this.showSuccess(); 
-                this.router.navigate(['../../all']);
               })
           })
       })
