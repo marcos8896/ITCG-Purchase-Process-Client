@@ -1,3 +1,4 @@
+import { PurchaseOrderService } from './../../../services/purchase-order.service';
 import { SelectableTableModule } from './../../../shared/selectable-table/selectable-table.module';
 import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
@@ -6,10 +7,8 @@ import { CommonModule } from '@angular/common';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PurchaseOrderCreateComponent } from './components/purchase-order-create/purchase-order-create.component';
 import { PurchaseOrderRoutingModule } from './purchase-order.routing';
-// import { SelectableTableComponent } from './../../../shared/components/selectable-table/selectable-table.component';
-// import { RequisitionRoutingModule } from './requisition.routing';
-// import { RequisitionCreateComponent } from './components/requisition-create/requisition-create.component';
-// import { RequisitionsComponent } from 'app/views/processes/requisition/components/requisitions/requisitions.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
 
 @NgModule({
   imports: [
@@ -18,13 +17,12 @@ import { PurchaseOrderRoutingModule } from './purchase-order.routing';
     CommonModule,
     FormsModule,
     NgxDatatableModule,
+    TabsModule,
     SelectableTableModule
   ],
   declarations: [
-    // RequisitionCreateComponent,
-    // RequisitionsComponent  
     PurchaseOrderCreateComponent,
-    // SelectableTableComponent
-  ]
+  ],
+  providers: [ PurchaseOrderService ]
 })
 export class PurchaseOrderModule { }
