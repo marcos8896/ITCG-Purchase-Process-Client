@@ -8,7 +8,11 @@ const routes: Routes = [
     { 
         path: 'vice-principal',
         loadChildren: 'app/views/aprovements/vice-aprovements/vice-aprovements.module#ViceAprovementsModule'
-    }
+    },
+    { 
+        path: 'planning',
+        loadChildren: 'app/views/aprovements/planning-aprovements/planning-aprovements.module#PlanningAprovementsModule'
+    },
 ];
 
 @NgModule({
