@@ -158,6 +158,11 @@ export const navigation = [
             name: 'Registrar',
             url: '/processes/input-output/all',
             icon: 'icon-note',
+          },
+          {
+            name: 'Consultar',
+            url: '/processes/input-output/all-generated',
+            icon: 'icon-note',
           }
         ] 
       },

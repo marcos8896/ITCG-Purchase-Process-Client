@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { InputOutputsComponent } from './components/input-outputs/input-outputs.component';
+import { InputOutputAllGeneratedComponent } from './components/input-output-all-generated/input-output-all-generated.component';
+import { InputOutputShowComponent } from './components/input-output-show/input-output-show.component';
 
 @NgModule({
   imports: [
@@ -18,7 +20,9 @@ import { InputOutputsComponent } from './components/input-outputs/input-outputs.
   ],
   declarations: [
     InputOutputCreateComponent,
-    InputOutputsComponent
+    InputOutputsComponent,
+    InputOutputAllGeneratedComponent,
+    InputOutputShowComponent
   ]
 })
 export class InputOutputModule { }
