@@ -9,12 +9,12 @@ const routes: Routes = [
   { 
     path: '',
     component: ViceAprovementsComponent,
-
     data: {
       guards: [ GUARDS.VICE_PRINCIPAL ]
     },
     canActivate:  [ LoggedUserGuard ]
   },
+
 ];
 
 @NgModule({

@@ -48,5 +48,18 @@ export class PlanningService {
         const headers = Object.create(this.headers);
         headers.set('Authorization', JSON.parse(localStorage.getItem('ITCG_token')));
         return headers;
-      }
+    }
+
+    /**
+     * getRequisitionsToSign
+     * 
+     * Gets all the requisitions so the planning user can aprove or cancel
+     */
+    public getRequisitionsToSign() {
+        return this.http.get(`${this.endPoint}/getRequisitionsToSign`, {
+            headers: this.generateHeaderObject()
+        })
+        .map( res => res.json() || {})
+        .catch( this.handleError );
+    }
 }

@@ -13,7 +13,7 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input formControlName="email" name="email" type="text" class="form-control" placeholder="Nombre de usuario...">
+                  <input id="inputEmailLogin" formControlName="email" name="email" type="text" class="form-control" placeholder="Nombre de usuario...">
                   <ul *ngIf="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)" class="alert alert-danger" style="margin-top: .5em">
                       <li *ngIf="loginForm.controls.email.errors.required"> 
                         Debes ingresar un <strong> email</strong>
@@ -26,7 +26,7 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <label for="">Password</label>
-                  <input formControlName="password" name="password" type="password" class="form-control">
+                  <input id="inputPasswordLogin" formControlName="password" name="password" type="password" class="form-control">
                   <ul *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)" class="alert alert-danger" style="margin-top: .5em">
                       <li *ngIf="loginForm.controls.password.errors.required">
                         Debes ingresar un <strong>password</strong>
@@ -46,7 +46,7 @@
             </div>
           </div>
           <div class="card-footer text-right">
-            <button [disabled]="loginForm.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i>Entrar</button>
+            <button id="buttonLogin" [disabled]="loginForm.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i>Entrar</button>
           </div>
 
         </form>

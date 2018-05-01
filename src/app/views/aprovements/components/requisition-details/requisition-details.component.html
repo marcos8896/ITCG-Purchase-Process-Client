@@ -1,0 +1,61 @@
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-header">
+            <strong>Aceptar requisición</strong>
+        </div>
+        <div class="card-body" *ngIf="requisition">
+            <div class="row">
+                <div class="col-md-4">
+                    <p>
+                        Detalles de requisión
+                    </p>
+                    {{ requisition.date | date:'d MMMM HH:mm' }} <br>
+                    <strong>Acción: </strong> {{ requisition.action }} <br>
+
+                </div>
+                <div class="col-md-4">
+                    <p>
+                        Departamento:
+                    </p>
+                    {{ requisition.boss_department.department.name }} <br>
+                    <strong>Jefe:</strong> {{ requisition.boss_department.name }} <br>
+                    <strong>Email:</strong> {{ requisition.boss_department.email }}
+                </div>
+                <div class="col-md-4">
+                    <p>
+                        Proveedor:
+                    </p>
+                    {{ requisition.provider.name }} <br>
+                    <strong *ngIf="requisition.provider.address">Dirección: </strong> {{ requisition.provider.address }} <br>
+                    <strong *ngIf="requisition.provider.email">Email: </strong> {{ requisition.provider.email }} <br>
+                    <strong *ngIf="requisition.provider.phone">Teléfono: </strong> {{ requisition.provider.phone }} <br>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <th>ID Partida</th>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                        <tbody>
+                            <tr *ngFor="let concept of requisition.concept_requisition">
+                                <td>{{ concept.conceptId }}</td>
+                                <td>{{ concept.description }}</td>
+                                <td>{{ concept.quantity }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12" style="display: inline">
+                    <button (click)="goBack()" class="btn btn-outline-secondary pull-left">Regresar</button>
+                    <button (click)="acceptRequisition()" class="btn btn-outline-success pull-right ml-2">Aceptar requisición</button>
+                    <button (click)="cancelRequisition()" class="btn btn-outline-danger pull-right ml-2">Cancelar requisición</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,6 @@
-import { DateParserService } from './../../../../../services/date-parser.service';
+import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
+import { DateParserService } from '../../../../../services/date-parser.service';
 
 @Component({
     selector: 'app-table-requisition',
@@ -21,7 +22,8 @@ export class TableRequisitionComponent implements OnInit {
     public columnsSize = 12;
 
     constructor(
-        private dateParserService: DateParserService
+        private dateParserService: DateParserService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -30,14 +32,16 @@ export class TableRequisitionComponent implements OnInit {
 
     selectedElementHandler( element ) {
         this.selectedRequisition = element;
-        console.log(this.selectedRequisition);
+        const route = '/aprovements/requisition-details';
+        const { id } = this.selectedRequisition[0];
+        this.router.navigate([ route, id ])
     }
 
     parseRequisitionsDate() {
         const parser = this.dateParserService;
         const parserOptions = {
             locale: 'es',
-            format: 'LLL' 
+            format: 'LLL'
         };
 
         this.requisitions.forEach( requisition => {

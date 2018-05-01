@@ -30,9 +30,8 @@ export class ViceAprovementsComponent implements OnInit {
     
     getRequisitions() {
         this.vicePrincipalService.getRequisitionsToSign()
-            .subscribe( res => {
-                this.departments = res.result.subdirection.department;
-            })
+            .subscribe( res =>
+                this.departments = res.result.subdirection.department);
     }
 
     
