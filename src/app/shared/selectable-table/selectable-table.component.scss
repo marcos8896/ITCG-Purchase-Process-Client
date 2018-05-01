@@ -1,0 +1,13 @@
+@import "../../../scss/_bootstrap-variables.scss";
+
+:host /deep/ .datatable-body-row.active .datatable-row-group {
+  background-color: $cyan !important;
+  cursor: default;
+}
+
+// datatable-body-row:hover {
+// }
+
+:host /deep/ .datatable-body-row .datatable-row-group {
+  cursor: pointer;
+}

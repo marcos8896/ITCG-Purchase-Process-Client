@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-md-12">
+        <app-selectable-table
+            [rows]="requisitions"
+            [columns]="columns"
+            [selected]="selectedRequisition"
+            [selectionType]="'single'"
+            [messages]="providerTableMessages"
+            [enableFiltering]="false"
+            [showSecondaryTable]="false"
+            [columnsSize]="columnsSize"
+            (selectedElement)="selectedElementHandler($event)"
+        >
+    
+        </app-selectable-table>
+
+    </div>
+</div>

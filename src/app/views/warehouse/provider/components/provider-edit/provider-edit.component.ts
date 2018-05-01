@@ -21,10 +21,11 @@ export class ProviderEditComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router
   ) {
-    this.getUrlId();
+    // this.getUrlId();
    }
 
   ngOnInit() {
+    this.getUrlId();
   }
 
   getUrlId() {

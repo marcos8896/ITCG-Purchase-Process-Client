@@ -276,7 +276,7 @@
 
           </div>
           <div class="card-footer text-right">
-            <button [disabled]="(products.length < 1) || !action || !provider" type="submit" class="btn btn-outline-primary btn-lg"><i class="fa fa-check"></i> Registrar</button>
+            <button [disabled]="(products.length < 1) || !action || !provider" type="submit" class="btn btn-outline-primary btn-lg" [routerLink]="['../../../']"><i class="fa fa-check"></i> Registrar</button>
           </div>
 
         </form>

@@ -66,14 +66,13 @@ export class BasicRequestService {
       .catch( this.handleError );
   }
 
-
-  public handleError(error: Response) {
-    return Observable.throw(error.json()|| 'Server error')
+  protected handleError(error: Response) {
+    return Observable.throw(error.json() || 'Server error')
   }
 
-  public generateHeaderObject(): Headers {
-    let headers = Object.create(this.headers);
-    headers.set('Authorization', JSON.parse(localStorage.getItem("ITCG_token")));
+  protected generateHeaderObject(): Headers {
+    const headers = Object.create(this.headers);
+    headers.set('Authorization', JSON.parse(localStorage.getItem('ITCG_token')));
     return headers;
   }
 

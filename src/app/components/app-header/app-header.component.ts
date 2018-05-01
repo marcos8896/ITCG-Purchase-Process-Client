@@ -25,19 +25,22 @@ export class AppHeaderComponent implements OnInit {
    }
 
   getUser(){
-    var role = JSON.stringify(localStorage.getItem("ITCG_role"))
-    role == 'viceprincipal' ? this.getVice() : this.getBoss();    
+    var role = JSON.parse(localStorage.getItem("ITCG_role"))
+    if ( role != 'planningdepartment' )
+      role == 'viceprincipal' ? this.getVice() : this.getBoss();    
   }
 
   getVice(){
     this.vicePrincipalService.findById(
-      JSON.parse(localStorage.getItem("ITCG_userId"))
-    ).subscribe( res => this.userLogged = res )
+      JSON.parse(localStorage.getItem("ITCG_userId")),
+      { include: ['subdirection'] }
+    ).subscribe( res => this.userLogged = res )   
   }
 
   getBoss(){
     this.bossDepartmentService.findById(
-      JSON.parse(localStorage.getItem("ITCG_userId"))
+      JSON.parse(localStorage.getItem("ITCG_userId")),
+      { include: ['department'] }
     ).subscribe( res => this.userLogged = res)
   }
   

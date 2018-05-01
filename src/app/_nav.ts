@@ -150,6 +150,18 @@ export const navigation = [
         ] 
       },
       {
+        name: 'Entradas-Salidas',
+        icon: 'icon-map',
+        url: '',
+        children: [
+          {
+            name: 'Registrar',
+            url: '/processes/input-output/all',
+            icon: 'icon-note',
+          }
+        ] 
+      },
+      {
         name: 'Aceptar requis',
         url: '',
         icon: 'icon-user-follow',
@@ -165,7 +177,24 @@ export const navigation = [
             icon: 'icon-note',
           }
         ] 
-      }    
+      },
+      {
+        name: 'Órdenes de compra',
+        icon: 'icon-map',
+        url: '',
+        children: [
+          {
+            name: 'Registrar',
+            url: '/processes/purchase-order/create',
+            icon: 'icon-note',
+          },
+          // {
+          //   name: 'Consultar',
+          //   url: '/processes/requisition/all',
+          //   icon: 'icon-note',
+          // }
+        ] 
+      },    
       
     ]
   },
@@ -180,7 +209,20 @@ export const navigation = [
         icon: 'icon-user-follow',
       }
     ]
-  }   
+  }, 
+  // Esta opción sólo se mostrará cuando sea un usuario de tipo "VicePrincipal"
+  {
+    name: 'Aprobaciones',
+    icon: 'icon-check',
+    url: '/aprovements/vice-principal',
+  },
+  // Esta opción sólo se mostrará cuando sea un usuario de tipo "Planning"
+  {
+    name: 'Aprobaciones',
+    icon: 'icon-check',
+    url: '/aprovements/planning',
+  }
+  
 ];
 
 

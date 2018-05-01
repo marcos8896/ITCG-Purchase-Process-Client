@@ -1,0 +1,145 @@
+
+<div class="animated fadeIn" *ngIf="requisition">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <form #formInputOutput="ngForm" (ngSubmit)="onFormInputOutput(formInputOutput.value); formInputOutput.reset()">
+          <div class="card-header">
+            <h3 class="text-center display-5">Entrada y salida de materiales de requisiciones</h3>
+          </div>
+          <!--First part-->
+          <div class="row">
+
+            <div class="col-sm-12 offset-md-1 col-md-10">
+              <div class="card-body">
+                      
+                <div class="row">
+
+                  <div class="col-sm-12 col-md-3">
+                    <div class="form-group">
+                      <label>Folio Requisicion</label>
+                      <div class="fakeInput">
+                        {{ requisition.folio }}
+                      </div>                     
+                    </div>
+                  </div>
+                  
+                  <div class="col-sm-12 col-md-3" *ngIf="dateIO">
+                    <label for="">Fecha</label>
+                    <input type="date" name="date" #dateR class="form-control" [ngModel]="dateIO | date:'yyyy-MM-dd'" required>
+                  </div>
+
+                  <div class="col-sm-12 col-md-6">
+                    <label>Ingrese folio factura</label>
+                    <input ngModel #bill="ngModel" name="bill" type='text' class="form-control"/>
+                  </div>
+
+                  <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                      <label for="">Nombre del jefe del area solicitante</label>
+                      <!-- <input *ngIf="!boss" type="text" readonly class="form-control read-only-normal-style" value=""> -->
+                      <div class="fakeInput">
+                        {{ requisition.boss_department.name }}
+                      </div>  
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                      <label for="">Área solicitante</label>
+                      <!-- <input *ngIf="!boss" type="text" readonly class="form-control read-only-normal-style" value=""> -->
+                      <div  class="fakeInput">
+                        {{ requisition.boss_department.department.name }}
+                      </div>  
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                      <label>Clave presupuestal</label>
+                        <div class="fakeInput">
+                          {{ requisition.budget_key.budget_key_id }}
+                        </div>                     
+                    </div>
+                  </div>   
+ 
+                  <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                      <label>Proveedor</label>
+                        <div class="fakeInput">
+                          {{ requisition.provider.name }}
+                        </div>                 
+                    </div>
+                  </div>                                     
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="padding:20px">        
+
+            <div class="col-sm-12 col-md-12" *ngIf="products">
+              <ngx-datatable #table style="height: 500px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true" [rows]='products$ | async'>
+                
+                <!-- <ngx-datatable-column [minWidth]="100" [maxWidth]="180" name="Clave presupuestal" prop="">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    
+                  </ng-template>
+                </ngx-datatable-column> -->
+  
+                <ngx-datatable-column [minWidth]="100" [maxWidth]="130" name="Partida" prop="concept.concept_number">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="break-word"><strong> {{value}} </strong></div> 
+                  </ng-template>
+                </ngx-datatable-column>
+  
+                <ngx-datatable-column [minWidth]="130" [maxWidth]="130" name="Cantidad" >
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <input class="form-control" type="number" style="width:105px" [value]="row.quantity > 0 ? row.quantity : ''" [placeholder]="row.quantity == 0 ? '0':''" #quantity (keyup)="onQuantity(quantity.value, row.id)">
+                  </ng-template>
+                </ngx-datatable-column>
+  
+                <ngx-datatable-column [minWidth]="150" [maxWidth]="150" name="Unidad" prop="unit">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="break-word"><strong> {{value}} </strong></div> 
+                  </ng-template>
+                </ngx-datatable-column>
+  
+                <ngx-datatable-column [minWidth]="500" [maxWidth]="500" name="Descripción de bienes/servicios" prop="description">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="break-word"><strong> {{value}} </strong></div> 
+                  </ng-template>
+                </ngx-datatable-column>
+  
+                <!-- <ngx-datatable-column [minWidth]="50" [maxWidth]="200" name="TOTAL" prop="total">
+                  <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="break-word"><strong> {{value}} </strong></div> 
+                  </ng-template>
+                </ngx-datatable-column> -->
+
+                <ngx-datatable-column [minWidth]="160" [maxWidth]="160" name="Precio Unitario" width="160">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <input class="form-control" type="number" style="width:130px" [value]="row.price > 0 ? row.price : ''" [placeholder]="row.price == 0 ? '0':''" #price (keyup)="onCost(price.value, row.id)">
+                  </ng-template>
+                </ngx-datatable-column>
+                  
+                <ngx-datatable-column [minWidth]="50" name="" prop="description" width="50">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                      <i (click)="close(value)" class="fa fa-close"></i>
+                    </ng-template>
+                  </ngx-datatable-column>
+  
+              </ngx-datatable>
+            </div>   
+          
+          </div>
+          <div class="card-footer text-right">
+            <h2>Total: {{ total$ | async | currency }}</h2><hr>
+            <button [disabled]="!bill.value" type="submit" class="btn btn-outline-primary btn-lg"><i class="fa fa-check"></i> Registrar</button>
+          </div>
+
+        </form>
+      </div>
+    </div><!--/.col-->
+  </div><!-- row -->
+</div>

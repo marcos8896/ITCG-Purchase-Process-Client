@@ -1,0 +1,25 @@
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-header">
+            <strong>Departamento: </strong> {{department.name}}
+            -
+            <strong>Jefe: </strong> {{ department.boss_department.name }}
+        <div class="card-actions">
+            <a (click)="isCollapsed = !isCollapsed" style="cursor: pointer;">
+            <small className="text-muted">Ver</small>
+            </a>
+        </div>
+        </div>
+        <div class="card-body animated fadeIn"
+            (collapsed)="collapsed($event)"
+            (expanded)="expanded($event)"
+            [collapse]="isCollapsed">
+
+            <app-table-requisition [requisitions]="department.boss_department.requisition"></app-table-requisition>
+            
+        
+        </div>
+        <!-- <div class="card-footer">
+        </div> -->
+    </div>
+</div>
