@@ -61,12 +61,22 @@ export class RequisitionDetailsComponent implements OnInit, OnDestroy {
        this.location.back();
     }
 
+    getUserRole() {
+        return JSON.parse(localStorage.getItem('ITCG_role'));
+    }
+
     acceptRequisition() {
         const { id } = this.requisition;
         const { ACEPTADA } = REQUISITION_STATES;
-        this.requisitionService.checkSubdirection( id, ACEPTADA )
-            .subscribe( res => this.showSuccess('La requisición ha sido aceptada'),
-                        error => this.showError(error));
+        const userRole = this.getUserRole();
+        if ( userRole === 'planningdepartment' )
+            this.requisitionService.checkPlanning( id, ACEPTADA )
+                .subscribe( res => this.showSuccess('La requisición ha sido aceptada'),
+                            error => this.showError(error));
+        else if ( userRole === 'bossdepartment' )
+            this.requisitionService.checkSubdirection( id, ACEPTADA )
+                .subscribe( res => this.showSuccess('La requisición ha sido aceptada'),
+                            error => this.showError(error));
     }
 
     cancelRequisition() {
