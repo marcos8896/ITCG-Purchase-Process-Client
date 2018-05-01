@@ -8,6 +8,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PurchaseOrderCreateComponent } from './components/purchase-order-create/purchase-order-create.component';
 import { PurchaseOrderRoutingModule } from './purchase-order.routing';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { PurchaseOrderShowComponent } from './components/purchase-order-show/purchase-order-show.component';
+import { PurchaseOrdersComponent } from './components/purchase-orders/purchase-orders.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
   ],
   declarations: [
     PurchaseOrderCreateComponent,
+    PurchaseOrderShowComponent,
+    PurchaseOrdersComponent,
   ],
   providers: [ PurchaseOrderService ]
 })

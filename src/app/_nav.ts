@@ -188,11 +188,11 @@ export const navigation = [
             url: '/processes/purchase-order/create',
             icon: 'icon-note',
           },
-          // {
-          //   name: 'Consultar',
-          //   url: '/processes/requisition/all',
-          //   icon: 'icon-note',
-          // }
+          {
+            name: 'Consultar',
+            url: '/processes/purchase-order/all',
+            icon: 'icon-note',
+          }
         ] 
       },    
       

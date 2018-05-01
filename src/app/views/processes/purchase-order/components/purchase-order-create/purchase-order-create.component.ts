@@ -79,6 +79,7 @@ export class PurchaseOrderCreateComponent implements OnInit {
    * @memberof PurchaseOrderCreateComponent
    */
   getRequisitionsWithRelatedModels(){
+
     this.requisitionService.getAll({
       where: { 
         check_boss: REQUISITION_STATES.ACEPTADA,
@@ -259,6 +260,7 @@ export class PurchaseOrderCreateComponent implements OnInit {
 
     this.purchaseOrderService.create(this.purchaseOrder)
     .subscribe( res => {
+      console.log('res: ', res);
       if ( res ) this.showSuccess();
       this.resetPurchaseProcessState(currentProvider);
 
