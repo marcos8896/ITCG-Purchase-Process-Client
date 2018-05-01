@@ -32,7 +32,6 @@ export class TableRequisitionComponent implements OnInit {
 
     selectedElementHandler( element ) {
         this.selectedRequisition = element;
-        // const route = '/aprovements/vice-principal/requisition-details';
         const route = '/aprovements/requisition-details';
         const { id } = this.selectedRequisition[0];
         this.router.navigate([ route, id ])
