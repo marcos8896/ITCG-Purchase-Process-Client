@@ -1,4 +1,5 @@
 <ngx-datatable
+    id="tableR"
     style="height: 330px" 
     #userTable 
     class='material expandable'
@@ -11,7 +12,7 @@
     <!-- Column Templates -->
     <ngx-datatable-column [minWidth]="100" name="Permisos" prop="hasRole" width="50">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <span (click)="setPermissions(value, row)" [ngClass]="{'badge-warning': !value, 'badge-success': value}" class="badge" style="cursor: pointer;">
+            <span id="status" (click)="setPermissions(value, row)" [ngClass]="{'badge-warning': !value, 'badge-success': value}" class="badge" style="cursor: pointer;">
                 {{ value ? 'CONCEDIDOS' : 'DENEGADOS' }}
             </span>
         </ng-template>
@@ -19,7 +20,7 @@
 
     <ngx-datatable-column [minWidth]="150" name="Nombre" prop="name" width="200">
         <ng-template let-value="value" ngx-datatable-cell-template>
-        <strong>{{ value }}</strong>
+        <strong id="nameColum">{{ value }}</strong>
         </ng-template>
     </ngx-datatable-column>
 

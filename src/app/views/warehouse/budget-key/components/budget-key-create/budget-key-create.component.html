@@ -95,7 +95,7 @@
                           <div class="col-md-2">
                             <div class="form-group">
                               <ul class="list-group" style="margin-top: 35px;">
-                                <button class="btn btn-lg btn-link pull-right" (click)="projectSelected(project, row)">Elegir</button>
+                                <button class="btn btn-lg btn-link pull-right" (click)="projectSelected(project, row)" id="choose">Elegir</button>
                               </ul>
                             </div>
                           </div>
@@ -114,15 +114,16 @@
                       [class.datatable-icon-right]="!expanded"
                       [class.datatable-icon-down]="expanded"
                       title="Expand/Collapse Row"
+                      id="click"
                       (click)="toggleExpandRow(row)">
                     </a>
                   </ng-template>
                 </ngx-datatable-column>
             
                 <!-- El [minWidth] es importante para cuando es responsive, chequenle bien gg -->
-                <ngx-datatable-column [minWidth]="90" [maxWidth]="90" name="ID" prop="program_number" width="90">
+                <ngx-datatable-column [minWidth]="90" [maxWidth]="90" name="ID" prop="program_number" width="90" id="columProgram">
                   <ng-template let-value="value" ngx-datatable-cell-template>
-                    <strong>{{value}}</strong>
+                    <strong id="columProgram">{{value}}</strong>
                   </ng-template>
                 </ngx-datatable-column>
             
@@ -150,11 +151,11 @@
                       <div class="col-sm-12">
                         <div class="form-group">
                           <label for="description">Descripción</label>
-                          <textarea [(ngModel)]="actionDescription" name="description" #descriptionInput #description="ngModel" class="form-control" rows="3" placeholder="Ingrese una descripción..."></textarea>
+                          <textarea [(ngModel)]="actionDescription" name="description" id="action"#descriptionInput #description="ngModel" class="form-control" rows="3" placeholder="Ingrese una descripción..."></textarea>
                         </div>
                       </div>
                     </div><!--/.row-->
-                    <button [disabled]="(description.invalid)" type="button" class="btn btn-outline-primary" (click)="onSubmitAddAction()"><i class="fa fa-check"></i>Agregar Acción</button>
+                    <button [disabled]="(description.invalid)" type="button" class="btn btn-outline-primary" id="addAction" (click)="onSubmitAddAction()"><i class="fa fa-check"></i>Agregar Acción</button>
                   </div>
         
                 </div>
@@ -188,7 +189,7 @@
           </div>
 
           <div class="card-footer text-right">
-            <button [disabled]="(formBudgetKey.invalid || !actions.length)" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i>Registrar</button>
+            <button [disabled]="(formBudgetKey.invalid || !actions.length)" id="actionsSave" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i>Registrar</button>
           </div>
         </form>
       </div>
