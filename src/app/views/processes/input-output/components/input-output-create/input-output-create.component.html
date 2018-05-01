@@ -25,12 +25,12 @@
                   </div>
                   
                   <div class="col-sm-12 col-md-3" *ngIf="dateIO">
-                    <label for="">Fecha</label>
+                    <label for="">Fecha <strong style="color:red">*</strong></label>
                     <input type="date" name="date" #dateR class="form-control" [ngModel]="dateIO | date:'yyyy-MM-dd'" required>
                   </div>
 
                   <div class="col-sm-12 col-md-6">
-                    <label>Ingrese folio factura</label>
+                    <label>Ingrese folio factura <strong style="color:red">*</strong></label>
                     <input ngModel #bill="ngModel" name="bill" type='text' class="form-control"/>
                   </div>
 

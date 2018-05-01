@@ -153,6 +153,7 @@ export class InputOutputCreateComponent implements OnInit {
             this.requisitionService.update( this.requisition )
               .subscribe( resp => {
                 this.showSuccess(); 
+                this.router.navigate(['/processes/input-output/all']);
               })
           })
       })
