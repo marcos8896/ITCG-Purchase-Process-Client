@@ -1,3 +1,4 @@
+import { SharedAprovementsModule } from './../shared/shared-aprovements.module';
 import { NgModule } from '@angular/core';
 import { DateParserService } from './../../../services/date-parser.service';
 
@@ -15,6 +16,7 @@ import { SelectableTableModule } from '../../../shared/selectable-table/selectab
     imports: [
         PlanningAprovementsdRoutingModule,
         CommonModule,
+        SharedAprovementsModule,
     ],
     exports: [],
     declarations: [PlanningAprovementsComponent],
