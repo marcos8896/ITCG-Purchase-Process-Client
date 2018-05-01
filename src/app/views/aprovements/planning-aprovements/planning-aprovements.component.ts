@@ -14,9 +14,19 @@ export class PlanningAprovementsComponent implements OnInit {
         this.departments = [];
     }
 
-    ngOnInit() { }
-
+    ngOnInit() {
+        this.getRequisitions();
+     }
+    
     getRequisitions() {
-        
+        this.planningService.getRequisitionsToSign()
+            .subscribe( res => {
+                this.departments = res.result.filter( obj => 
+                    obj.department
+                        ? obj.department
+                        : null
+                ).map(e => e.department)
+            });
     }
+
 }
