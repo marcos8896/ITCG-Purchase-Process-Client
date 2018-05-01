@@ -73,7 +73,7 @@ export class RequisitionDetailsComponent implements OnInit, OnDestroy {
             this.requisitionService.checkPlanning( id, ACEPTADA )
                 .subscribe( res => this.showSuccess('La requisición ha sido aceptada'),
                             error => this.showError(error));
-        else if ( userRole === 'bossdepartment' )
+        else if ( userRole === 'viceprincipal' )
             this.requisitionService.checkSubdirection( id, ACEPTADA )
                 .subscribe( res => this.showSuccess('La requisición ha sido aceptada'),
                             error => this.showError(error));
