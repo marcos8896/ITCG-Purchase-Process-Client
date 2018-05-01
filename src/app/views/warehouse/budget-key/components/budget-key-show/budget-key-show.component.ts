@@ -13,7 +13,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class BudgetKeyShowComponent implements OnInit {
   public id: any
   public budgetKeyId: any
-  public budgetKey: BudgetKeyInterface[]
+  public budgetKey: any;
   public budgetKeyDetails: any[]
 
   constructor(
@@ -26,6 +26,7 @@ export class BudgetKeyShowComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getUrlId()
   }
 
   

@@ -63,9 +63,15 @@
         </ng-template>
       </ngx-datatable-column>
 
+      <ngx-datatable-column [minWidth]="50" [maxWidth]="100" name="Acciones" prop="id" width="250">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <button class="btn btn-lg btn-link pull-right" [routerLink]="['../edit/', value]">Editar </button>
+        </ng-template>
+      </ngx-datatable-column>
+
       <ngx-datatable-column [minWidth]="50" [maxWidth]="100" name="Detalles" prop="id" width="250">
         <ng-template let-value="value" ngx-datatable-cell-template>
-          <button class="btn btn-lg btn-link pull-right" [routerLink]="['../show/', value]">Ver </button>
+          <button class="btn btn-lg btn-link pull-right" [routerLink]="['../show/', value]">Ver</button>
         </ng-template>
       </ngx-datatable-column>
 

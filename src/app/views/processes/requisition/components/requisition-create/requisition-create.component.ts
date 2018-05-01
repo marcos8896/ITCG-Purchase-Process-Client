@@ -34,13 +34,13 @@ export class RequisitionCreateComponent implements OnInit {
   public products: any[] = []
   public behaviorSubject: BehaviorSubject<any[]>
 
-  public quantity: any = 0
+  public quantity: any = ''
   public conceptNumber: any = 0
   public unit: String = ""
   public description: String = ""
   public status: String = ""
   public requisitionId: any = 0
-  public cost: any = 0  
+  public cost: any = ''
   public boss;
 
   public dateRe = new Date()
@@ -56,7 +56,6 @@ export class RequisitionCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.dateRe);
     this.getBudgetKeys()
     this.getProviders()
     this.getBoss()
@@ -170,10 +169,10 @@ export class RequisitionCreateComponent implements OnInit {
   }
 
   cleanProduct(){
-    this.quantity = 0
+    this.quantity = " "
     this.unit = ""
     this.description = " "
-    this.cost = 0
+    this.cost = " "
   }
 
   cleanProductsTable(){

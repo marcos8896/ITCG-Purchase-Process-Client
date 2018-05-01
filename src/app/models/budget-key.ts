@@ -5,5 +5,5 @@ export interface BudgetKeyInterface {
     projectId: number,
     subdirectionId: number,
     programId: number,
-    budgetKeyDetails?: any []
+    budget_key_details?: any []
 }

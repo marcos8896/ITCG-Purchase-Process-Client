@@ -1,4 +1,7 @@
+import { InputOutputService } from './services/input-output.service';
 import { RequisitionService } from './services/requisition.service';
+
+import { InputOutputDetailsService } from 'app/services/input-output-details.services';
 
 import { ConceptRequisitionService } from 'app/services/concept-requisition.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -109,7 +112,9 @@ const SERVICES = [
   BossDepartmentService,
   RequisitionService,
   ConceptRequisitionService,
-  PlanningService
+  PlanningService,
+  InputOutputService,
+  InputOutputDetailsService
 ]
 
 // Guards

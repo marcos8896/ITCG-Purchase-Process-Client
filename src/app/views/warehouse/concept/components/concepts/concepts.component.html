@@ -37,7 +37,7 @@
 
   <div class="col-sm-12 col-md-12">
     <ngx-datatable style="height: 550px" #myTable class='material expandable' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-      [rowHeight]="60" [scrollbarV]="true" [scrollbarH]="true" [rows]='concepts'>
+      [rowHeight]="60" [scrollbarV]="true" [scrollbarH]="true" [rows]='concepts' id="table">
       <!-- Row Detail Template -->
       <ngx-datatable-row-detail [rowHeight]="130" #myDetailRow (toggle)="onDetailToggle($event)">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
@@ -60,7 +60,7 @@
     
               <div class="col-md-2">
                 <div class="form-group">
-                  <button class="btn btn-lg btn-link pull-right" [routerLink]="['../edit/', row.id]">Editar</button>
+                  <button class="btn btn-lg btn-link pull-right" [routerLink]="['../edit/', row.id]" id="clickEdit">Editar</button>
                 </div>
               </div>
     
@@ -70,9 +70,9 @@
         </ng-template>
       </ngx-datatable-row-detail>
       <!-- Column Templates -->
-      <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+      <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false" id="programTable">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-          <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="Expand/Collapse Row"
+          <a href="javascript:void(0)" id="click" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="Expand/Collapse Row"
             (click)="toggleExpandRow(row)">
           </a>
         </ng-template>
@@ -80,7 +80,7 @@
 
       <ngx-datatable-column [minWidth]="100" [maxWidth]="300" name="Número de partida" prop="concept_number" width="100">
         <ng-template let-value="value" ngx-datatable-cell-template>
-          <strong>{{ value }}</strong>
+          <strong id="columnNumber">{{ value }}</strong>
         </ng-template>
       </ngx-datatable-column>
 

@@ -14,7 +14,7 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <label for="name">Nombre de la subdirección</label>
-                  <input ngModel name="name" #nameInput #name="ngModel" type="text" class="form-control" placeholder="Ingrese un nombre para la subdirección..." required minlength="2">
+                  <input ngModel name="name" id="name" #nameInput #name="ngModel" type="text" class="form-control" placeholder="Ingrese un nombre para la subdirección..." required minlength="2">
                   <ul *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="margin-top: .5em">
                       <li *ngIf="name.errors.required"> Debes ingresar un <strong>nombre de subdirección</strong> </li>
                       <li *ngIf="name.errors.minlength"> Debes ingresar una descripción como mínimo de <strong> {{ name.errors.minlength.requiredLength }} </strong> caracteres </li>
@@ -41,7 +41,7 @@
 
           </div>
           <div class="card-footer text-right">
-            <button [disabled]="formSubdirection.invalid" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
+            <button [disabled]="formSubdirection.invalid" id="saveSubdirections" type="submit" class="btn btn-outline-primary"><i class="fa fa-check"></i> Registrar</button>
           </div>
 
         </form>

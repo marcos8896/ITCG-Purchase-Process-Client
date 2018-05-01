@@ -40,7 +40,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-sidebar-nav-item',
   template: `
-    <li *ngIf="!isDropdown(); else dropdown" [ngClass]="hasClass() ? 'nav-item ' + item.class : 'nav-item'">
+    <li [id]="item.name" *ngIf="!isDropdown(); else dropdown" [ngClass]="hasClass() ? 'nav-item ' + item.class : 'nav-item'">
       <app-sidebar-nav-link [link]='item'></app-sidebar-nav-link>
     </li>
     <ng-template #dropdown>
@@ -79,7 +79,7 @@ export class AppSidebarNavItemComponent {
 @Component({
   selector: 'app-sidebar-nav-link',
   template: `
-    <a *ngIf="!isExternalLink(); else external"
+    <a [id]="link.name" *ngIf="!isExternalLink(); else external"
       [ngClass]="hasVariant() ? 'nav-link nav-link-' + link.variant : 'nav-link'"
       routerLinkActive="active"
       [routerLink]="[link.url]">
@@ -121,7 +121,7 @@ export class AppSidebarNavLinkComponent {
 @Component({
   selector: 'app-sidebar-nav-dropdown',
   template: `
-    <a class="nav-link nav-dropdown-toggle pointer" appNavDropdownToggle>
+    <a [id]="link.name" class="nav-link nav-dropdown-toggle pointer" appNavDropdownToggle>
       <i *ngIf="isIcon()" class="{{ link.icon }}"></i>
       {{ link.name }}
       <span *ngIf="isBadge()" [ngClass]="'badge badge-' + link.badge.variant">{{ link.badge.text }}</span>
@@ -133,7 +133,7 @@ export class AppSidebarNavLinkComponent {
     </ul>
   `
 })
-export class AppSidebarNavDropdownComponent {
+export class AppSidebarNavDropdownComponent implements OnInit {
   @Input() link: any;
 
   public isBadge() {
@@ -144,7 +144,12 @@ export class AppSidebarNavDropdownComponent {
     return this.link.icon ? true : false
   }
 
-  constructor() { }
+  constructor() { 
+    
+  }
+  ngOnInit() {
+    
+  }
 }
 
 @Component({
