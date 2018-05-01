@@ -4,6 +4,7 @@ import { BasicRequestService } from './basic-request.service';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { REQUISITION_STATES } from '../shared/_requisition_states';
 
 @Injectable()
 export class RequisitionService extends BasicRequestService {
@@ -35,7 +36,7 @@ export class RequisitionService extends BasicRequestService {
    */
   checkPlanning( id, status ) {
     return this.http.patch(`${this.endPoint}/${id}`,
-                    { check_planning: status },
+                    { check_planning: status, status: status },
                     { headers: this.generateHeaderObject() } )
         .map( res => res.json() || {} )
         .catch( this.handleError );
